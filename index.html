@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit fe5038f. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 483ad72. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -1242,6 +1242,11 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
 
   .ld-half{opacity:0;pointer-events:none;animation:none;z-index:101}
   .ld-cutline{position:fixed;width:2px;z-index:102;pointer-events:none;background:#fff;box-shadow:0 0 18px 4px var(--a),0 0 3px 1px #fff}
+
+  .ld-run{transition:opacity .2s ease-out}
+  .ld-settled .ld-run{opacity:0}
+  .ld-settled .ld-sd > b{transition:opacity .2s ease-out}
+  .ld-settled .ld-eye i{animation:none}
   @keyframes ld-in{from{opacity:0}}
   @keyframes ld-breathe{0%,100%{opacity:.5;transform:scale(.88)}50%{opacity:1;transform:scale(1.1)}}
   @keyframes ld-blink{0%,84%,89%,91%,100%{opacity:1}85.5%,87.5%{opacity:.05}89.6%,90.4%{opacity:.05}}
@@ -1500,7 +1505,7 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   </main>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit fe5038f; edit the modules, not this ----
+// ---- packed by runner/tools/pack.mjs from commit 483ad72; edit the modules, not this ----
 // packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sim/decide.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_markword = (() => {
 
@@ -3501,6 +3506,8 @@ let STUDIO = null;
 let BACKGROUND = false, PROGRAMS = null;
 const PREPARING = { preparing: true };
 function prepareInBackground(on) { BACKGROUND = !!on; }
+let FIRST_OK = false;
+function allowFirstPicture() { FIRST_OK = true; }
 function programsReady() { return STUDIO ? (PROGRAMS ? PROGRAMS.count : 9) : PROGRAMS ? PROGRAMS.ready() : 0; }
 function studioBuilt() { return STUDIO !== null; }
 let FENCE = null, FENCED = false;
@@ -3513,7 +3520,7 @@ function studioPictureDone() {
 function studioFor() {
   if (STUDIO === null) {
     if (!PROGRAMS) PROGRAMS = studioPrograms(gl);
-    if (BACKGROUND && !PROGRAMS.done()) return PREPARING;
+    if (BACKGROUND && (!PROGRAMS.done() || !FIRST_OK)) return PREPARING;
     STUDIO = makeStudio(gl, PROGRAMS);
     if (!STUDIO.ok) console.warn('UMD: the studio look is unavailable here (' + STUDIO.why + '); the flat painter draws the stage');
   }
@@ -3998,7 +4005,7 @@ function drawSceneGL(ctx, cam, sc, kit) {
   return true;
 }
 
-return { PREPARING, prepareInBackground, programsReady, studioBuilt, studioPictureDone, glReady, glWhyNot, glStats, glResetStats, drawSceneGL };
+return { PREPARING, prepareInBackground, allowFirstPicture, programsReady, studioBuilt, studioPictureDone, glReady, glWhyNot, glStats, glResetStats, drawSceneGL };
 })();
 
 const __m_engine_gfx = (() => {
@@ -6854,7 +6861,7 @@ const STEPS = [
   { say: 'Preparing lights and shadows', note: 'Your graphics card does this once on this computer. Next time the game opens much faster.' },
   { say: 'Painting the cage', note: '' },
 ];
-const PLAN = { share: [0, 0.141, 0.141, 0.626], ms: [901, 0, 3277, 2523] };
+const PLAN = { share: [0, 0.087, 0.087, 0.625], ms: [499, 0, 3504, 2445] };
 const CREEP = 0.9;
 const READY_HOLD = 300;
 const CUT = { line: 260, slide: 780, ease: 'cubic-bezier(.7,0,.25,1)', apart: 0.62 };
@@ -6906,6 +6913,15 @@ function loadingDrop() {
   for (const e of document.querySelectorAll('.ld-cut')) e.remove();
 }
 
+const SETTLE = 200;
+function loadingSettle(fn) {
+  const L = screenEl();
+  if (!L || gone) { fn(); return; }
+  light(L, 1, 1, 0);
+  L.classList.add('ld-settled');
+  setTimeout(fn, SETTLE + 20);
+}
+
 function loadingReady() {
   const L = screenEl();
   if (!L || gone) return;
@@ -6951,7 +6967,7 @@ function cut(L) {
   }).then(clear, clear);
 }
 
-return { loadingStep, loadingProgress, whenDrawn, loadingDrop, loadingReady };
+return { loadingStep, loadingProgress, whenDrawn, loadingDrop, SETTLE, loadingSettle, loadingReady };
 })();
 
 const __m_app_sim_body = (() => {
@@ -17121,12 +17137,12 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"fe5038f","date":"2026-10-02","built":"2026-10-03 01:16"};
+const __RUNNER_BUILD = {"commit":"483ad72","date":"2026-10-02","built":"2026-10-03 02:12"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
 const { animate, invalidateTheme, setPaint, setFinish, setDrama, setEdges, setRenderer, getRenderer, setLook, getLook } = __m_engine_gfx;
-const { glStats, glWhyNot, glResetStats, prepareInBackground, programsReady, studioBuilt, studioPictureDone } = __m_engine_draw_gl;
+const { glStats, glWhyNot, glResetStats, prepareInBackground, programsReady, studioBuilt, studioPictureDone, allowFirstPicture } = __m_engine_draw_gl;
 const { setJoint, setPose } = __m_engine_forge;
 const { FORGE, boneBuild, boneTape, classOf, WEIGHT_CLASSES } = __m_engine_rigs;
 const { live, frame, dirtyAll, counts } = __m_app_canvas;
@@ -17151,7 +17167,7 @@ const { mountStage, draw: drawStage, setBuildSource, setBoneTuner, dimGrabs, mot
 const { drawBrain, drawBody, setSubject } = __m_app_viz;
 const { mountModes, setMode, backToPlan, modeLive, repaintPanel, currentModeId } = __m_app_modes;
 const { mountNav } = __m_app_nav;
-const { loadingStep, loadingProgress, loadingReady, loadingDrop, whenDrawn } = __m_app_loading;
+const { loadingStep, loadingProgress, loadingSettle, loadingReady, loadingDrop, whenDrawn } = __m_app_loading;
 
 const $ = id => document.getElementById(id);
 const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -17574,13 +17590,14 @@ setSubject(() => {
 });
 
 const t0 = performance.now();
-let booting = 0, stillsLeft = -1, sameFor = 0, programsSaid = -1;
+let booting = 0, stillsLeft = -1, sameFor = 0, programsSaid = -1, settling = false;
 if (window.frameElement) loadingDrop();
 else if (document.getElementById('loading')) prepareInBackground(true);
 function bootWatch() {
   if (booting === 0) {
     const n = programsReady();
     if (n !== programsSaid) { programsSaid = n; loadingProgress(n, 9); }
+    if (n >= 9 && !settling) { settling = true; loadingStep(3); loadingSettle(() => whenDrawn(allowFirstPicture)); }
     if (studioBuilt() || getRenderer() !== 'gl' || glWhyNot()) { booting = 1; loadingStep(3); }
     return;
   }
