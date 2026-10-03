@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 86bd9e0. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit fe5038f. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -1203,8 +1203,66 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   .hud{width:min(420px, calc(100% - 320px))}
 }
 </style>
+<style>
+  .ld-screen{position:fixed;inset:0;z-index:100;container-type:size;overflow:hidden;display:grid;place-items:center;color:var(--ink);font-family:var(--mono);background:var(--bg);animation:ld-in .35s ease-out both}
+  .ld-screen::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 62% at 50% 42%,color-mix(in srgb,var(--a-dim) 26%,var(--bg)) 0%,var(--bg) 72%)}
+  .ld-screen > *{position:relative}
+  .ld-screen *{box-sizing:border-box}
+  .ld-box{display:flex;flex-direction:column;align-items:center}
+
+  .ld-oct{position:relative;--S:min(560px,70cqh,66cqw);--r:calc(var(--S) * .44);--t:5px;width:var(--S);height:calc(var(--S) * .82);perspective:calc(var(--S) * 1.8)}
+  .ld-plane{position:absolute;left:0;top:calc(var(--S) * -.09);width:var(--S);height:var(--S);transform:rotateX(56deg)}
+  .ld-floor{position:absolute;inset:0;clip-path:polygon(68.85% 4.50%,95.50% 31.15%,95.50% 68.85%,68.85% 95.50%,31.15% 95.50%,4.50% 68.85%,4.50% 31.15%,31.15% 4.50%);background:radial-gradient(closest-side,color-mix(in srgb,var(--bad) 22%,var(--floor)) 0%,var(--floor) 30%,color-mix(in srgb,var(--floor) 55%,var(--bg)) 100%)}
+  .ld-sd{position:absolute;left:50%;top:50%;height:var(--t);width:calc((var(--r) * 2 + var(--t)) * .414214);margin:calc(var(--t) / -2) 0 0 calc((var(--r) * 2 + var(--t)) * -.207107);transform:rotate(calc(var(--k) * 45deg)) translateY(calc(var(--r) * -1))}
+  .ld-sd i,.ld-sd b{position:absolute;inset:0}
+  .ld-sd .ld-base,.ld-sd .ld-lit{clip-path:polygon(0 0,100% 0,calc(100% - var(--t) * .414214) 100%,calc(var(--t) * .414214) 100%)}
+  .ld-sd .ld-base{background:color-mix(in srgb,var(--ink3) 55%,transparent)}
+  .ld-sd .ld-lit{background:var(--a)}
+  .ld-sd .ld-glow{inset:-12px 8%;background:radial-gradient(closest-side,color-mix(in srgb,var(--a) 50%,transparent),transparent)}
+  .ld-sd > b{opacity:0}
+  .ld-sd.on > b{opacity:1}
+  .ld-sd.chg > b{animation:ld-chg .8s ease-in-out infinite alternate}
+  .ld-sd.later > b{animation:ld-chg .8s ease-in-out infinite alternate,ld-on .25s ease-out forwards;animation-delay:0s,var(--d)}
+
+  .ld-run{position:absolute;inset:0;pointer-events:none;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='68.23,6.00 94.00,31.77 94.00,68.23 68.23,94.00 31.77,94.00 6.00,68.23 6.00,31.77 31.77,6.00' fill='none' stroke='%23000' stroke-width='4.4'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='68.23,6.00 94.00,31.77 94.00,68.23 68.23,94.00 31.77,94.00 6.00,68.23 6.00,31.77 31.77,6.00' fill='none' stroke='%23000' stroke-width='4.4'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+  .ld-run i{position:absolute;inset:-6%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 280deg,color-mix(in srgb,var(--a) 35%,transparent) 330deg,#fff 356deg,transparent 360deg);animation:ld-spin 3s linear infinite}
+
+  .ld-mid{position:absolute;inset:0;pointer-events:none}
+  .ld-eye{position:absolute;left:50%;top:37%;width:2.8%;aspect-ratio:1;transform:translate(-50%,-50%)}
+  .ld-eye i{position:absolute;inset:0;border-radius:50%}
+  .ld-eye .ld-halo{inset:-340%;background:radial-gradient(circle,color-mix(in srgb,var(--bad) 72%,transparent) 0%,color-mix(in srgb,var(--bad) 26%,transparent) 24%,transparent 60%);animation:ld-breathe 2.4s ease-in-out infinite}
+  .ld-eye .ld-flare{inset:40% -1200%;background:radial-gradient(closest-side,color-mix(in srgb,#ffd8ce 62%,transparent),transparent);animation:ld-blink 4.6s linear infinite}
+  .ld-eye .ld-core{inset:-20%;background:radial-gradient(circle,#fff 0%,#ffcfc4 28%,var(--bad) 56%,transparent 72%);animation:ld-blink 4.6s linear infinite}
+  .ld-mark{margin-top:2.6cqmin;height:min(46px,9cqw)}
+  .ld-mark img{display:block;height:100%;width:auto}
+
+  .ld-words{position:relative;width:100%;height:calc(1.8cqmin + 15px + .8cqmin + 45px)}
+  .ld-say{position:absolute;left:50%;top:1.8cqmin;transform:translateX(-50%);white-space:nowrap;font-size:12px;line-height:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);text-align:center;font-weight:600}
+  .ld-note{position:absolute;left:50%;top:calc(1.8cqmin + 15px + .8cqmin);transform:translateX(-50%);width:min(46ch,92cqw);margin:0;font-size:10px;line-height:15px;color:var(--ink3);text-align:center}
+
+  .ld-half{opacity:0;pointer-events:none;animation:none;z-index:101}
+  .ld-cutline{position:fixed;width:2px;z-index:102;pointer-events:none;background:#fff;box-shadow:0 0 18px 4px var(--a),0 0 3px 1px #fff}
+  @keyframes ld-in{from{opacity:0}}
+  @keyframes ld-breathe{0%,100%{opacity:.5;transform:scale(.88)}50%{opacity:1;transform:scale(1.1)}}
+  @keyframes ld-blink{0%,84%,89%,91%,100%{opacity:1}85.5%,87.5%{opacity:.05}89.6%,90.4%{opacity:.05}}
+  @keyframes ld-chg{from{opacity:.12}to{opacity:.8}}
+  @keyframes ld-on{to{opacity:1}}
+  @keyframes ld-spin{to{transform:rotate(360deg)}}
+
+  @media (prefers-reduced-motion:reduce){.ld-run,.ld-eye .ld-flare{display:none}.ld-eye i{animation:none}.ld-screen{animation:none}}
+</style>
 </head>
 <body>
+<div class="ld-screen" id="loading" role="status" aria-live="polite" aria-busy="true">
+  <div class="ld-box">
+    <div class="ld-oct">
+      <div class="ld-plane"><div class="ld-floor"></div><div class="ld-sd chg" style="--k:0"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:1"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:2"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:3"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:4"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:5"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:6"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-sd" style="--k:7"><i class="ld-base"></i><b><i class="ld-glow"></i><i class="ld-lit"></i></b></div><div class="ld-run"><i></i></div></div>
+      <div class="ld-mid"><div class="ld-eye"><i class="ld-halo"></i><i class="ld-flare"></i><i class="ld-core"></i></div></div>
+    </div>
+    <div class="ld-mark"><img id="loadingMark" alt="UMD" src="data:image/webp;base64,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"></div>
+    <div class="ld-words"><div class="ld-say" id="loadingSay">Loading the game</div><p class="ld-note" id="loadingNote"></p></div>
+  </div>
+</div>
 <div class="app">
   <main id="stageWrap">
     <canvas id="stage" role="img" aria-label="the cage: drag to orbit, wheel to zoom"></canvas>
@@ -1442,8 +1500,8 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   </main>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit 86bd9e0; edit the modules, not this ----
-// packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sim/decide.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
+// ---- packed by runner/tools/pack.mjs from commit fe5038f; edit the modules, not this ----
+// packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sim/decide.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_markword = (() => {
 
 const GRID = {
@@ -3229,18 +3287,29 @@ const MATS = { paint: 0, housing: 1, hub: 2, lens: 3, band: 4, floor: 5, post: 7
 const NEARF = 0.05, FARF = 400, SH = 2048;
 const norm = v => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
 
-function makeStudio(gl) {
+function studioPrograms(gl) {
+  const ext = gl.getExtension('KHR_parallel_shader_compile');
+  const shader = (t, src) => { const sh = gl.createShader(t); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; };
+  const begin = (v, f) => { const p = gl.createProgram(), vs = shader(gl.VERTEX_SHADER, v), fs = shader(gl.FRAGMENT_SHADER, f);
+    gl.attachShader(p, vs); gl.attachShader(p, fs); gl.linkProgram(p); return { p, vs, fs }; };
+  const jobs = { main: begin(VERT, FRAG), shadow: begin(SHADOW_VERT, SHADOW_FRAG), ssao: begin(QUAD_VERT, SSAO_FRAG), blur4: begin(QUAD_VERT, BLUR4_FRAG),
+    compose: begin(QUAD_VERT, COMPOSE_FRAG), bright: begin(QUAD_VERT, BRIGHT_FRAG), gblur: begin(QUAD_VERT, GBLUR_FRAG),
+    final: begin(QUAD_VERT, FINAL_FRAG), present: begin(QUAD_VERT, PRESENT_FRAG) };
+  const all = Object.values(jobs);
+  return { jobs, count: all.length, parallel: !!ext,
+    ready: () => ext ? all.filter(j => gl.getProgramParameter(j.p, ext.COMPLETION_STATUS_KHR)).length : all.length,
+    done() { return this.ready() === all.length; } };
+}
+function makeStudio(gl, started = studioPrograms(gl)) {
   let why = '';
   const hdrOk = !!gl.getExtension('EXT_color_buffer_float');
-  const compile = (t, s) => { const sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh)); return sh; };
-  const prog = (v, f) => { const p = gl.createProgram(); gl.attachShader(p, compile(gl.VERTEX_SHADER, v)); gl.attachShader(p, compile(gl.FRAGMENT_SHADER, f)); gl.linkProgram(p);
+  const finish = ({ p, vs, fs }) => {
+    for (const sh of [vs, fs]) if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh));
     if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
     const U = {}; const n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name.replace(/\[0\]$/, ''); U[nm] = gl.getUniformLocation(p, nm); } return { p, U }; };
   let P = null;
   try {
-    P = { main: prog(VERT, FRAG), shadow: prog(SHADOW_VERT, SHADOW_FRAG), ssao: prog(QUAD_VERT, SSAO_FRAG), blur4: prog(QUAD_VERT, BLUR4_FRAG),
-          compose: prog(QUAD_VERT, COMPOSE_FRAG), bright: prog(QUAD_VERT, BRIGHT_FRAG), gblur: prog(QUAD_VERT, GBLUR_FRAG),
-          final: prog(QUAD_VERT, FINAL_FRAG), present: prog(QUAD_VERT, PRESENT_FRAG) };
+    P = Object.fromEntries(Object.entries(started.jobs).map(([k, j]) => [k, finish(j)]));
   } catch (e) { why = 'studio shader: ' + (e && e.message || e); return { ok: false, why }; }
   const tex = (w, h, fmt, filt = gl.NEAREST) => { const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
     const [ifmt, f, ty] = fmt === 'f' ? (hdrOk ? [gl.RGBA16F, gl.RGBA, gl.HALF_FLOAT] : [gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE]) : fmt === 'd' ? [gl.DEPTH_COMPONENT24, gl.DEPTH_COMPONENT, gl.UNSIGNED_INT] : [gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE];
@@ -3420,18 +3489,32 @@ function makeStudio(gl) {
   return { ok: true, why: '', hdrOk, begin, end, target: () => R.hdrF, size: () => ({ w: R.w, h: R.h }) };
 }
 
-return { SHIPPED, studioTune, setStudioTune, resetStudioTune, makeStudio };
+return { SHIPPED, studioTune, setStudioTune, resetStudioTune, studioPrograms, makeStudio };
 })();
 
 const __m_engine_draw_gl = (() => {
 
-const { makeStudio, studioTune } = __m_engine_studio_gl;
+const { makeStudio, studioPrograms, studioTune } = __m_engine_studio_gl;
 
 let gl = null, glCanvas = null, tried = false, why = '';
 let STUDIO = null;
+let BACKGROUND = false, PROGRAMS = null;
+const PREPARING = { preparing: true };
+function prepareInBackground(on) { BACKGROUND = !!on; }
+function programsReady() { return STUDIO ? (PROGRAMS ? PROGRAMS.count : 9) : PROGRAMS ? PROGRAMS.ready() : 0; }
+function studioBuilt() { return STUDIO !== null; }
+let FENCE = null, FENCED = false;
+function studioPictureDone() {
+  if (FENCED || !STUDIO || !STUDIO.ok) return FENCED || !!STUDIO;
+  if (!FENCE) return false;
+  if (gl.getSyncParameter(FENCE, gl.SYNC_STATUS) === gl.SIGNALED) { FENCED = true; gl.deleteSync(FENCE); FENCE = null; }
+  return FENCED;
+}
 function studioFor() {
   if (STUDIO === null) {
-    STUDIO = makeStudio(gl);
+    if (!PROGRAMS) PROGRAMS = studioPrograms(gl);
+    if (BACKGROUND && !PROGRAMS.done()) return PREPARING;
+    STUDIO = makeStudio(gl, PROGRAMS);
     if (!STUDIO.ok) console.warn('UMD: the studio look is unavailable here (' + STUDIO.why + '); the flat painter draws the stage');
   }
   return STUDIO.ok ? STUDIO : null;
@@ -3694,6 +3777,7 @@ function drawSceneGL(ctx, cam, sc, kit) {
   const w = cv.width | 0, h = cv.height | 0;
   if (!w || !h) { stats.declines++; return false; }
   if (!buildProgram()) { stats.declines++; return false; }
+  if (sc.look && studioFor() === PREPARING) { stats.preparing = (stats.preparing || 0) + 1; return true; }
   const now = (typeof performance !== 'undefined') ? () => performance.now() : () => 0;
   const t0 = now();
 
@@ -3878,6 +3962,7 @@ function drawSceneGL(ctx, cam, sc, kit) {
     gl.bindVertexArray(null);
   }
   if (studio) studio.end();
+  if (studio && !FENCE && !FENCED) { FENCE = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0); gl.flush(); }
   gl.disable(gl.SCISSOR_TEST);
   const tDraw = now();
   stats.lastW = w; stats.lastH = h;
@@ -3913,7 +3998,7 @@ function drawSceneGL(ctx, cam, sc, kit) {
   return true;
 }
 
-return { glReady, glWhyNot, glStats, glResetStats, drawSceneGL };
+return { PREPARING, prepareInBackground, programsReady, studioBuilt, studioPictureDone, glReady, glWhyNot, glStats, glResetStats, drawSceneGL };
 })();
 
 const __m_engine_gfx = (() => {
@@ -6758,6 +6843,115 @@ function mountMark(cv, o = {}) {
 }
 
 return { MARK, renderMachine, planMark, drawMark, mountMark };
+})();
+
+const __m_app_loading = (() => {
+const { MARK } = __m_app_mark;
+
+const STEPS = [
+  { say: 'Loading the game', note: '' },
+  { say: 'Starting up', note: '' },
+  { say: 'Preparing lights and shadows', note: 'Your graphics card does this once on this computer. Next time the game opens much faster.' },
+  { say: 'Painting the cage', note: '' },
+];
+const PLAN = { share: [0, 0.141, 0.141, 0.626], ms: [901, 0, 3277, 2523] };
+const CREEP = 0.9;
+const READY_HOLD = 300;
+const CUT = { line: 260, slide: 780, ease: 'cubic-bezier(.7,0,.25,1)', apart: 0.62 };
+
+const screenEl = () => document.getElementById('loading');
+let step = 0, gone = false;
+
+function light(L, share, to, ms) {
+  const sides = L.querySelectorAll('.ld-sd'), n = sides.length;
+  const on = Math.floor(share * n + 1e-6), upto = Math.max(on, Math.floor(to * n + 1e-6));
+  sides.forEach((s, k) => {
+    const later = k >= on && k < upto;
+    s.className = 'ld-sd' + (k < on ? ' on' : later ? ' later' : k === on ? ' chg' : '');
+    s.style.setProperty('--d', later ? Math.round((k - on + 1) / (upto - on) * ms) + 'ms' : '0ms');
+  });
+}
+function say(L, words, note) {
+  const s = L.querySelector('#loadingSay'), t = L.querySelector('#loadingNote');
+  if (s) s.textContent = words;
+  if (t) t.textContent = note;
+}
+
+function loadingStep(i) {
+  const L = screenEl();
+  if (!L || gone || i <= step || !STEPS[i]) return;
+  step = i;
+  const share = PLAN.share[i], next = i + 1 < PLAN.share.length ? PLAN.share[i + 1] : 1;
+  light(L, share, share + CREEP * (next - share), PLAN.ms[i]);
+  say(L, STEPS[i].say, STEPS[i].note);
+}
+
+function loadingProgress(n, of) {
+  const L = screenEl();
+  if (!L || gone || step !== 2) return;
+  say(L, `${STEPS[2].say} · ${n} of ${of}`, STEPS[2].note);
+}
+
+function whenDrawn(fn) {
+  let done = false;
+  const go = () => { if (!done) { done = true; fn(); } };
+  requestAnimationFrame(() => requestAnimationFrame(go));
+  setTimeout(go, 120);
+}
+
+function loadingDrop() {
+  gone = true;
+  const L = screenEl();
+  if (L) L.remove();
+  for (const e of document.querySelectorAll('.ld-cut')) e.remove();
+}
+
+function loadingReady() {
+  const L = screenEl();
+  if (!L || gone) return;
+  gone = true;
+  light(L, 1, 1, 0);
+  say(L, 'Ready', '');
+  L.setAttribute('aria-busy', 'false');
+  setTimeout(() => cut(L), READY_HOLD);
+}
+function cut(L) {
+  const clear = () => { L.remove(); for (const e of document.querySelectorAll('.ld-cut')) e.remove(); };
+  setTimeout(clear, CUT.line + CUT.slide + 600);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    L.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: 'forwards' }).finished.then(clear, clear);
+    return;
+  }
+  const W = innerWidth, H = innerHeight, a = MARK.slantDeg * Math.PI / 180, T = Math.tan(a);
+  const eye = L.querySelector('.ld-eye'), b = eye ? eye.getBoundingClientRect() : null;
+  const px = b ? b.left + b.width / 2 : W / 2, py = b ? b.top + b.height / 2 : H / 2;
+  const xAt = y => px + (py - y) * T;
+  const line = document.createElement('div');
+  line.className = 'ld-cut ld-cutline';
+  line.style.cssText = `left:${xAt(H / 2) - 1}px;top:${-H * 0.1}px;height:${H * 1.2}px;transform:rotate(${MARK.slantDeg}deg) scaleY(0)`;
+  document.body.append(line);
+  const halves = [[`0 0,${xAt(0)}px 0,${xAt(H)}px ${H}px,0 ${H}px`, -1], [`${xAt(0)}px 0,${W}px 0,${W}px ${H}px,${xAt(H)}px ${H}px`, 1]].map(([poly, sgn]) => {
+    const h = L.cloneNode(true);
+    h.removeAttribute('id'); h.removeAttribute('role'); h.setAttribute('aria-hidden', 'true');
+    for (const e of h.querySelectorAll('[id]')) e.removeAttribute('id');
+    h.classList.add('ld-cut', 'ld-half');
+    h.style.clipPath = `polygon(${poly})`;
+    document.body.append(h);
+    return [h, sgn];
+  });
+  const draw = line.animate([{ transform: `rotate(${MARK.slantDeg}deg) scaleY(0)` }, { transform: `rotate(${MARK.slantDeg}deg) scaleY(1)` }],
+    { duration: CUT.line, easing: 'cubic-bezier(.3,0,.2,1)', fill: 'forwards' });
+  draw.finished.then(() => {
+    for (const [h] of halves) h.style.opacity = 1;
+    L.remove();
+    line.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' });
+    const D = W * CUT.apart, nx = Math.cos(a), ny = Math.sin(a);
+    return Promise.all(halves.map(([h, s]) => h.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${s * D * nx}px,${s * D * ny}px)` }],
+      { duration: CUT.slide, easing: CUT.ease, fill: 'forwards' }).finished));
+  }).then(clear, clear);
+}
+
+return { loadingStep, loadingProgress, whenDrawn, loadingDrop, loadingReady };
 })();
 
 const __m_app_sim_body = (() => {
@@ -16927,12 +17121,12 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"86bd9e0","date":"2026-10-02","built":"2026-10-02 15:40"};
+const __RUNNER_BUILD = {"commit":"fe5038f","date":"2026-10-02","built":"2026-10-03 01:16"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
 const { animate, invalidateTheme, setPaint, setFinish, setDrama, setEdges, setRenderer, getRenderer, setLook, getLook } = __m_engine_gfx;
-const { glStats, glWhyNot, glResetStats } = __m_engine_draw_gl;
+const { glStats, glWhyNot, glResetStats, prepareInBackground, programsReady, studioBuilt, studioPictureDone } = __m_engine_draw_gl;
 const { setJoint, setPose } = __m_engine_forge;
 const { FORGE, boneBuild, boneTape, classOf, WEIGHT_CLASSES } = __m_engine_rigs;
 const { live, frame, dirtyAll, counts } = __m_app_canvas;
@@ -16957,6 +17151,7 @@ const { mountStage, draw: drawStage, setBuildSource, setBoneTuner, dimGrabs, mot
 const { drawBrain, drawBody, setSubject } = __m_app_viz;
 const { mountModes, setMode, backToPlan, modeLive, repaintPanel, currentModeId } = __m_app_modes;
 const { mountNav } = __m_app_nav;
+const { loadingStep, loadingProgress, loadingReady, loadingDrop, whenDrawn } = __m_app_loading;
 
 const $ = id => document.getElementById(id);
 const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -17379,11 +17574,28 @@ setSubject(() => {
 });
 
 const t0 = performance.now();
-animate(now => {
+let booting = 0, stillsLeft = -1, sameFor = 0, programsSaid = -1;
+if (window.frameElement) loadingDrop();
+else if (document.getElementById('loading')) prepareInBackground(true);
+function bootWatch() {
+  if (booting === 0) {
+    const n = programsReady();
+    if (n !== programsSaid) { programsSaid = n; loadingProgress(n, 9); }
+    if (studioBuilt() || getRenderer() !== 'gl' || glWhyNot()) { booting = 1; loadingStep(3); }
+    return;
+  }
+  if (getRenderer() === 'gl' && !glWhyNot() && !studioPictureDone()) return;
+  const d = counts().dirty;
+  sameFor = d === stillsLeft ? sameFor + 1 : 0; stillsLeft = d;
+  if (d === 0 || sameFor >= 6) { booting = 2; loadingReady(); }
+}
+loadingStep(2);
+whenDrawn(() => animate(now => {
   fightTick(now);
   if (isFighting()) stopSignature(); else signatureTick(now);
   frame((now - t0) / 1000);
-});
+  if (booting < 2) bootWatch();
+}));
 
 {
   const q = null;
@@ -17391,21 +17603,22 @@ animate(now => {
   if (null === 'flat') setLook('flat');
 }
 
+const drive = f => (...a) => { loadingDrop(); prepareInBackground(false); return f(...a); };
 window.__umd = {
-  renderer: k => { if (k !== undefined) { setRenderer(k); dirtyAll(); } return getRenderer(); },
-  look: k => { if (k !== undefined) { setLook(k); dirtyAll(); } return getLook(); },
-  finish: g => { setFinish(g); dirtyAll(); },
+  renderer: drive(k => { if (k !== undefined) { setRenderer(k); dirtyAll(); } return getRenderer(); }),
+  look: drive(k => { if (k !== undefined) { setLook(k); dirtyAll(); } return getLook(); }),
+  finish: drive(g => { setFinish(g); dirtyAll(); }),
   gl: (reset) => { const g = { ...glStats(), whyNot: glWhyNot() }; if (reset) glResetStats(); return g; },
-  step: t => { fightStep(1); frame(t); },
-  tick: () => fightStep(1),
-  fight: () => startFight(currentBuild()),
-  stop: stopFight,
+  step: drive(t => { fightStep(1); frame(t); }),
+  tick: drive(() => fightStep(1)),
+  fight: drive(() => startFight(currentBuild())),
+  stop: drive(stopFight),
   counts: () => counts(),
-  dirtyAll,
+  dirtyAll: drive(dirtyAll),
   world: getWorld,
   grabs: dimGrabs,
   housings: motorHousings,
-  mode: setMode,
+  mode: drive(setMode),
   intro: () => ({ t: introT(), cage: cageRise(), foe: foeFade(), done: introDone() }),
   stalls,
 };
