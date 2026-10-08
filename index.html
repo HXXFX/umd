@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit bce1634. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 10cbab2. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -298,6 +298,40 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     .at-csub { font: 9px/1.35 var(--mono); letter-spacing: .03em; color: var(--ink3) }
     .at-band { display: flex; gap: 2px; width: 100% }
     .at-band i { display: block; background: var(--a); border-radius: 1px; min-width: 3px }
+
+    .ao-slots { position: relative; margin: 0 0 6px }
+    .ao-slot { position: absolute; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px dashed var(--line); border-radius: 8px;
+      background: rgba(0,0,0,.18); color: var(--ink3); cursor: pointer; font: inherit; text-align: left }
+    .ao-slot.on { border-style: solid; border-color: var(--a-dim); color: var(--ink2) }
+    .ao-slot[aria-pressed="true"] { border-color: var(--a); box-shadow: inset 0 0 0 1px var(--a) }
+    .ao-slot:hover { border-color: var(--ink3) }
+    .ao-slot .t { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1 }
+    .ao-slot .k { font: 600 9px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink3) }
+    .ao-slot .n { font: 600 11px/1.2 var(--sans); color: var(--ink) }
+    .ao-slot .n.ao-sname { font: 700 13px/1 var(--cond); letter-spacing: .06em; text-transform: uppercase }
+    .ao-slot.sock { flex-direction: column; justify-content: center; text-align: center; gap: 4px; padding: 6px 4px }
+    .ao-slot.sock .n { font-size: 10px }
+    .ao-slot .lk { display: inline-block; width: 10px; height: 10px }
+    .ao-slot .lk svg { width: 100%; height: 100%; display: block }
+    .ao-up { font: 600 9px/1 var(--mono); color: var(--ink3) }
+    .ao-legend { font: 10px/1.4 var(--mono); color: var(--ink3); margin: 0 0 6px }
+    .ao-list { display: flex; flex-direction: column; gap: 4px; margin: 0 0 8px }
+    .ao-row { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 8px; width: 100%; padding: 7px 9px; text-align: left;
+      border: 1px dashed var(--line); border-radius: 6px; background: none; color: var(--ink2); cursor: pointer; font: inherit }
+    .ao-row[data-state="fitted"], .ao-row[data-state="owned"], .ao-row[data-state="base"], .ao-row[data-state="idle"] { border-style: solid; border-color: var(--a-dim) }
+    .ao-row[data-state="locked"], .ao-row[data-state="poor"] { opacity: .62 }
+    .ao-row:hover { border-color: var(--ink3) }
+    .ao-row[aria-pressed="true"] { border-style: solid; border-color: var(--a); box-shadow: inset 0 0 0 1px var(--a) }
+    .ao-row .t { display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+    .ao-row .n { font: 600 11px/1.2 var(--sans); color: var(--ink) }
+    .ao-row .s { font: 10px/1.25 var(--mono); color: var(--ink3) }
+    .ao-row.sty { grid-template-columns: 1fr auto; padding: 7px 9px 6px }
+    .ao-row.sty .n { font: 700 12px/1 var(--cond); letter-spacing: .06em; text-transform: uppercase }
+    .ao-row.sty .at-band { margin-top: 4px }
+    .ao-tier { display: flex; gap: 6px; font: 600 9px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); margin: 6px 0 2px }
+    .ao-tier span { letter-spacing: .02em; text-transform: none; font-weight: 400 }
+    .at-detail.ao-inline { margin: 2px 0 6px }
+    .at-more summary { font: 10px/1.4 var(--mono); color: var(--a); cursor: pointer }
     .at-detail { display: flex; flex-direction: column; gap: 6px; padding: 9px 10px 10px; margin: 0 0 4px;
       border: 1px solid var(--a-dim); border-radius: 8px; background: rgba(255,255,255,.035); scroll-margin: 10px }
     .at-dhead { display: flex; align-items: center; justify-content: space-between }
@@ -1513,7 +1547,7 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   </main>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit bce1634; edit the modules, not this ----
+// ---- packed by runner/tools/pack.mjs from commit 10cbab2; edit the modules, not this ----
 // packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/testmode.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_markword = (() => {
 
@@ -10698,7 +10732,7 @@ const SEES = [
   'how far he is, in my arm lengths', 'how far he is, in my leg lengths',
   'my poise', 'his poise', 'how much of me is broken', 'how much of him is broken',
   'is he throwing', 'is he covering', 'how much of my cool-down is left',
-  'how fast he is closing on me', 'how hot my motors are', 'how squarely I face him', 'one',
+  'how fast he is closing on me', 'how hot my motors are', 'how my shins lean against the line to him', 'one',
   'am I holding him', 'is he holding me', 'is he down', 'am I down',
   'how much of my book is the ground', 'how far he is past where my book stands',
   ...STRIKE_KEYS.map(k => `how good my book is at the ${STRIKES[k].name}`),
@@ -10741,10 +10775,13 @@ const EYES = {
 };
 const EYE_KEYS = Object.keys(EYES);
 const CLOCK_SEES = ['how long the fight has gone (seconds over ten, to 1)', "the referee's clock: how long without action (seconds over ten, to 1)"];
+const FACE_SEES = ['how squarely I face him (my hips against the line to him)'];
+const FACE_READ = { on: true };
 const READINGS_ADDED = { '2026-10-01': ['his right arm against his left, how much is left', 'his right leg against his left, how much is left', 'the side he threw with last',
   'my right arm against my left, how much is left', 'my right leg against my left, how much is left', 'my right arm against my left, how hot', 'my right leg against my left, how hot'],
   '2026-10-05': ['how much of his battery is left', 'how much of my battery is left'],
-  '2026-10-08': CLOCK_SEES };
+  '2026-10-08': CLOCK_SEES,
+  '2026-10-08-face': FACE_SEES };
 const seesWith = (eyes = []) => SEES.concat(...eyes.filter(k => EYES[k]).map(k => EYES[k].sees));
 function sizeWith(eyes = []) {
   const nin = seesWith(eyes).length;
@@ -10859,7 +10896,7 @@ function widen(w, fromEyes = [], toEyes = []) {
 
 const FLAGS = EYE_KEYS.map(k => `is the "${EYES[k].name}" eye fitted`);
 const PAIRS = [{ keys: ['foe', 'clock'], sees: ['he is close to finished and throwing'] }];
-const UNIVERSAL_SEES = SEES.concat(...EYE_KEYS.map(k => EYES[k].sees), FLAGS, ...PAIRS.map(P => P.sees), CLOCK_SEES);
+const UNIVERSAL_SEES = SEES.concat(...EYE_KEYS.map(k => EYES[k].sees), FLAGS, ...PAIRS.map(P => P.sees), CLOCK_SEES, FACE_SEES);
 const UNIVERSAL_NIN = UNIVERSAL_SEES.length;
 const UNIVERSAL_PARAM = UNIVERSAL_NIN * NHID + NHID + NHID * NOUT + NOUT;
 
@@ -10887,7 +10924,14 @@ function seeUniversal(self, foe, F, st, x, fitted, mem, world) {
   }
   x[p++] = world ? Math.min(1, world.t / 10) : 0;
   x[p++] = world && world.quiet ? Math.min(1, world.quiet.t / 10) : 0;
+  x[p++] = FACE_READ.on ? facingOf(self, F) : 0;
   return x;
+}
+function facingOf(self, F) {
+  const loose = self.loose, pair = [self.idx.hips, self.idx.shoulders].find(q => q && q.length === 2 && !(loose && (loose.has(q[0]) || loose.has(q[1]))));
+  if (!pair) return 0;
+  const a = self.p[pair[0]], b = self.p[pair[1]], nx = -(b.z - a.z), nz = b.x - a.x, d = Math.hypot(nx, nz);
+  return d < 1e-6 ? 0 : (nx * F.f[0] + nz * F.f[2]) / d;
 }
 
 function forwardWith(w, x, hid, y, nin) {
@@ -11003,7 +11047,7 @@ const byRules = (book, over = null) => {
   return pick;
 };
 
-const DECIDE = { every: 0.12, close: 1.4, off: 0.9, cover: 0.35, crowded: 0.92, fence: 0.6, strafe: 1.2 };
+const DECIDE = { every: 0.12, close: 1.4, off: 0.9, cover: 0.35, crowded: 0.92, fence: 0.6, strafe: 1.2, strafeOut: true };
 const TEMPO = { on: true, boost: 2.2, secs: 0.22, stalk: 1, near: 1.6 };
 const MISS = { on: false, cool: 2.0 };
 const WHOLE = { name: 'the whole book', mix: Object.fromEntries(STRIKE_KEYS.map(k => [k, 1])), stand: 1.0, block: 0.5, ground: 1 };
@@ -11155,7 +11199,8 @@ function decider(pick, o = {}) {
         for (const q of [c, self.p[self.idx.pelvis]]) { q.x += kx * dt; q.z += kz * dt; }
       }
       const circle = st.how ? SIDES[st.how.circle] || 0 : 0;
-      if ((O.strafe || circle) && st.mode !== 'close' && st.mode !== 'take him down' && st.mode !== 'lock' && DECIDE.strafe > 0) {
+      const tooClose = DECIDE.strafeOut && !circle && O.stand !== undefined && F.range < O.stand * DECIDE.crowded;
+      if ((O.strafe || circle) && !tooClose && st.mode !== 'close' && st.mode !== 'take him down' && st.mode !== 'lock' && DECIDE.strafe > 0) {
         let way = circle || st.side;
         if (world && world.ring) { const Wl = fenceNear(c.x, c.z, world.ring);
           if (Wl.room < DECIDE.fence && (F.across[0] * Wl.nx + F.across[2] * Wl.nz) * way > 0) { if (circle) way = 0; else st.side = way = -st.side; } }
@@ -11177,7 +11222,7 @@ function decider(pick, o = {}) {
   };
 }
 
-return { STRIKE_KEYS, SEES, AT, NIN, NHID, MOVES, ACTIONS, NOUT, NPARAM, EYES, EYE_KEYS, CLOCK_SEES, READINGS_ADDED, seesWith, sizeWith, newMemory, remember, CLOCK_READINGS, seeEyes, widen, FLAGS, PAIRS, UNIVERSAL_SEES, UNIVERSAL_NIN, UNIVERSAL_PARAM, widenUniversal, seeUniversal, forwardWith, see, rng, randomWeights, forward, byNet, byChance, STOCK, byRules, DECIDE, TEMPO, MISS, GUARD_LOW, decider };
+return { STRIKE_KEYS, SEES, AT, NIN, NHID, MOVES, ACTIONS, NOUT, NPARAM, EYES, EYE_KEYS, CLOCK_SEES, FACE_SEES, FACE_READ, READINGS_ADDED, seesWith, sizeWith, newMemory, remember, CLOCK_READINGS, seeEyes, widen, FLAGS, PAIRS, UNIVERSAL_SEES, UNIVERSAL_NIN, UNIVERSAL_PARAM, widenUniversal, seeUniversal, forwardWith, see, rng, randomWeights, forward, byNet, byChance, STOCK, byRules, DECIDE, TEMPO, MISS, GUARD_LOW, decider };
 })();
 
 const __m_app_confui = (() => {
@@ -14245,40 +14290,36 @@ const { EYES, EYE_KEYS, NIN, NOUT, ACTIONS } = __m_app_sim_decide;
 const { BRAIN, brainFor, loadTrained, askedAbout, gradeFor, anyLight, oneStrikeNote, setCosts } = __m_app_brains;
 const { creditHTML } = __m_app_firms;
 const { COMPANIES, isCareer, ownsTitle, canBuyTitle, running, shownTitle, previewedTitle, ownsBrain, ownsEye, canBuyBrain, canBuyEye, previewedBrain, previewedEye, brainShown, eyesShown } = __m_app_shop;
-const { STYLES, ALL_STRIKES, STRIKES, bookOf, DRILL } = __m_app_sim_strikes;
+const { STYLES, STRIKES, bookOf, DRILL } = __m_app_sim_strikes;
 const { registerHelp } = __m_app_help;
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
-const pct = x => Math.round(100 * x) + ' %';
 
+const STOCK = { kind: 'stock', key: 'stock', name: 'Stock brain', price: 0 };
 const PRODUCTS = [
-  { kind: 'brain', key: 'brain', name: cap(BRAIN.name), price: BRAIN.price, line: cap(BRAIN.what) + '.' },
-  ...EYE_KEYS.map(k => ({ kind: 'eye', key: k, name: cap(EYES[k].name), price: EYES[k].price,
-                          line: EYES[k].sees.map(cap).join(' · '), sees: EYES[k].sees, measured: EYES[k].measured })),
+  { kind: 'brain', key: 'brain', name: cap(BRAIN.name), price: BRAIN.price },
+  ...EYE_KEYS.map(k => ({ kind: 'eye', key: k, name: cap(EYES[k].name), price: EYES[k].price, sees: EYES[k].sees, measured: EYES[k].measured })),
   ...TITLE_KEYS.map(k => {
     const T = TITLES[k], S = styleOf(k);
     return { kind: 'style', key: k, name: T.name, price: titlePrice(k), free: !!T.free, note: T.note, tier: T.tier, tkind: T.kind || null,
              recipe: recipeOf(k), parts: S.parts, spec: S, sig: signatureName(k), ground: !!T.ground, adapt: !!T.adapt };
   }),
 ];
-const byKey = k => PRODUCTS.find(p => p.key === k);
+const byKey = k => k === 'stock' ? STOCK : PRODUCTS.find(p => p.key === k);
 const EYE_PRODUCTS = PRODUCTS.filter(p => p.kind === 'eye'), STYLE_PRODUCTS = PRODUCTS.filter(p => p.kind === 'style');
 const TIER_PRODUCTS = t => STYLE_PRODUCTS.filter(p => p.tier === t);
+const EYE_LINE = { foe: 'watches him', clock: 'keeps the time', body: 'feels its own body' };
 
 const motorsNow = () => (ACTS.motors ? ACTS.motors() : null);
 const grade = () => gradeFor(motorsNow());
 const working = () => (brainShown() ? brainFor(eyesShown(), motorsNow()) : null);
-function levelNow() {
+function runsNow() {
   const B = working();
-  if (!B || B.kind !== 'trained') return 1;
-  return B.fitted.length ? 3 : 2;
+  if (!B || B.kind !== 'trained') return { ai: false, n: 0, said: 'Stock brain' };
+  const n = B.fitted.length;
+  return { ai: true, n, said: n ? `AI brain + ${n} sensor${n > 1 ? 's' : ''}` : 'AI brain' };
 }
-const LEVELS = [
-  { n: 1, name: 'Stock brain', line: 'hand-written rules on your software\u2019s book. Free, on every machine.' },
-  { n: 2, name: 'AI brain', line: 'the stock rules with a trained table on top, choosing how it makes each move. Bought once; it drives whenever you own it.' },
-  { n: 3, name: 'With sensors', line: 'the AI brain reading its sensors, each used only where it is shown to add.' },
-];
 function eyeWorth(eyes) {
   const G = grade(), rows = G && G.perSet; if (!rows || !rows.length) return null;
   const want = [...eyes].sort().join('+');
@@ -14288,6 +14329,7 @@ function eyeWorth(eyes) {
 const signed = v => (v >= 0 ? '+' : '') + v.toFixed(2);
 
 function stateOf(p) {
+  if (p.kind === 'stock') return brainShown() ? 'base' : 'fitted';
   if (p.kind === 'style') {
     if (previewedTitle() === p.key) return 'trying';
     if (ownsTitle(p.key)) return running() === p.key ? 'fitted' : 'owned';
@@ -14299,13 +14341,11 @@ function stateOf(p) {
   if (!ownsBrain()) return 'locked';
   return canBuyEye(p.key) ? 'buy' : 'poor';
 }
+const TAG = { fitted: 'in use', idle: 'owned · not read', locked: 'needs AI brain', trying: 'trying on', base: 'inside the AI brain' };
 function tagHTML(p, st, px = 11) {
-  if (st === 'fitted') return `<span class="at-tag fit">fitted</span>`;
-  if (st === 'idle') return `<span class="at-tag idle">fitted \u00b7 not used</span>`;
-  if (st === 'owned') return `<span class="at-tag own">${isCareer() ? 'yours' : 'free'}</span>`;
-  if (st === 'locked') return `<span class="at-tag lock">brain first</span>`;
-  if (st === 'trying') return `<span class="at-tag try">trying</span>`;
-  return `<span class="at-tag ${st === 'poor' ? 'poor' : 'buy'}">${p.price ? creditHTML(p.price, px - 1) : 'free'}</span>`;
+  if (st === 'owned') return `<span class="at-tag own">${isCareer() ? 'owned' : 'free'}</span>`;
+  if (st === 'buy' || st === 'poor') return `<span class="at-tag ${st}">${p.price ? creditHTML(p.price, px - 1) : 'free'}</span>`;
+  return `<span class="at-tag ${{ fitted: 'fit', idle: 'idle', locked: 'lock', trying: 'try', base: 'lock' }[st]}">${TAG[st]}</span>`;
 }
 
 const L = 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
@@ -14314,6 +14354,7 @@ const CHIP = `<rect x="5.5" y="5.5" width="13" height="13" rx="2"/>`
   + `<path d="M9.4 9.6l5.2 2.4M9.4 14.4l5.2-2.4" stroke-width="1.2"/>`
   + `<circle cx="9" cy="9.4" r="1.15" fill="currentColor" stroke="none"/><circle cx="9" cy="14.6" r="1.15" fill="currentColor" stroke="none"/>`
   + `<circle cx="15" cy="12" r="1.15" fill="currentColor" stroke="none"/>`;
+const RULES_IC = `<rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4.5"/>`;
 const ALMOND = `<path d="M2.4 12c2.6-4.4 5.8-6.6 9.6-6.6s7 2.2 9.6 6.6c-2.6 4.4-5.8 6.6-9.6 6.6S5 16.4 2.4 12z"/>`;
 const IRIS = `<circle cx="12" cy="12" r="3.9"/>`;
 const INSIDE = {
@@ -14321,7 +14362,8 @@ const INSIDE = {
   clock: IRIS + `<path d="M12 12V9.4M12 12l1.9 1.2" stroke-width="1.4"/>`,
   body:  `<circle cx="8.6" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle cx="15.4" cy="12" r="1.7" fill="currentColor" stroke="none"/><path d="M9.6 12h4.8" stroke-width="1.8"/>`,
 };
-const iconSVG = p => `<svg viewBox="0 0 24 24" ${L}>${p.kind === 'brain' ? CHIP : ALMOND + INSIDE[p.key]}</svg>`;
+const LOCK = `<svg viewBox="0 0 24 24" ${L}><rect x="6" y="11" width="12" height="9" rx="1.5"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/></svg>`;
+const iconSVG = p => `<svg viewBox="0 0 24 24" ${L}>${p.kind === 'brain' ? CHIP : p.kind === 'stock' ? RULES_IC : ALMOND + INSIDE[p.key]}</svg>`;
 const iconHTML = (p, px) => `<span class="at-ic" style="width:${px}px;height:${px}px">${iconSVG(p)}</span>`;
 
 function bandHTML(p, h = 5) {
@@ -14329,172 +14371,162 @@ function bandHTML(p, h = 5) {
   return `<span class="at-band" style="height:${h}px">` + p.parts.map((q, i) =>
     `<i style="flex:${q.share} 0 0;opacity:${i < tone.length ? tone[i] : 0.25}" title="${esc(q.share + ' % ' + q.name)}"></i>`).join('') + '</span>';
 }
-const coverHTML = p => `<span class="at-cover"><span class="at-cname">${esc(p.name)}</span>${bandHTML(p, 4)}</span>`;
 
-function brainVerdict(s) {
-  const v = s.vs, say = (x, whom) => x.better ? `better than ${whom}` : x.diff > 0 ? `not shown better than ${whom}` : `worse than ${whom}`;
-  return `Fight by fight it is ${say(v.untrained, 'its untrained self')}, ${say(v.chance, 'picking at random')}, and ${say(v.stock, 'the stock brain on the same software')}.`
-    + (oneStrikeNote(s) ? ' ' + oneStrikeNote(s) : '');
-}
+const line = (b, t) => `<span class="at-line"><b>${b}</b> ${t}</span>`;
 function bar(label, v, lo, hi, text) {
   const f = Math.max(0, Math.min(1, (v - lo) / (hi - lo)));
   return `<span class="at-bar"><span>${label}</span><i><b style="width:${(100 * f).toFixed(1)}%"></b></i><span>${text}</span></span>`;
 }
-const topStrikes = (spec, n = 3) => Object.entries(spec.mix).sort((a, b) => b[1] - a[1]).slice(0, n)
-  .map(([k, v]) => `${ALL_STRIKES[k] ? ALL_STRIKES[k].name : k} ${pct(v)}`).join(' · ');
 const STAND = Object.values(STYLES).map(s => s.stand), STAND_LO = Math.min(...STAND), STAND_HI = Math.max(...STAND);
 function specHTML(p) {
   if (p.kind === 'style') {
-    const S = p.spec, B = bookOf(S);
-    const drills = Object.entries(B.strikes).sort((a, b) => b[1] - a[1]);
-    return `<span class="at-line"><b>the strikes</b> every strike, how well drilled (${DRILL.floor} is the floor: thrown with 0.6 of the motors, slow to recover)</span>`
+    const S = p.spec, B = bookOf(S), drills = Object.entries(B.strikes).sort((a, b) => b[1] - a[1]);
+    return line('Its strikes', `how well each is practised (${DRILL.floor} the least: thrown with 0.6 of the motors, slow to recover)`)
       + `<div class="at-drill">` + drills.map(([k, q]) => `<span class="at-bar${q >= 0.5 ? ' good' : ''}"><span>${esc(STRIKES[k].name)}</span><i><b style="width:${(100 * q).toFixed(0)}%"></b></i><span>${q.toFixed(2)}</span></span>`).join('') + `</div>`
-      + bar('the ground', B.ground, 0, 1, B.ground.toFixed(2) + (B.ground >= 0.6 ? ' \u00b7 its game' : B.ground >= 0.25 ? ' \u00b7 when he stumbles' : ' \u00b7 rarely'))
-      + bar('the cover', B.cover, 0, 1, (0.35 * (0.5 + B.cover)).toFixed(2) + ' s' + (B.answer ? ' \u00b7 answers' : ''))
-      + bar('the stand', S.stand, STAND_LO, STAND_HI, S.stand.toFixed(2) + ' m')
-      + `<span class="at-line"><b>signature move</b> ${esc(p.sig)}</span>`;
+      + bar('on the ground', B.ground, 0, 1, B.ground.toFixed(2) + (B.ground >= 0.6 ? ' · its game' : B.ground >= 0.25 ? ' · when he stumbles' : ' · rarely'))
+      + bar('covering up', B.cover, 0, 1, (0.35 * (0.5 + B.cover)).toFixed(2) + ' s' + (B.answer ? ' · answers' : ''))
+      + bar('stands off', S.stand, STAND_LO, STAND_HI, S.stand.toFixed(2) + ' m')
+      + line('Signature move', esc(p.sig));
   }
+  if (p.kind === 'stock') return line('What it is', 'Hand-written rules that choose from your fighting style’s moves: when to close in, hold, step off, cover up, take him down, lock a limb, which strike to throw. The AI brain keeps these rules and adds a trained table on top.')
+    + line('Right now', brainShown() ? 'Your machine runs the AI brain, which has these rules inside it.' : 'Your machine runs this.');
   if (p.kind === 'brain') {
-    const s = grade(), lv = levelNow(), light = anyLight(motorsNow());
-    const now = `<span class="at-line"><b>level ${lv} of 3</b> ${esc(LEVELS[lv - 1].name)}: ${esc(LEVELS[lv - 1].line)}</span>`
-      + (lv === 1 ? `<span class="at-line"><b>the upgrade</b> level 2, the AI brain, ${creditHTML(BRAIN.price, 8)}. The challenger always runs a brain at your level.</span>` : '');
-    if (!s) return now + (light ? `<span class="at-line"><b>measured</b> not yet on electric motors. A machine with an electric joint runs the stock brain until the trained one is graded on them.</span>`
-                                : `<span class="at-line"><b>measured</b> not yet: no AI brain fits the fight as it is now. Every machine runs the stock brain until one is trained and beats it.</span>`)
-      + (brainShown() ? `<span class="at-line"><b>today</b> ${esc(brainFor(eyesShown(), motorsNow()).why)}</span>` : '');
+    const s = grade(), light = anyLight(motorsNow());
+    const what = line('What it is', 'The stock rules with a table trained on fights on top: the table pushes each of their choices up or down. About once a second it also picks a plan (finish him, fight safe, all in, take it to the ground), and it chooses how to make each move: which side, where to aim, how to guard.');
+    if (!s) return what + line('Measured', light ? 'not yet on electric motors. A machine with an electric joint runs the stock brain until the trained one is graded on them.'
+                                              : 'not yet: no AI brain fits the fight as it is now. Every machine runs the stock brain until one is trained and beats it.');
     const hi = Math.max(s.trained, s.stock, s.untrained, 0.01), lo = Math.min(0, s.trained, s.stock, s.untrained) - 0.05;
-    return now + `<span class="at-line"><b>measured</b> ${s.when ? 'in today\u2019s fight, ' + esc(s.when) + ', ' : ''}on ${s.heldOut || ''} fights it never practised on${light ? ', every joint electric' : ''}</span>`
-      + bar('this brain', s.trained, lo, hi, s.trained.toFixed(2))
-      + bar('stock brain', s.stock, lo, hi, s.stock.toFixed(2))
-      + bar('untrained', s.untrained, lo, hi, s.untrained.toFixed(2))
-      + (s.vs && s.vs.stock ? `<span class="at-line"><b>fight by fight</b> ${signed(s.vs.stock.diff)} \u00b1 ${s.vs.stock.err.toFixed(2)} over the stock brain on the same fights</span>` : '')
-      + (oneStrikeNote(s) ? `<span class="at-line"><b>one strike</b> ${esc(oneStrikeNote(s))}</span>` : '')
-      + (brainShown() ? `<span class="at-line"><b>today</b> ${esc(brainFor(eyesShown(), motorsNow()).why)}</span>` : '');
+    return what + line('Measured', `on ${s.heldOut || ''} fights it never practised on${light ? ', every joint electric' : ''}`)
+      + bar('AI brain', s.trained, lo, hi, s.trained.toFixed(2)) + bar('stock brain', s.stock, lo, hi, s.stock.toFixed(2)) + bar('untrained', s.untrained, lo, hi, s.untrained.toFixed(2))
+      + (s.vs && s.vs.stock ? line('Fight by fight', `${signed(s.vs.stock.diff)} ± ${s.vs.stock.err.toFixed(2)} better than the stock brain, on the same fights`) : '')
+      + (oneStrikeNote(s) ? line('One strike', esc(oneStrikeNote(s))) : '')
+      + line('Your challenger', 'runs the same brain and the same sensors as you.')
+      + (brainShown() ? line('Right now', esc(brainFor(eyesShown(), motorsNow()).why)) : '');
   }
   const set = eyesShown().includes(p.key) ? eyesShown() : eyesShown().concat(p.key), w = eyeWorth(set), B = brainShown() ? brainFor(set, motorsNow()) : { trained: false, fitted: [] };
-  return p.sees.map(s => `<span class="at-line"><b>reads</b> ${esc(s)}</span>`).join('')
-    + (w ? `<span class="at-line"><b>measured</b> ${anyLight(motorsNow()) ? 'on electric motors, ' : ''}with ${set.length > 1 ? 'your other sensors' : 'no other sensor'}, ${signed(w.adds)} \u00b1 ${w.err.toFixed(2)} over the brain without it: ${w.pays ? 'it pays' : w.costs ? 'measured worse with it' : 'not shown to add anything'}</span>` : '')
-    + `<span class="at-line"><b>today</b> ${esc(!B.trained ? 'does nothing on the stock brain; it needs the AI brain' : B.fitted.includes(p.key) ? 'the AI brain reads it' : 'fitted and read; not shown to add anything' + (anyLight(motorsNow()) ? ' on electric motors' : '') + ' over the brain without it')}</span>`;
-}
-function ladderHTML() {
-  const lv = levelNow(), eyesOn = working() && working().kind === 'trained' ? working().fitted.length : 0;
-  return `<div class="at-ladder">` + LEVELS.map(L => `<button class="at-level${L.n === lv ? ' on' : ''}${L.n < lv ? ' done' : ''}" data-product="${L.n === 3 ? EYE_PRODUCTS[0].key : 'brain'}" data-level="${L.n}">`
-    + `<span class="at-kick">level ${L.n}</span><span class="at-lname">${esc(L.name)}</span>`
-    + `<span class="at-lsub">${L.n === 1 ? 'free' : L.n === 2 ? (ownsBrain() ? 'yours' : creditHTML(BRAIN.price, 8)) : `${eyesOn} of ${EYE_PRODUCTS.length} working`}</span></button>`).join('') + `</div>`;
+  const others = set.filter(k => k !== p.key).map(k => byKey(k).name);
+  return line('What it reads', `${p.sees.length} things`) + p.sees.slice(0, 4).map(s => line('·', esc(s))).join('')
+    + (p.sees.length > 4 ? `<details class="at-more"><summary>and ${p.sees.length - 4} more</summary>${p.sees.slice(4).map(s => line('·', esc(s))).join('')}</details>` : '')
+    + (w ? line('Measured', `${anyLight(motorsNow()) ? 'on electric motors, ' : ''}${others.length ? 'with ' + esc(others.join(' and ')) + ', the set' : 'alone, it'} scores ${signed(w.adds)} ± ${w.err.toFixed(2)} over the same brain with no sensors: ${w.pays ? 'it pays' : w.costs ? 'measured worse' : 'not shown to add anything'}`) : '')
+    + line('Right now', esc(!B.trained ? 'Nothing: it needs the AI brain.' : B.fitted.includes(p.key) ? 'The AI brain reads it.' : 'Fitted and read; not shown to add anything' + (anyLight(motorsNow()) ? ' on electric motors.' : '.')));
 }
 function actsHTML(p, st) {
-  if (p.kind === 'style') return st === 'trying' ? `<span class="at-hint">Trying it on - buy it on the bar at the top, or put it back.</span>`
-    : st === 'fitted' ? `<span class="at-hint">Fitted. This is what your machine runs.</span>`
-    : st === 'owned' ? `<button class="at-act" data-act="fit" data-k="${p.key}">Fit it</button>`
-    : `<button class="at-act" data-act="try" data-k="${p.key}">Try it on - free</button>`;
-  return st === 'fitted' ? `<span class="at-hint">Fitted.</span>`
-    : st === 'locked' ? `<span class="at-hint">Needs the brain first.</span>`
-    : st === 'trying' ? `<span class="at-hint">Trying it on - buy it on the bar at the top, or put it back.</span>`
-    : `<button class="at-act" data-act="try" data-k="${p.key}">Try it on - free</button>`;
+  if (p.kind === 'stock') return '';
+  const trying = '<span class="at-hint">Trying it on: buy it on the bar at the top, or put it back.</span>';
+  if (p.kind === 'style') return st === 'trying' ? trying : st === 'fitted' ? `<span class="at-hint">In use: this is what your machine runs.</span>`
+    : st === 'owned' ? `<button class="at-act" data-act="fit" data-k="${p.key}">Use this style</button>`
+    : `<button class="at-act" data-act="try" data-k="${p.key}">Try it on, free</button>`;
+  return st === 'fitted' ? `<span class="at-hint">In use.</span>` : st === 'idle' ? `<span class="at-hint">Owned.</span>`
+    : st === 'locked' ? `<span class="at-hint">Buy the AI brain first: a sensor plugs into it.</span>`
+    : st === 'trying' ? trying : `<button class="at-act" data-act="try" data-k="${p.key}">Try it on, free</button>`;
 }
 const q = (topic, title = 'what is this?') => `<button class="q inline" data-help="${topic}" title="${title}">?</button>`;
 function factsHTML(p) {
-  const st = stateOf(p), kind = p.kind === 'style' ? 'Fight style' : p.kind === 'brain' ? 'Brain' : 'Sensor';
-  return `<div class="at-detail" id="atomicFacts">`
+  const st = stateOf(p), kind = p.kind === 'style' ? 'Fighting style' : p.kind === 'eye' ? 'Sensor' : 'Brain';
+  const sub = p.kind === 'style' ? bandHTML(p, 6) + `<span class="at-csub">${esc(p.recipe)} &middot; ${TIERS[p.tier].name}${p.tkind ? ' ' + KINDS[p.tkind] : ''}</span>`
+    : `<span class="at-csub">${p.kind === 'eye' ? cap(EYE_LINE[p.key] || '') + '.' : p.kind === 'stock' ? 'Hand-written rules. Free, built into every machine.' : 'The stock rules with a table trained on fights on top.'}</span>`;
+  return `<div class="at-detail ao-inline" id="atomicFacts" data-facts="${p.key}">`
     + `<div class="at-dhead"><span class="at-kick">${kind}</span>${q('p:' + p.key, 'everything about it')}</div>`
     + `<div class="at-dname">${p.kind === 'style' ? '' : iconHTML(p, 22)}<b>${esc(p.name)}</b>${tagHTML(p, st)}</div>`
-    + (p.kind === 'style' ? bandHTML(p, 6) + `<span class="at-csub">${esc(p.recipe)}</span>` : `<span class="at-csub">${esc(p.line)}</span>`)
-    + `<div class="at-spec">${specHTML(p)}</div><div class="at-acts">${actsHTML(p, st)}</div>`
+    + sub + `<div class="at-spec">${specHTML(p)}</div><div class="at-acts">${actsHTML(p, st)}</div>`
     + (note ? `<p class="at-note">${esc(note)}</p>` : '') + `</div>`;
 }
 
 registerHelp(topic => {
   if (topic === 'atomic') return ['Atomic, the software shop', [
-    `${esc(COMPANIES.software.name)} sells what your machine <b>runs</b> when it fights. Clevis sells what it is <b>made of</b>.`,
-    'Every machine has a brain, at one of <b>three levels</b>. Level 1, the <b>stock brain</b>: hand-written rules on the book its software is, free. Level 2, the <b>AI brain</b>: the stock rules with a trained table on top, which pushes each of their choices up or down - whether to close in, hold, step off, cover up, take him down, lock a limb, or which strike to throw. Bought once, it drives whenever you own it, and its grade is printed beside it. Level 3, <b>with sensors</b>: the AI brain reading its sensors. The challenger always runs a brain at your level.',
-    'A <b>sensor</b> is one more thing the brain can notice. It plugs into the AI brain, so it needs the AI brain first.',
-    'A <b>fight style</b> is the book the brain chooses from: every strike, each drilled from badly to well (a badly drilled strike is thrown with less of the motors and recovers slower), how well it covers, how much of its game is on the ground (and how good its grip is), where it likes to stand. The styles come in <b>three tiers</b>: <b>Legendary</b> does everything well, or one thing better than any other style; <b>Elite</b> does more things well; <b>Pro</b> does a few things well. A higher tier also practises its strikes better, so they land harder and it recovers sooner.',
-    'Trying a style on is free - the machine throws its signature move. Buying is what costs.']];
-  if (topic === 'atomicBoard') return ['What your machine runs', [
-    'The brain sits in the middle. Each sensor plugs into it, and the fight style sits in the slot underneath.',
-    'A <b>solid</b> box is fitted. A <b>dashed</b> box is for sale, with its price on it. A solid wire means that sensor is working through the brain.',
-    'Click any box to see what it is. Everything is <b>tried on first</b>, for nothing; the bar at the top of the panel buys it or puts it back.']];
+    `${esc(COMPANIES.software.name)} sells how your machine <b>thinks</b>. Clevis sells what it is <b>made of</b>.`,
+    'Its <b>brain</b> decides what to do, eight times a second. Every machine comes with the <b>stock brain</b>: hand-written rules, free. The <b>AI brain</b> is the upgrade: the same rules with a table trained on fights on top, which pushes each of their choices up or down - whether to close in, hold, step off, cover up, take him down, lock a limb, or which strike to throw. You buy it once, and its grade is printed beside it.',
+    '<b>Sensors</b> give the AI brain more to notice. They plug into it, so they need it first.',
+    'The <b>fighting style</b> is the set of moves the brain chooses from: every strike, each practised from badly to well (a badly practised strike is thrown with less of the motors and recovers slower), how well it covers, how much of its game is on the ground, where it likes to stand. Styles come in <b>three tiers</b>: <b>Legendary</b> does everything well, or one thing better than any other style; <b>Elite</b> does more things well; <b>Pro</b> does a few things well. A higher tier also practises its strikes better.',
+    'Your challenger runs the same brain and sensors as you, and a style of your tier. Everything can be tried on first, for free.']];
+  if (topic === 'atomicBoard') return ['The brain and its sensors', [
+    'The brain sits at the top: the stock brain until you buy the AI brain. The sensors plug in under it, and only into the AI brain. The fighting style sits apart: it plugs into nothing.',
+    'A <b>solid</b> box is yours. A <b>dashed</b> box is for sale, with its price on it. A <b>lock</b> means it needs the AI brain first. A lit wire means that sensor is plugged in and read.',
+    'Click a part to see what it can be, and a choice to see its facts. Everything is <b>tried on first</b>, for free; the bar at the top buys it or puts it back.']];
   if (topic === 'atomicEyes') return ['Sensors', [
-    'A sensor gives the brain something more to notice. It needs the AI brain: the stock brain has no place to read it.',
+    'A sensor gives the AI brain more to notice: the Eye watches him, the Time sensor keeps the time, Edge computing feels its own body. It plugs into the AI brain; the stock brain cannot read it.',
     grade() && grade().perSet && grade().perSet.length
-      ? 'Each sensor is measured against the same brain without it, on the same fights. Every sensor you own is read by the AI brain (25 September); its card says what the measurement showed, paying or not.'
+      ? 'Each set of sensors is measured against the same brain with no sensors, on the same fights; a sensor’s facts say what the set it would make was measured at, paying or not. Every sensor you own is read by the AI brain.'
       : 'No brain has been trained to use sensors yet, so today a sensor does nothing. When one is, your machine uses it with no change on your part.']];
-  if (topic === 'atomicStyles') return ['The three tiers', [
+  if (topic === 'atomicStyles') return ['Fighting styles and their tiers', [
     `<b>Legendary</b> ${TIERS[3].line}: a <b>Complete</b> style every range, a <b>Master</b> style its one thing. <b>Elite</b> ${TIERS[2].line}. <b>Pro</b> ${TIERS[1].line}.`,
     `A tier is also how well a style practises its best strikes: ${TIER_ORDER.map(t => `${TIERS[t].name} ${TIERS[t].skill.toFixed(2)}`).join(', ')}, out of 1. A strike practised less is thrown with less of the motors and recovers slower.`,
     'Each style is a recipe of the game’s fighting styles, printed on it: <b>60 % Clincher &middot; 40 % Brawler</b> is exactly what it says. The bar under each name is that recipe, one piece a style, as wide as its share.',
-    'Click one to try it on: the machine throws its signature move. Buy it on the bar at the top, or put it back.']];
+    'Your challenger always fights with a style of your tier. Click one to try it on: the machine throws its signature move. Buy it on the bar at the top, or put it back.']];
   if (!topic.startsWith('p:')) return null;
   const p = byKey(topic.slice(2));
   if (!p) return null;
+  if (p.kind === 'stock') return [p.name, ['Hand-written rules that choose from your fighting style’s moves, free and in every machine. The AI brain keeps these rules and adds a table trained on fights on top. A machine with no AI brain runs this.']];
   if (p.kind === 'brain') {
-    const s = grade();
+    const s = grade(), say = (x, whom) => x.better ? `better than ${whom}` : x.diff > 0 ? `not shown better than ${whom}` : `worse than ${whom}`;
     return [p.name, [
-      `The stock rules with a trained table on top. Every 0.12 s the rules choose whether to close in, hold, step off, cover up, take him down, lock a limb, or which strike to throw - from the book its software is - and the table, trained on fights, pushes each choice up or down. It moves no joint itself: the strikes and the ground game do the moving. About once a second it also picks a plan - finish him, fight safe, all in, take it to the ground, or none - which pushes every choice the way the plan is written to; when to take which is learned, and the fight\u2019s panel shows the plan it holds. And it chooses HOW it makes each move: which side to throw with, which part of him to aim at, which side to guard or a leg to lift against his kick, which way to circle him and which side to lead with.`,
-      s ? `It was trained, and measured${s.when ? ' in the fight as it is now (' + esc(s.when) + ')' : ''}${anyLight(motorsNow()) ? ', every joint of the machine electric,' : ''} on fights it never practised on it scores <b>${s.trained.toFixed(3)}</b>, where the same network untrained scores ${s.untrained.toFixed(3)}, picking at random ${s.chance.toFixed(3)}, and the stock brain on the same software ${s.stock.toFixed(3)}.`
-        + (s.vs ? ' ' + brainVerdict(s) : '')
+      `The stock rules with a trained table on top. Every 0.12 s the rules choose whether to close in, hold, step off, cover up, take him down, lock a limb, or which strike to throw - from your fighting style's moves - and the table, trained on fights, pushes each choice up or down. It moves no joint itself: the strikes and the ground game do the moving. About once a second it also picks a plan - finish him, fight safe, all in, take it to the ground, or none - which pushes every choice the way the plan is written to; when to take which is learned, and the fight’s panel shows the plan it holds. And it chooses HOW it makes each move: which side to throw with, which part of him to aim at, which side to guard or a leg to lift against his kick, which way to circle him and which side to lead with.`,
+      s ? `It was trained, and measured${s.when ? ' in the fight as it is now (' + esc(s.when) + ')' : ''}${anyLight(motorsNow()) ? ', every joint of the machine electric,' : ''} on fights it never practised on it scores <b>${s.trained.toFixed(3)}</b>, where the same network untrained scores ${s.untrained.toFixed(3)}, picking at random ${s.chance.toFixed(3)}, and the stock brain on the same style ${s.stock.toFixed(3)}.`
+        + (s.vs ? ` Fight by fight it is ${say(s.vs.untrained, 'its untrained self')}, ${say(s.vs.chance, 'picking at random')}, and ${say(s.vs.stock, 'the stock brain on the same style')}.` + (oneStrikeNote(s) ? ' ' + oneStrikeNote(s) : '') : '')
         : 'No AI brain fits the fight as it is now: every machine runs the stock brain, and this is sold the day a trained one beats it on the same fights.',
       `It reads ${NIN} things about the fight and chooses among ${NOUT}: ${esc(ACTIONS.join(', '))}.`,
-      `Level ${levelNow()} of 3 on this machine: ${esc(LEVELS[levelNow() - 1].name)}. Level 1 is the stock brain, free; level 2 is this; level 3 is this with sensors.`]];
+      `Your machine runs: ${esc(runsNow().said)}.`]];
   }
-  if (p.kind === 'eye') { const w = eyeWorth(eyesShown().includes(p.key) ? eyesShown() : eyesShown().concat(p.key));
+  if (p.kind === 'eye') { const set = eyesShown().includes(p.key) ? eyesShown() : eyesShown().concat(p.key), w = eyeWorth(set);
     return [p.name, [
     `It reads: <b>${esc(p.sees.join(', '))}</b>.`,
     `Why it was built: ${esc(p.measured)}`,
-    w ? `Measured with the sensors this machine has: ${signed(w.adds)} \u00b1 ${w.err.toFixed(2)} over the same brain without it, paired on the same fights - ${w.pays ? 'it pays, and the AI brain reads it' : w.costs ? 'the brain is measured worse with it; the AI brain reads it all the same (25 September: every trained part is used, and measured in the open)' : 'not shown to add anything; the AI brain reads it all the same (25 September: every trained part is used, and measured in the open)'}.`
+    w ? `Measured: the set of sensors it would make, ${esc(set.map(k => byKey(k).name).join(', '))}, scores ${signed(w.adds)} ± ${w.err.toFixed(2)} over the same brain with no sensors, paired on the same fights - ${w.pays ? 'it pays, and the AI brain reads it' : w.costs ? 'the brain is measured worse with it; the AI brain reads it all the same (25 September: every trained part is used, and measured in the open)' : 'not shown to add anything; the AI brain reads it all the same (25 September: every trained part is used, and measured in the open)'}.`
       : 'Today it does nothing yet: no brain has been trained to use sensors. It needs the AI brain first.']]; }
   return [p.name, [
     esc(cap(p.note.replace(/ MEASURED:.*$/, ''))),
     'The recipe: ' + p.parts.map(x => `<b>${x.share} % ${esc(x.name)}</b> - ${esc(STYLES[x.key].note)}`).join('; ') + '.',
     `${TIERS[p.tier].name}${p.tkind ? ' · ' + KINDS[p.tkind] : ''}: ${TIERS[p.tier].line}; its best strikes practised to ${TIERS[p.tier].skill.toFixed(2)} out of 1.`,
-    `Stands ${p.spec.stand.toFixed(2)} m off; the cover holds ${(0.35 * (0.5 + bookOf(p.spec).cover)).toFixed(2)} s; the ground chapter is ${bookOf(p.spec).ground.toFixed(2)} (the grip\u2019s strength). Every strike is in the book; its facts show each one\u2019s drill. Signature move: ${esc(p.sig)}.`,
+    `Stands ${p.spec.stand.toFixed(2)} m off; the cover holds ${(0.35 * (0.5 + bookOf(p.spec).cover)).toFixed(2)} s; the ground chapter is ${bookOf(p.spec).ground.toFixed(2)} (the grip’s strength). Every strike is in the book; its facts show each one’s practice. Signature move: ${esc(p.sig)}.`,
     ...(p.adapt ? ['Measured: it does not yet beat the same mix without adapting. It is sold as what it does, not as something better.'] : [])]];
 });
 
-let sel = null, note = '', host = null, ACTS = { style() {}, brain() {}, eye() {} };
-const selected = () => byKey(sel) || byKey(shownTitle());
-
-function boardHTML(W) {
-  const S = selected(), brain = PRODUCTS[0], bst = stateOf(brain), style = byKey(shownTitle());
-  const sw = Math.floor((W - 10) / 3), sh = 72, gap = (W - 3 * sw) / 2;
-  const cx = W / 2, chipY = sh + 24, chipW = Math.min(160, W - 90), chipH = 48;
-  const slotY = chipY + chipH + 14, slotW = Math.min(220, W - 40), slotH = 52, H = slotY + slotH;
-  const xs = [0, 1, 2].map(i => Math.round(i * (sw + gap)));
-  const wires = xs.map((x, i) => {
-    const on = bst === 'fitted' && stateOf(EYE_PRODUCTS[i]) === 'fitted', x0 = x + sw / 2;
-    return `<path d="M${x0} ${sh} C ${x0} ${sh + 16}, ${cx} ${chipY - 14}, ${cx} ${chipY}" class="${on ? 'on' : ''}"/>`;
-  }).join('') + `<path d="M${cx} ${chipY + chipH} L ${cx} ${slotY}" class="${bst === 'fitted' ? 'on' : ''}"/>`;
-  const sock = (p, x) => { const st = stateOf(p), on = st === 'fitted';
-    return `<button class="at-sock${on ? ' on' : ''}" style="left:${x}px;top:0;width:${sw}px;height:${sh}px" data-product="${p.key}" data-state="${st}" aria-pressed="${S.key === p.key}">`
-      + iconHTML(p, 22) + `<span class="at-sname">${esc(p.name)}</span>${on ? '' : tagHTML(p, st, 10)}</button>`; };
-  return `<div class="at-board" style="height:${H}px">`
-    + `<svg class="at-wires" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${wires}</svg>`
-    + EYE_PRODUCTS.map((p, i) => sock(p, xs[i])).join('')
-    + `<button class="at-chip on" style="left:${cx - chipW / 2}px;top:${chipY}px;width:${chipW}px;height:${chipH}px" data-product="brain" data-state="${bst}" aria-pressed="${S.key === 'brain'}">`
-    + iconHTML(brain, 24) + `<span class="at-sname">${esc(bst === 'fitted' ? brain.name : 'Stock brain')}<small>level ${levelNow()} of 3</small></span>${bst === 'fitted' ? '' : tagHTML(brain, bst, 10)}</button>`
-    + `<button class="at-slot" style="left:${cx - slotW / 2}px;top:${slotY}px;width:${slotW}px;height:${slotH}px" data-product="${style.key}" data-slot="1" aria-pressed="${S.kind === 'style'}">`
-    + `<span class="at-kick">fight style</span>${coverHTML(style)}</button></div>`;
-}
-function card(p) {
-  const st = stateOf(p), S = selected();
-  if (p.kind === 'style') return `<button class="at-card cov" data-product="${p.key}" data-state="${st}" aria-pressed="${S.key === p.key}">`
-    + coverHTML(p) + tagHTML(p, st, 10) + '</button>';
-  return `<button class="at-card tall" data-product="${p.key}" data-state="${st}" aria-pressed="${S.key === p.key}">`
-    + iconHTML(p, 28) + `<span class="at-name">${esc(p.name)}</span>${tagHTML(p, st)}</button>`;
-}
+let sel = null, grp = null, note = '', host = null, ACTS = { style() {}, brain() {}, eye() {} };
+const groupOf = k => k === 'brain' || k === 'stock' ? 'brain' : EYE_KEYS.includes(k) ? 'eyes' : k ? 'style' : null;
+const groupNow = () => grp || (!ownsBrain() ? 'brain' : EYE_KEYS.some(k => !ownsEye(k)) ? 'eyes' : 'style');
 const head = (title, sub, topic) => `<p class="rowlbl">${title} <span>${sub}</span>${q(topic)}</p>`;
+function row(p, sub) {
+  const st = stateOf(p);
+  return `<button class="ao-row" data-product="${p.key}" data-state="${st}" aria-pressed="${sel === p.key}">${iconHTML(p, 22)}<span class="t"><span class="n">${esc(p.name)}</span><span class="s">${sub}</span></span>${tagHTML(p, st, 10)}</button>`
+    + (sel === p.key ? factsHTML(p) : '');
+}
+function styleRow(p) {
+  const st = stateOf(p);
+  return `<button class="ao-row sty" data-product="${p.key}" data-state="${st}" aria-pressed="${sel === p.key}"><span class="t"><span class="n">${esc(p.name)}</span>${bandHTML(p, 4)}</span>${tagHTML(p, st, 10)}</button>`
+    + (sel === p.key ? factsHTML(p) : '');
+}
+function loadoutHTML(W) {
+  const r = runsNow(), ai = PRODUCTS[0], g = groupNow(), style = byKey(shownTitle());
+  const brainH = 50, sockY = brainH + 22, sockH = 62, sw = Math.floor((W - 12) / 3), gap = (W - 3 * sw) / 2, xs = [0, 1, 2].map(i => Math.round(i * (sw + gap)));
+  const styY = sockY + sockH + 16, styH = 48, H = styY + styH, cx = W / 2;
+  const wires = xs.map((x, i) => { const on = r.ai && stateOf(EYE_PRODUCTS[i]) === 'fitted', x0 = x + sw / 2;
+    return `<path d="M${x0} ${sockY} C ${x0} ${sockY - 12}, ${cx} ${brainH + 10}, ${cx} ${brainH}" class="${on ? 'on' : ''}"/>`; }).join('');
+  const sock = (p, x) => { const st = stateOf(p);
+    return `<button class="ao-slot sock${st === 'fitted' ? ' on' : ''}" style="left:${x}px;top:${sockY}px;width:${sw}px;height:${sockH}px" data-product="${p.key}" data-state="${st}" aria-pressed="${sel === p.key}">`
+      + iconHTML(p, 20) + `<span class="n">${esc(p.name)}</span>${st === 'locked' ? `<span class="at-tag lock" style="gap:3px"><span class="lk">${LOCK}</span>AI brain</span>` : tagHTML(p, st, 9)}</button>`; };
+  const bst = stateOf(ai);
+  const brainBox = `<button class="ao-slot on" style="left:0;top:0;width:${W}px;height:${brainH}px" data-product="${r.ai ? 'brain' : 'stock'}" data-slot="brain" aria-pressed="${g === 'brain'}">`
+    + iconHTML(r.ai ? ai : STOCK, 22) + `<span class="t"><span class="k">Brain</span><span class="n">${esc(r.said)}</span></span>`
+    + (r.ai ? (bst === 'trying' ? tagHTML(ai, 'trying', 10) : '') : `<span class="at-tag ${bst === 'poor' ? 'poor' : 'buy'}" style="flex-direction:column;align-items:flex-end;gap:3px"><span class="ao-up">upgrade</span>${creditHTML(ai.price, 9)}</span>`) + `</button>`;
+  const styBox = `<button class="ao-slot on" style="left:0;top:${styY}px;width:${W}px;height:${styH}px" data-product="${style.key}" data-slot="style" aria-pressed="${g === 'style'}">`
+    + `<span class="t"><span class="k">Fighting style &middot; ${TIERS[style.tier].name}</span><span class="n ao-sname">${esc(style.name)}</span>${bandHTML(style, 4)}</span></button>`;
+  return `<div class="ao-slots" style="height:${H}px"><svg class="at-wires" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${wires}</svg>${brainBox}${EYE_PRODUCTS.map((p, i) => sock(p, xs[i])).join('')}${styBox}</div>`;
+}
+function choicesHTML() {
+  const g = groupNow();
+  if (g === 'brain') return head('Brain', 'AI brain first, then sensors', 'atomicBoard') + `<div class="ao-list">${row(STOCK, 'free · built in')}${row(PRODUCTS[0], 'trained on fights')}</div>`;
+  if (g === 'eyes') return head('Sensors', 'plug into the AI brain', 'atomicEyes') + `<div class="ao-list">${EYE_PRODUCTS.map(p => row(p, esc(EYE_LINE[p.key] || ''))).join('')}</div>`;
+  return head('Fighting style', 'the moves it knows', 'atomicStyles') + TIER_ORDER.map(t => `<p class="ao-tier">${TIERS[t].name} <span>${esc(TIERS[t].line)}</span></p><div class="ao-list">${TIER_PRODUCTS(t).map(styleRow).join('')}</div>`).join('');
+}
 
 function paintAtomic() {
   if (!host) return;
   if (!askedAbout()) loadTrained().then(() => paintAtomic());
-  const S = selected();
   const W = Math.max(240, Math.round(host.clientWidth || 270));
-  const shelf = S.kind === 'eye' ? head('Sensors', 'what it notices &middot; needs the AI brain', 'atomicEyes')
-      + `<div class="at-grid three">${EYE_PRODUCTS.map(card).join('')}</div>`
-    : S.kind === 'style' ? TIER_ORDER.map(t => head(TIERS[t].name, TIERS[t].line, 'atomicStyles')
-      + `<div class="at-grid two">${TIER_PRODUCTS(t).map(card).join('')}</div>`).join('')
-    : '';
-  const html = `<p class="storeline at-lead">${esc(COMPANIES.software.name)} sells what your machine runs when it fights.${q('atomic', 'what does Atomic sell?')}</p>`
-    + head('What your machine runs', 'click a box', 'atomicBoard') + boardHTML(W) + ladderHTML() + shelf + factsHTML(S);
+  const html = `<p class="storeline at-lead">${esc(COMPANIES.software.name)} sells how your machine thinks: its brain, the sensors that plug into it, and its fighting style.${q('atomic', 'what does Atomic sell?')}</p>`
+    + head('Your loadout', 'click a part', 'atomicBoard') + loadoutHTML(W)
+    + `<p class="ao-legend">Your challenger runs the same brain and sensors as you, and a style of your tier.</p>`
+    + choicesHTML() + (note && !sel ? `<p class="at-note">${esc(note)}</p>` : '');
   if (host.innerHTML !== html) host.innerHTML = html;
 }
 function sayAtomic(text) { note = text || ''; paintAtomic(); }
@@ -14502,7 +14534,7 @@ function sayAtomic(text) { note = text || ''; paintAtomic(); }
 function mountAtomic(el, acts) {
   host = el; if (acts) ACTS = acts;
   host.addEventListener('click', e => {
-    if (e.target.closest('[data-help]')) return;
+    if (e.target.closest('[data-help]') || e.target.closest('summary')) return;
     const a = e.target.closest('[data-act]');
     if (a) {
       const p = byKey(a.dataset.k); if (!p) return;
@@ -14514,8 +14546,9 @@ function mountAtomic(el, acts) {
     if (!b) return;
     const p = byKey(b.dataset.product); if (!p) return;
     note = '';
-    sel = b.dataset.slot ? null : p.key;
-    if (p.kind === 'style' && !b.dataset.slot) ACTS.style(p.key); else paintAtomic();
+    if (b.dataset.slot) { grp = b.dataset.slot; sel = null; paintAtomic(); return; }
+    grp = groupOf(p.key); sel = sel === p.key && p.kind !== 'style' ? null : p.key;
+    if (p.kind === 'style') ACTS.style(p.key); else paintAtomic();
     const f = document.getElementById('atomicFacts');
     if (f && f.scrollIntoView) f.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   });
@@ -18053,7 +18086,7 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"bce1634","date":"2026-10-08","built":"2026-10-08 14:48"};
+const __RUNNER_BUILD = {"commit":"10cbab2","date":"2026-10-08","built":"2026-10-08 17:32"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
