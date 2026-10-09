@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 10cbab2. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 8157535. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -1547,7 +1547,7 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   </main>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit 10cbab2; edit the modules, not this ----
+// ---- packed by runner/tools/pack.mjs from commit 8157535; edit the modules, not this ----
 // packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/testmode.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_markword = (() => {
 
@@ -12323,6 +12323,7 @@ const RULES = {
   dt: 1 / 120,
   sub: 2,
   iters: 10,
+  floorLast: true,
   drag: 0.992,
   posture: 3,
   driveLean: 0.55, driveSink: 0.12, driveHand: 0.35,
@@ -12346,11 +12347,12 @@ const RULES = {
   repair: { restBleed: 0.15, fixStop: 0.3, fixLeast: 0.2, fixMost: 0.9 },
   contactK: 1,
   contactStop: 1,
-  hitPoise: 0.75,
-  ringside: 0.75,
+  hitPoise: 1.05,
+  ringside: 1.05,
   hitCap: 0.26,
   hitMin: 0.055,
   blowFrom: 'strike',
+  blowSeen: true,
   hitGap: 0.45,
   swingGap: 1.20,
   refStop: 3.0,
@@ -12427,7 +12429,12 @@ function ownSpeed(M, q) {
   let tx = 0, ty = 0, tz = 0, n = 0;
   for (const T of [C, P]) if (T) { tx += T.x - T.px; ty += T.y - T.py; tz += T.z - T.pz; n++; }
   if (n) { tx /= n; ty /= n; tz /= n; }
-  return Math.hypot((q.x - q.px) - tx, (q.y - q.py) - ty, (q.z - q.pz) - tz);
+  const carried = Math.hypot((q.x - q.px) - tx, (q.y - q.py) - ty, (q.z - q.pz) - tz);
+  if (!RULES.blowSeen || q.lx === undefined) return carried;
+  let sx = 0, sy = 0, sz = 0, m = 0;
+  for (const T of [C, P]) if (T && T.lx !== undefined) { sx += T.x - T.lx; sy += T.y - T.ly; sz += T.z - T.lz; m++; }
+  if (m) { sx /= m; sy /= m; sz /= m; }
+  return Math.min(carried, Math.hypot((q.x - q.lx) - sx, (q.y - q.ly) - sy, (q.z - q.lz) - sz));
 }
 function stopContacts(A, B, k) {
   for (const ba of A.bones) {
@@ -12486,6 +12493,7 @@ function bodyContacts(A, B, out, world, by) {
         const ddx = nx * push * sgn * wq, ddy = ny * push * sgn * wq, ddz = nz * push * sgn * wq;
         q.x += ddx; q.y += ddy; q.z += ddz;
         q.px += ddx; q.py += ddy; q.pz += ddz;
+        if (RULES.blowSeen && q.lx !== undefined) { q.lx += ddx; q.ly += ddy; q.lz += ddz; }
       }
 
       const va = RULES.blowFrom === 'cage' ? speedOf(a0) + speedOf(a1) : ownSpeed(A, a0) + ownSpeed(A, a1);
@@ -12653,6 +12661,7 @@ function step(world, dt, policies) {
   const { a, b } = world;
   const n = RULES.sub, h = dt / n;
   for (let s = 0; s < n; s++) {
+    if (RULES.blowSeen) for (const body of [a, b]) for (const q of body.p) { q.lx = q.x; q.ly = q.y; q.lz = q.z; }
     if (policies) { charged(world, a, 'rules', () => policies.a(a, b, h, world)); charged(world, b, 'rules', () => policies.b(b, a, h, world)); }
     if (GETUP.on) for (const body of [a, b]) charged(world, body, 'rules', () => getUpStep(body, h, world));
     for (const body of [a, b]) flightStep(body, h, body === a ? b : a);
@@ -12690,6 +12699,7 @@ function step(world, dt, policies) {
       if (out < want) { const add = want - out; for (const q of k.p) { if (k.loose && k.loose.has(q.i)) continue; q.px -= dx * add; q.pz -= dz * add; } }
     }
     for (const body of [a, b]) charged(world, body, 'solver', () => body.stand ? relaxStand(body, 2) : relax(body, 2));
+    if (RULES.floorLast) for (const body of [a, b]) if (!body.stand) charged(world, body, 'floor', () => ground(body, 0));
   }
 
   world.t += dt;
@@ -15495,7 +15505,7 @@ function startFight(build) {
   onModeChange();
 }
 function stopFight() {
-  W = null; pol = null; running = false; flashAt = null;
+  W = null; pol = null; running = false; flashAt = null; finish = null;
   clearTraces();
   $('countWrap').hidden = true;
   onModeChange();
@@ -15897,7 +15907,8 @@ function shadeOf(hex, k) {
 function doingLine(b) {
   const act = b.act, o = act && act.order;
   if (!o || b.dead || b.out) return '';
-  const range = b.sense ? b.sense.range : 0;
+  const him = b === W.a ? W.b : W.a, C = b.p[b.idx.chest], D = him && him.p ? him.p[him.idx.chest] : null;
+  const range = C && D ? Math.hypot(C.x - D.x, C.z - D.z) : 0;
   const parts = Object.entries(since.parts).sort((x, y) => y[1] - x[1]).slice(0, 2)
     .map(([k, n]) => `${n} ${k}`).join(', ');
   const hit = since.landed ? `<b>${since.landed} landed</b>${parts ? ' - ' + parts : ''}` : 'nothing landed';
@@ -15991,7 +16002,7 @@ function hud() {
   }
 }
 
-return { landedNow, setSpeed, setCaps, getCaps, setTickHook, setRoundEndHook, setRoundStartHook, stopRunning, setRoundLen, setRoundLabel, nextRound, getFoeTitle, setBrainA, setResultHook, shakeOf, getWorld, getFoeBuild, isFighting, setModeWatcher, startFight, stopFight, mountFight, introT, introDone, cageRise, foeFade, finishState, lightsNow, finishByTowel, tapes, isReplaying, startReplay, stopReplay, replayState, markRound, stalls, fightTick, fightStep, fightCentre, drawFight, fireLights, fxCount };
+return { landedNow, setSpeed, setCaps, getCaps, setTickHook, setRoundEndHook, setRoundStartHook, stopRunning, setRoundLen, setRoundLabel, nextRound, getFoeTitle, setBrainA, setResultHook, shakeOf, getWorld, getFoeBuild, isFighting, setModeWatcher, startFight, stopFight, mountFight, introT, introDone, cageRise, foeFade, finishState, lightsNow, stopDrift, finishByTowel, tapes, isReplaying, startReplay, stopReplay, replayState, markRound, stalls, fightTick, fightStep, fightCentre, drawFight, fireLights, fxCount };
 })();
 
 const __m_app_stage = (() => {
@@ -16013,7 +16024,7 @@ function tapeFor(B) {
   return tapeCache;
 }
 const { RULES } = __m_app_sim_world;
-const { drawFight, fightCentre, isFighting, shakeOf, finishState, cageRise, foeFade, introT, fireLights, lightsNow } = __m_app_fight;
+const { drawFight, fightCentre, isFighting, shakeOf, finishState, stopDrift, cageRise, foeFade, introT, fireLights, lightsNow } = __m_app_fight;
 const { drawCageLights, ledColours } = __m_app_cagelights;
 const { drawCall: drawRefCall, drawHousings: drawRefHousings, backUOf } = __m_app_refboard;
 const { FXLOOK } = __m_app_fx;
@@ -16033,7 +16044,6 @@ const VIEW = {
   buildDist: 3.2, fightDist: 4.4,
   tx: 0, tz: 0, ty: 0.66,
   follow: true, zoom: 1,
-  drift: 0,
 };
 const view = VIEW;
 const FX_BITS = { bloom: 1, dof: 2, fringe: 4, grain: 8, vignette: 16, grade: 32, crush: 64, depthview: 128, aa: 256 };
@@ -16131,7 +16141,7 @@ function mountStage(cv) {
     }
     if (!drag.turned && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 5) return;
     drag.turned = true;
-    VIEW.drift = 0;
+    stopDrift();
     VIEW.yaw = drag.yaw + (e.clientX - drag.x) * 0.006;
     VIEW.pitch = clamp(drag.pitch + (e.clientY - drag.y) * 0.004, -0.06, 1.05);
   });
@@ -16176,7 +16186,7 @@ function draw(ctx, w, h, t, T) {
   const fighting = isFighting();
   let dist;
   const fin = finishState();
-  if (fin && fin.drift) {
+  if (fighting && fin && fin.drift) {
     VIEW.yaw += 0.16 * (1 / 60);
     VIEW.pitch += (0.17 - VIEW.pitch) * 0.02;
   }
@@ -18086,7 +18096,7 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"10cbab2","date":"2026-10-08","built":"2026-10-08 17:32"};
+const __RUNNER_BUILD = {"commit":"8157535","date":"2026-10-09","built":"2026-10-09 13:28"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
