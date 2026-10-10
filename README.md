@@ -14,4 +14,4 @@ play in, on that computer; nothing is sent anywhere.
 The robot part shapes are derived from the unitree_ros robot descriptions (BSD-3-Clause): [LICENSE-unitree_ros.txt](LICENSE-unitree_ros.txt).
 This project is not affiliated with, nor endorsed by, Unitree Robotics.
 
-Version dbaad3e, 2026-10-10.
+Version 172f93b, 2026-10-10.
