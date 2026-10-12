@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 172f93b. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 44f0b9b. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -1523,22 +1523,22 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
       <div class="popbody">
         <div class="about">
           <p><b>You are the corner, not the fighter.</b> Build a machine out of Clevis
-          robot parts &mdash; real links, real weights &mdash; pick how it fights, and shout at it during the round. The
-          coaching happens between rounds: the fight stops, the round comes back to you as
-          the three or four things that actually happened, and what you say becomes what
-          the brain is trained on before the next round.</p>
-          <p>A fight runs until a machine is destroyed, the referee stops a machine that
-          is down and not defending itself, or you throw the towel. There are no judges and
-          no last round.</p>
-          <p class="keys"><b>1</b>&ndash;<b>6</b> shout &middot; <b>Enter</b> seconds out &middot;
+          robot parts &mdash; real links, real weights &mdash; give it motors, a battery, fight software and, if you buy
+          them, the AI brain and its sensors, then shout at it during the round. Between rounds the fight stops and the
+          round comes back to you as the three or four things that actually happened; you answer each with a line. The
+          lines are kept; nothing is trained on them yet.</p>
+          <p>A fight runs until a machine is destroyed, bleeds out, is finished by the referee&rsquo;s deductions for not
+          fighting, bleeds out in its corner before the next bell, or you throw the towel. There are no judges, no count
+          and no last round.</p>
+          <p class="keys"><b>1</b>&ndash;<b id="lookKeys">7</b> shout &middot; <b>Enter</b> seconds out &middot;
           drag to orbit &middot; wheel to zoom &middot; <b>Esc</b> closes anything open</p>
-          <p class="keys">Every <b>?</b> in the app explains the instrument beside it.
-          Every number the fight runs on is in
-          <a href="../docs/rules.html" target="_blank" rel="noopener" aria-label="the rulebook (opens in a new tab)">the rulebook</a>.</p>
+          <p class="keys">Every <b>?</b> in the app explains the instrument beside it; the <b>?</b> at the top right is
+          how to play.</p>
         </div>
         <div class="plate">
           <span>UMD &middot; <a href="https://windnoise.org" target="_blank" rel="noopener"
-            aria-label="Windnoise (opens in a new tab)">a Windnoise solution</a> &middot; HXXFX</span>
+            aria-label="Windnoise (opens in a new tab)">a Windnoise solution</a> &middot; <a href="https://github.com/HXXFX/umd"
+            target="_blank" rel="noopener" aria-label="HXXFX on GitHub, the game's repository (opens in a new tab)">HXXFX</a></span>
           <span>&copy; 2026 Windnoise &middot; all rights reserved</span>
         </div>
       </div>
@@ -1547,7 +1547,7 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   </main>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit 172f93b; edit the modules, not this ----
+// ---- packed by runner/tools/pack.mjs from commit 44f0b9b; edit the modules, not this ----
 // packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/testmode.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_markword = (() => {
 
@@ -13609,8 +13609,8 @@ const COMPANIES = {
   promoter: { name: 'No Last Bell', does: 'puts on the fights and pays the purse' },
   dealer: { name: 'Parted Out', does: 'sells the parts' },
   salvage: { name: 'Six Pieces', does: 'sends the bill for what the cage broke' },
-  lab: { name: 'Between Rounds', does: "the brains, and the corner's work between rounds" },
-  software: { name: 'Atomic', does: 'sells the fight software: how the machine fights, bought like a part' },
+  lab: { name: 'Between Rounds', does: "the corner's work between rounds: the minute's rest and the repairs" },
+  software: { name: 'Atomic', does: 'sells the fight software, the AI brain and its sensors: how the machine fights, bought like a part' },
 };
 
 const PRICES = {
@@ -14105,6 +14105,7 @@ return { MARKS, MAKER, lineOf, firmMark, firmLockup, creditHTML };
 
 const __m_app_help = (() => {
 const { COMPANIES } = __m_app_shop;
+const { SHOUTS, PLANS } = __m_app_match;
 
 const $ = id => document.getElementById(id);
 
@@ -14131,18 +14132,18 @@ const HELP = {
      'The strip underneath is <b>poise</b> over the last four seconds: structural integrity, 1.00 at the bell, destroyed at 0.']],
   corner: ['The corner',
     ['A round comes back to you as one strip - your blows below the line in green, his above in red - with the three or four moments that mattered boxed on it and laid out as cards under it in the same colours: green where yours landed, red where his did, grey for a quiet stretch, amber for time on the mat. Answer each card with one chip: <b>Closer</b>, <b>Stay off</b>, <b>Throw more</b> and the rest, or the dash for nothing. There is no clock on you.',
-     'What you say becomes what the brain is trained on, right there in the break — about forty seconds — and the next round is fought by what you made. It is kept only if it beats the brain you had.',
-     'Calls <b>carry</b>: across rounds, and across fights.',
+     'The lines are <b>kept</b>; nothing is trained on them yet. The break itself is a minute&rsquo;s rest: the motors cool, the battery charges half, and each bleeding piece&rsquo;s repair is rolled - the pane shows what each machine bled in the minute and what was repaired.',
+     'Marks <b>carry</b>: across rounds, and across fights.',
      '<b>Sure of winning</b>, under the landed blows during a fight: how sure your machine is that it will win, worked out from what its brain read at its last choice - large, his under it, and beside them the line of both over the fight so far. It needs the <b>Time sensor</b>: a machine without one shows a dash, and when neither has one the row is not there.']],
   plan: ['The game plan',
-    ['Four ways to fight, and each measurably does something different over sixteen matches. <b>Pressure</b> finishes 11 of 16 and takes the most back. <b>Counter</b> and <b>Survive it</b> go the distance. <b>Chop that leg</b> finishes almost as often as Pressure while halving your own time on the mat.',
-     'The plan sets what the corner trains toward, and which shout he starts the round on. Change it between fights.']],
+    [`${PLANS.length} plans: ` + PLANS.map(x => `<b>${x.name}</b> - ${x.line}`).join('; ') + '.',
+     'A plan is the shout every round opens on, and nothing more: it does not change how the brain chooses. Change it between fights.']],
   firms: ['Who you deal with',
     [...Object.entries(COMPANIES).map(([, c]) => `<b>${c.name}</b> &mdash; ${c.does}.`),
      'You are the <b>corner and the builder</b>: you buy the parts, put the machine together and coach it. The four of them are who you buy from, who pays you and who bills you when the cage breaks something.',
      'Credits are won in the cage and spent here. They are not money and buy nothing outside the game.']],
   shout: ['Shouting during the round',
-    ['Six chips, keys <b>1</b> to <b>6</b>, each named for the lever it pulls on the brain: the range it holds, the cover, the legs, the bursts. <b>Your call</b> is the brain on its own - what it does with no corner.',
+    [`${SHOUTS.length} chips, keys <b>1</b> to <b>${SHOUTS.length}</b>, each named for the lever it pulls on the brain: the range it holds, the cover, the legs, the bursts, the ground. <b>Your call</b> is the brain on its own - what it does with no corner.`,
      'A shout lasts <b>ten seconds</b> of the fight, counted down on its chip, then the machine is back on its own call. He hears you between exchanges, not mid-punch, and the call flashes over the cage when you give it.',
      'The <b>referee</b> calls too, and his call lights across the wall behind the fight: <b>ACTION!</b> in amber is to both; <b>STOP RUNNING</b> or <b>&minus;1 POINT</b> comes in the colour of the machine it is for. Shout before the next point.',
      'The cage shows the fight as well: the strip at the foot of the fence is <b>both health bars</b>, yours and his, each behind its own machine; the corner posts count the round down; the top rail flashes for every blow, in the striker&rsquo;s colour.']],
@@ -18146,7 +18147,7 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"172f93b","date":"2026-10-10","built":"2026-10-10 19:21"};
+const __RUNNER_BUILD = {"commit":"44f0b9b","date":"2026-10-12","built":"2026-10-12 16:49"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
@@ -18160,13 +18161,16 @@ const { PAINT, paintHex, paintName, setPaintHue, setPaintLight, resetPaint, load
 const { load: loadTheme, apply: applyTheme, theme: TH, drawWheel, pickFromWheel, setLight, hsl } = __m_app_theme;
 const { mountBuild, currentBuild, boneLen, setBoneLen, packCount, setPackCount, switchGarage, paintGarage, buildSpecHTML, putTryBack, paintPanelHead, buildName } = __m_app_build;
 const { load: loadShop, playing, setPlaying, isCareer, credits, ledger, COMPANIES, STARTER, owns, motorsFor, stakeOf, RULES, running, ownsBrain, eyesOwned, closedMidFight, gymFile, loadGymFile } = __m_app_shop;
-const { TITLES, styleOf } = __m_app_software;
+const { TITLES, styleOf, TIERS, TIER_ORDER } = __m_app_software;
 const { bookOf } = __m_app_sim_strikes;
-const { brainFor, stockBrain } = __m_app_brains;
+const { brainFor, stockBrain, BRAIN } = __m_app_brains;
 const { PARTS } = __m_engine_parts;
 const { firmMark, firmLockup, MAKER, creditHTML } = __m_app_firms;
 const { RULES: MONEY } = __m_app_shop;
-const { SHOUTS: CALLS } = __m_app_match;
+const { SHOUTS: CALLS, SHOUT_LASTS, MATCH, PLANS } = __m_app_match;
+const { RULES: WORLD_RULES, BLOCK: GUARD } = __m_app_sim_world;
+const { ENERGY, BATTERY } = __m_app_sim_energy;
+const { EYES, EYE_KEYS } = __m_app_sim_decide;
 const { CLASS_BAND } = __m_engine_rigs;
 const { mountFight, startFight, stopFight, isFighting, fightTick, fightStep, getWorld, setModeWatcher, setSpeed, getFoeBuild, introT, cageRise, foeFade, introDone, stalls } = __m_app_fight;
 const { signatureTick, stopSignature } = __m_app_signature;
@@ -18205,10 +18209,10 @@ function stakeNow() {
   el.hidden = !on; if (!on) return;
   const s = stakeOf(currentBuild().shape, currentBuild().motors), n = x => x.toLocaleString('en-US');
   el.innerHTML = `<span><b>win</b><i>+${n(s.win)}</i></span>`
-    + `<span><b>lose</b>${s.destroyed ? `<i class="bill">−${n(s.stopped)} to −${n(s.destroyed)}</i>` : '<i>nothing to bill</i>'}</span>`;
+    + `<span><b>lose</b>${s.destroyed ? `<i class="bill">−${n(s.destroyed)}</i>` : '<i>nothing to bill</i>'}</span>`;
   el.title = `A fight fought to the end pays ${n(s.show)} show money; a win adds ${n(RULES.winPurse)}. Lose, and ${COMPANIES.salvage.name} bills you `
-    + `a tenth of what you bought on this machine is worth - parts and electric motors - if the referee stops it, a quarter if it is destroyed`
-    + (s.worth ? `: ${n(s.worth)} bought here, so ${n(s.stopped)} or ${n(s.destroyed)}.` : '. Nothing on this machine was bought, so there is nothing to bill.')
+    + `${Math.round(RULES.destroyed * 100)} % of what you bought on this machine is worth - parts and electric motors`
+    + (s.worth ? `: ${n(s.worth)} bought here, so ${n(s.destroyed)}.` : '. Nothing on this machine was bought, so there is nothing to bill.')
     + ` The parts you started with are never billed, and a bill never takes the purse below zero.`;
 }
 
@@ -18376,43 +18380,78 @@ function afterPaint() {
 function mountGuide() {
   const body = $('guideBody');
   if (!body) return;
-  const k = n => n.toLocaleString('en-US');
+  const k = n => n.toLocaleString('en-US'), pct = x => Math.round(x * 100);
   const shouts = CALLS.map(c => `<b>${c.key}</b> ${c.call}`).join(' &middot; ');
+  const sensors = EYE_KEYS.map(x => `${EYES[x].name} ${k(EYES[x].price)}`).join(', ');
+  const tiers = TIER_ORDER.map(t => TIERS[t].name).join(', ');
+  const O = WORLD_RULES.orders;
   body.innerHTML = `
-    <h3>Three moments</h3>
+    <h3>Four moments</h3>
     <p><b>Build.</b> Pick a machine to start from, or put one together part by part - every part is a real link off
       a ${MAKER.name} machine. Five lines: Sentry and Squire stand on two legs, Hound and Whelp run on four, Crane is an
-      arm - and any part fits any socket. Set its proportions, its wrap and its paint.</p>
-    <p><b>Try it before you buy it.</b> Clicking a part, or a whole ready-made machine, fits it to your machine and
-      costs nothing - look at it, turn it round, read the tape. A bar at the top of the builder says what it costs and
-      buys it, and that bar is the only thing in the game that spends credits. Put it back and your machine is the one
-      you had. A machine you have not paid for does not go into the cage: pressing FIGHT puts it back first.</p>
-    <p><b>Fight.</b> Press FIGHT and a challenger walks in, rolled fresh in your weight class and within
-      ${Math.round(CLASS_BAND * 100)} % of your weight, and tried first: a machine that cannot walk in is rolled again. There are five classes, ${WEIGHT_CLASSES.map(c => c.name + (isFinite(c.to) ? ' (under ' + c.to + ' kg)' : '')).join(', ')}; your gym shows which
-      one your machine is in, and keeps your record in each. A fight has no judges and no last round: it ends when a machine is destroyed, when the referee
-      stops one that is down and not defending itself, or when you throw the towel.</p>
-    <p><b>The corner.</b> You are the corner, not the fighter. Pick the plan, shout one thing at a time during the
-      round, and between rounds the fight stops and comes back to you as the moments that mattered; answer each with
-      a line, and that is what the brain trains on before the next round.</p>
+      arm - and any part fits any socket. Set its proportions, its wrap and its paint. Then its motors (hydraulic is the
+      stock set; electric is bought a joint kind at a time), its battery (${BATTERY.sizes.map(z => z[1]).join(', ')}: one
+      to ${BATTERY.maxCells} cells, in two kinds), its fight software from ${COMPANIES.software.name}, and - if you buy
+      them - the ${BRAIN.name} and its sensors.</p>
+    <p><b>Try it before you buy it.</b> Clicking anything in the shop - a part, a whole machine, a motor, a battery, a
+      style, the brain, a sensor - fits it to your machine and costs nothing: look at it, turn it round, read the tape.
+      The bar at the top of the builder says what it costs and buys it, and that bar is the only thing in the game that
+      spends credits. Put it back and your machine is the one you had. A machine wearing anything unpaid does not go
+      into the cage: pressing FIGHT puts it back first.</p>
+    <p><b>Fight.</b> Press FIGHT and a challenger walks in, rolled fresh: in your weight class and within
+      ${Math.round(CLASS_BAND * 100)} % of your weight, its motors and its battery rolled too, on a style of your tier,
+      with a brain at your level; a machine that cannot walk in is rolled again. Five classes:
+      ${WEIGHT_CLASSES.map(c => c.name + (isFinite(c.to) ? ' (under ' + c.to + ' kg)' : '')).join(', ')}; your gym shows
+      which one your machine is in, and keeps your record in each. A fight has no judges, no count and no last round. It
+      ends when a machine is destroyed, bleeds out, is finished by the referee&rsquo;s deductions for not fighting, bleeds
+      out in its corner before the next bell, or when you throw the towel. Both finished in the same moment: the one with
+      more of itself left wins, and exactly equal is a draw.</p>
+    <p><b>The corner.</b> You are the corner, not the fighter. Pick the plan (${PLANS.length}:
+      ${PLANS.map(x => x.name).join(', ')}; each opens every round on its own shout), shout one thing at a time during
+      the round - a shout lasts ${SHOUT_LASTS} s of fight - and between rounds (${MATCH.roundLen} s each) the fight stops
+      for a minute&rsquo;s rest: the motors cool, the battery charges ${pct(ENERGY.refill)} %, and each bleeding
+      piece&rsquo;s repair is rolled. The round comes back to you as the moments that mattered; answer each with a line.
+      The lines are kept; nothing is trained on them yet.</p>
     <h3>Two ways to play</h3>
     <p><b>Career</b> - credits count. Every fight fought to its end pays ${k(MONEY.showMoney)} show money and a win
-      ${k(MONEY.winPurse)} more, from ${COMPANIES.promoter.name}. Parts are bought from ${COMPANIES.dealer.name} at their
-      real weight times the robot&rsquo;s price per kilogram, and are yours for good; a ready-made machine costs the
-      parts in it you do not own yet. Electric motors are bought the same way, a joint kind at a time; hydraulic is the stock
-      set. A machine destroyed in the cage is
-      billed ${Math.round(MONEY.destroyed * 100)} % of what was bought on it - parts and electric motors - by ${COMPANIES.salvage.name}; one
-      the referee stops, ${Math.round(MONEY.stopped * 100)} %. The parts and motors you started with are never billed. The towel
-      pays nothing and bills nothing. You begin with ${k(MONEY.startCredits)}.</p>
-    <p><b>Quick play</b> - nothing counts. Every part is yours, nothing is earned, spent or lost, and it keeps a
-      garage of its own, so a machine built for free never walks into a career.</p>
+      ${k(MONEY.winPurse)} more, from ${COMPANIES.promoter.name}; a machine the referee&rsquo;s deductions finished gets
+      no show money. Parts are bought from ${COMPANIES.dealer.name} at their real weight times the robot&rsquo;s price
+      per kilogram, and are yours for good; a ready-made machine costs the parts in it, and the electric motors on it,
+      that you do not own yet. Electric motors are bought a joint kind at a time; hydraulic is the stock set. Battery
+      cells past the first, and the lasts-longer kind, are bought once and are every machine&rsquo;s.
+      ${COMPANIES.software.name} sells the fight software in three tiers (${tiers}), the ${BRAIN.name}
+      (${k(BRAIN.price)}) and three sensors (${sensors}; a sensor needs the brain). A machine that loses is billed
+      ${pct(MONEY.destroyed)} % of what was bought on it - parts and electric motors - by ${COMPANIES.salvage.name}; the
+      parts and motors you started with are never billed, a draw is not billed, and a bill never takes your credits
+      below zero. The towel pays nothing and bills nothing. A bought part on none of your machines sells back at
+      ${pct(MONEY.sellBack)} %. You begin with ${k(MONEY.startCredits)}.</p>
+    <p><b>Quick play</b> - nothing counts. Every part, motor, battery and style, the brain and every sensor are yours;
+      nothing is earned, spent or lost; and it keeps a garage of its own, so a machine built for free never walks into
+      a career.</p>
     <h3>In the cage</h3>
     <p><b>The corner</b> - you coach it. The plan before the fight, a shout during the round, a line for each moment
       between rounds. Shouts, on the keys: ${shouts}.</p>
-    <p><b>Ringside</b> - you watch. Your machine fights on its own software, with the brain it owns.
-      Nothing you do changes it, and it settles no credits.</p>
+    <p><b>Ringside</b> - you watch. Your machine fights on its own software, with the brain it owns, one round with no
+      bell. Nothing you do changes it, and it settles no credits.</p>
+    <p><b>The referee</b> - never drawn; its calls are written on the wall behind the fight. &ldquo;Action!&rdquo; at
+      the bell and after ${O.call} s without one: both must close and fight, whatever the corner shouted. From
+      ${O.after} s, every ${O.every} s, ${O.deduct} of health comes off each machine still not trying, and the last of it
+      kills. A machine that keeps stepping off out of reach, throwing nothing, is told to stop running, and further
+      running costs the same. Nobody is moved and nothing is counted.</p>
     <h3>What counts</h3>
-    <p>A blow is a hand, foot, toe, knee or elbow landing on the other machine; anything else shoves but does not
-      score. A blow on the arms is taken on the arms. Poise is what a machine has left: at zero it shatters.</p>
+    <p>A blow is a strike&rsquo;s hand, foot, toe, knee or elbow landing on the other machine; a shove is not a blow. A
+      blow on an arm held up as a guard costs ${pct(GUARD.share)} %; a blow on a machine on the floor costs
+      ${WORLD_RULES.downOpen} times. The bar at the top of the cage is <b>health</b>: blows take it, light damage heals
+      slowly, a broken piece&rsquo;s share never comes back, and every broken piece bleeds. Hot motors hold up to
+      ${pct(WORLD_RULES.heatShare)} % of the bar off until they cool, and the referee&rsquo;s deductions come off it too.
+      At zero the machine is finished.</p>
+    <p>Every machine carries a <b>battery</b>, and every motor draws on it. Below ${pct(ENERGY.low)} % every motor
+      weakens, down to ${pct(ENERGY.floor)} % of itself at empty; an empty battery never ends a fight. The charge shows
+      in the eye: white when full, red at half, amber when low.</p>
+    <p>Every machine has a <b>brain</b>. The stock brain is hand-written rules, free on every machine. The ${BRAIN.name}
+      is a trained model that chooses from the book its software is, and reads whatever sensors it owns; the
+      ${COMPANIES.software.name} tab says what your machine runs and how it graded. With a ${EYES.clock.name} fitted,
+      the corner&rsquo;s box shows how sure each machine is of winning.</p>
     <p class="keys"><b>1</b>&ndash;<b>${CALLS.length}</b> shout &middot; <b>Enter</b> seconds out &middot; drag to
       orbit &middot; wheel to zoom &middot; <b>Esc</b> closes anything open &middot; every <b>?</b> on a panel
       explains the instrument beside it</p>`;
@@ -18427,6 +18466,7 @@ function mountGuide() {
 }
 
 function mountLook() {
+  const lk = $('lookKeys'); if (lk) lk.textContent = String(CALLS.length);
   live($('wheel'), (ctx, w, h) => drawWheel(ctx, w, h, PAINT), { bg: 'panel' });
 
   const wheel = $('wheel');
