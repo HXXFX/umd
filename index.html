@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 44f0b9b. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit d90c1ff. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -37,8 +37,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101012">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="UMD">
 <title>UMD — Ultimate Machine Deathmatch</title>
+<script>try{var d=document.documentElement,f=window.frameElement,c=!!(f&&f.dataset.phone==='1')||matchMedia('(pointer: coarse)').matches,t=c&&innerHeight>innerWidth,w=t?innerHeight:innerWidth,h=t?innerWidth:innerHeight,s=f&&f.dataset.screen?f.dataset.screen.split('x').map(Number):[screen.width,screen.height],k=c&&Math.min(s[0],s[1])<=500&&!null;if(k){var m=document.querySelector('meta[name="viewport"]');if(m)m.setAttribute('content','width='+(innerWidth>innerHeight?1440:Math.round(1440*innerWidth/innerHeight))+', viewport-fit=cover');h=Math.round(1440*h/w);w=1440}d.dataset.pw=[1620,1300,1180,1160,1100,940].filter(function(x){return w<=x}).join(' ');d.dataset.ph=[940,800].filter(function(x){return h<=x}).join(' ');d.dataset.touch=c?'1':'0';d.dataset.turn=t?'1':'0';d.dataset.shrunk=k?'1':'0';d.dataset.fit=!k&&h<=500?'phone':'desk';d.style.setProperty('--fit-w',w+'px');d.style.setProperty('--fit-h',h+'px')}catch(e){}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%23141518'/%3E%3Cpath%20d='M11%204h10l7%207v10l-7%207H11l-7-7V11z'%20fill='none'%20stroke='%23b7aacb'%20stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -565,7 +571,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,canvas:focus-visible,
 .topfloat > *{pointer-events:auto}
 
 .infofloat{position:absolute;right:14px;top:13px;z-index:9;display:flex;gap:6px}
-.pop.guide{max-height:calc(100vh - 70px);display:flex;flex-direction:column}
+.pop.guide{max-height:calc(var(--fit-h, 100vh) - 84px);display:flex;flex-direction:column}
 .pop.guide .popbody{overflow-y:auto;overscroll-behavior:contain}
 .pop.guide h3{font:700 11px/1 var(--cond);letter-spacing:.16em;text-transform:uppercase;color:var(--a);
   margin:12px 0 6px;padding-top:9px;border-top:1px solid var(--glass-edge)}
@@ -586,6 +592,14 @@ button:focus-visible,a:focus-visible,summary:focus-visible,canvas:focus-visible,
   border-left:1px solid var(--line);padding-left:14px;white-space:nowrap}
 .chip.info{width:26px;height:26px;padding:0;border-radius:13px;font:700 13px/1 var(--cond);
   letter-spacing:0;text-transform:none}
+
+.chip.info.hear svg,.chip.info.mute svg{width:13px;height:13px;display:block;margin:auto;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+.chip.info.mute svg .solid{fill:currentColor}
+.chip.info.mute svg .off{stroke:var(--bad);display:none}
+.chip.info.mute[aria-pressed="true"]{background:var(--raise);border-color:var(--glass-edge);color:var(--ink2)}
+.chip.info.mute[aria-pressed="true"] svg .waves{display:none}
+.chip.info.mute[aria-pressed="true"] svg .off{display:inline}
 .about p{font:11px/1.65 var(--mono);color:var(--ink2);margin:0 0 9px;max-width:56ch}
 .about p.keys{color:var(--ink3)}
 .about b{color:var(--ink)}
@@ -620,13 +634,9 @@ main{flex:1;position:relative;overflow:hidden}
 :root:not([data-mode="fight"]) .leftcol{gap:0}
 :root[data-mode="fight"] .leftcol{width:214px}
 
-@media (max-width:1300px){
-  .logo{gap:10px}
-  .logo .marksub{font-size:9px;letter-spacing:.2em}
-}
-@media (max-width:1160px){
-  .logo .marksub{display:none}
-}
+:where(:root[data-pw~="1300"]) .logo{gap:10px}
+:where(:root[data-pw~="1300"]) .logo .marksub{font-size:9px;letter-spacing:.2em}
+:where(:root[data-pw~="1160"]) .logo .marksub{display:none}
 .panel.left{position:relative;left:auto;top:auto;width:100%;max-height:100%;min-height:0}
 
 .panel, .dock, .hud, .nav, .cornerpane{
@@ -1022,6 +1032,11 @@ canvas.pad{width:100%;height:96px;display:block;border:1px solid var(--glass-edg
 
 .dock .matchrow{display:flex;gap:6px;align-items:center}
 :root[data-mode="fight"] .dock .matchrow{flex-basis:100%;justify-content:center}
+
+:root[data-fit="desk"][data-shrunk="0"][data-mode="fight"]:where([data-pw~="1620"]) .dock .modeslot:has(> [data-shout]){display:grid;
+  grid-template-columns:repeat(4, auto);justify-content:center}
+:root[data-fit="desk"][data-shrunk="0"][data-mode="fight"]:where([data-pw~="1620"]) .dock .modeslot:has(> [data-shout]) > button.neg{margin-left:0}
+:root[data-fit="desk"][data-shrunk="0"][data-mode="fight"]:where([data-pw~="1100"]) .dock .modeslot:has(> [data-shout]){grid-template-columns:repeat(3, auto)}
 .dock button.leave{margin-left:16px;color:var(--ink3);background:var(--glass-bar)}
 .dock button.leave:hover{color:var(--ink)}
 .dock .div{width:1px;align-self:stretch;background:var(--line);margin:0 3px}
@@ -1166,6 +1181,21 @@ table.cards td.dim{color:var(--ink3)}
   backdrop-filter:var(--glass-over-f);-webkit-backdrop-filter:var(--glass-over-f);
   box-shadow:var(--glass-lip), 0 18px 50px rgba(0,0,0,.5)}
 .pop .ph{background:rgba(255,255,255,.045)}
+
+.pop.sound .row{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.pop.sound .row input[type=range]{flex:1;margin:0}
+.pop.sound .vv{font:600 11px/1 var(--mono);color:var(--ink2);min-width:40px;text-align:right}
+.pop.sound .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:0 0 8px}
+.pop.sound .ways button,.pop.sound .hear{font:600 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px;
+  border:1px solid var(--glass-edge);background:var(--raise);color:var(--ink3)}
+.pop.sound .hear{padding:8px 10px;flex:none}
+.pop.sound .ways button:hover,.pop.sound .hear:hover{color:var(--ink);border-color:var(--ink3)}
+.pop.sound .ways button[aria-pressed="true"]{color:var(--a);border-color:var(--a);box-shadow:inset 0 0 0 1px var(--a)}
+.pop.sound .says{font:11px/1.6 var(--mono);color:var(--ink2);margin:0 0 12px;min-height:5em}
+.pop.sound .hearrow{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.pop.sound .hearrow span{font:11px/1.4 var(--mono);color:var(--ink3)}
+.pop.sound .note{font:11px/1.6 var(--mono);color:var(--ink3);margin:0}
+.pop.sound .note b{color:var(--ink)}
 .popbody{padding:12px}
 .wheelwrap{display:flex;gap:12px;align-items:center}
 #wheel{width:132px;height:132px;display:block;cursor:crosshair;touch-action:none;flex:none}
@@ -1214,29 +1244,256 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
 .over p{font:11px/1.7 var(--mono);color:var(--ink3);margin:0 0 18px}
 .over .big{width:230px;margin:0 auto}
 
-@media (max-height:940px){
-  .pick button canvas{height:52px}
-  .gal button canvas{height:44px}
-  canvas.pad{height:80px}
-}
-@media (max-height:800px){
-  .panel.career .gymmore{display:none}
-  #wheel{width:112px;height:112px}
-  .paintrow .lightbar{height:112px}
-}
-@media (max-width:1180px){
-  :root{--rightw:264px}
+:where(:root[data-ph~="940"]) .pick button canvas{height:52px}
+:where(:root[data-ph~="940"]) .gal button canvas{height:44px}
+:where(:root[data-ph~="940"]) canvas.pad{height:80px}
+:where(:root[data-ph~="800"]) .panel.career .gymmore{display:none}
+:where(:root[data-ph~="800"]) #wheel{width:112px;height:112px}
+:where(:root[data-ph~="800"]) .paintrow .lightbar{height:112px}
+:root:where([data-pw~="1180"]){--rightw:264px}
 
-  .panel.career .ph .lockup b{display:none}
-  :root[data-mode="fight"]{--rightw:230px}
-  .panel{width:264px}
-  .hud{width:min(420px, calc(100% - 590px))}
-}
-@media (max-width:940px){
-  .tagline{display:none}
-  .panel.right{display:none}
-  .hud{width:min(420px, calc(100% - 320px))}
-}
+:where(:root[data-pw~="1180"]) .panel.career .ph .lockup b{display:none}
+:root[data-mode="fight"]:where([data-pw~="1180"]){--rightw:230px}
+:where(:root[data-pw~="1180"]) .panel{width:264px}
+:where(:root[data-pw~="1180"]) .hud{width:min(420px, calc(100% - 590px))}
+:where(:root[data-pw~="940"]) .tagline{display:none}
+:where(:root[data-pw~="940"]) .panel.right{display:none}
+:where(:root[data-pw~="940"]) .hud{width:min(420px, calc(100% - 320px))}
+</style>
+<style>
+
+  :root{--sl:max(env(safe-area-inset-left,0px),var(--sim-left,0px));--sr:max(env(safe-area-inset-right,0px),var(--sim-right,0px));
+    --st:max(env(safe-area-inset-top,0px),var(--sim-top,0px));--sb:max(env(safe-area-inset-bottom,0px),var(--sim-bottom,0px))}
+  :root[data-turn="1"]{--sl:max(env(safe-area-inset-top,0px),var(--sim-top,0px));--sr:max(env(safe-area-inset-bottom,0px),var(--sim-bottom,0px));
+    --st:max(env(safe-area-inset-right,0px),var(--sim-right,0px));--sb:max(env(safe-area-inset-left,0px),var(--sim-left,0px))}
+  html{overscroll-behavior:none}
+
+  :root[data-touch="1"]{-webkit-tap-highlight-color:transparent;touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  :root[data-touch="1"] body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  :root[data-touch="1"] input[type=text],:root[data-touch="1"] input:not([type]){-webkit-user-select:text;user-select:text}
+
+  :root[data-touch="1"] .cl-part{touch-action:pan-y}
+
+  :root[data-touch="1"] [data-for="mouse"],:root:not([data-touch="1"]) [data-for="touch"]{display:none}
+
+  :root[data-turn="1"] body{position:fixed;left:0;top:0;width:var(--fit-w,100dvh);height:var(--fit-h,100vw);
+    transform-origin:0 0;transform:rotate(90deg) translateY(-100%)}
+
+  .turnhint{position:fixed;left:50%;top:50%;z-index:130;width:250px;margin:-58px 0 0 -125px;transform:rotate(-90deg);
+    display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 16px 13px;text-align:center;pointer-events:none;
+    border:1px solid var(--glass-edge);background:color-mix(in srgb, var(--panel) 88%, transparent);
+    backdrop-filter:var(--glass-over-f);-webkit-backdrop-filter:var(--glass-over-f);box-shadow:var(--glass-lip), 0 18px 50px rgba(0,0,0,.55);
+    transition:opacity .35s ease}
+  .turnhint.off{opacity:0}
+  .turnhint svg{width:46px;height:46px;fill:none;stroke:var(--a);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .turnhint svg .th-phone{animation:th-turn 2.4s ease-in-out infinite;transform-origin:24px 24px}
+  .turnhint b{font:700 13px/1.1 var(--cond);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+  .turnhint span{font:10px/1.4 var(--mono);color:var(--ink3)}
+  @keyframes th-turn{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(-90deg)}}
+  @media (prefers-reduced-motion:reduce){.turnhint svg .th-phone{animation:none}}
+
+  .chip.info.full svg{width:13px;height:13px;display:block;margin:auto;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+
+  :root[data-touch="1"] .chip.info{width:30px;height:30px;border-radius:15px}
+  :root[data-touch="1"] .infofloat{gap:8px}
+
+  :root[data-touch="1"] .pop.sound .ways button,:root[data-touch="1"] .pop.sound .hear{padding:12px 6px}
+
+  :root:not([data-fit="phone"]){--headH:44px}
+  :root:not([data-fit="phone"]) .panel > .ph{min-height:var(--headH);box-sizing:border-box;padding-top:0;padding-bottom:0}
+  :root:not([data-fit="phone"]) .panel[data-fold="1"]{width:100%;height:auto;min-height:0;max-height:none;flex:none}
+  :root:not([data-fit="phone"]) .panel[data-fold="1"] > :not(.ph):not(.pbody:not(.nogrow)){display:none}
+  :root:not([data-fit="phone"])[data-mode="fight"]:has(#telePanel[data-fold="1"]){--rightw:214px}
+
+  :root:not([data-fit="phone"]) .panel > .ph > .fold,:root:not([data-fit="phone"]) .panel > .ph > .q.inline{margin-left:auto}
+  :root:not([data-fit="phone"]) .panel > .ph > .q.inline ~ .fold{margin-left:0}
+
+  :root:not([data-fit="phone"]) .rightcol,:root:not([data-fit="phone"]) .nav,:root:not([data-fit="phone"]) .playstrip,:root:not([data-fit="phone"]) .pop{top:70px}
+  :root:not([data-fit="phone"])[data-mode="fight"] .leftcol{gap:10px}
+
+  :root:not([data-fit="phone"])[data-mode="fight"] #telePanel .vsec.brain{flex:1.8 1 0}
+
+  :root:not([data-fit="phone"]) #buildPanel .spec{display:none !important}
+
+  :root:not([data-fit="phone"])[data-mode="fight"] .leftcol .vsec.fv canvas{height:min(200px, calc((var(--fit-h, 580px) - 84px - 2 * (var(--headH) + 2px) - 10px) / 2))}
+
+  :root[data-shrunk="1"] .pop{max-height:calc(var(--fit-h, 100vh) - 84px);display:flex;flex-direction:column}
+  :root[data-shrunk="1"] .pop[hidden]{display:none}
+  :root[data-shrunk="1"] .pop > .popbody{overflow-y:auto;overscroll-behavior:contain;min-height:0}
+  :root[data-shrunk="1"] main:has(#cornerPane:not([hidden])) .cornerpane:not(.tucked){max-height:calc(100% - var(--dockClear, 102px) - var(--hudB, 104px));
+    overflow-y:auto;overscroll-behavior:contain}
+  :root[data-shrunk="1"] .cpfoot{position:sticky;bottom:-14px;z-index:1;padding-bottom:14px;background:color-mix(in srgb, var(--panel) 94%, transparent)}
+  :root[data-shrunk="1"] .cornerpane.result .cpfoot{bottom:-12px;padding-bottom:12px}
+  :root[data-shrunk="1"] .panel.tele .pbody.nogrow{overflow-y:auto;overscroll-behavior:contain}
+  :root[data-shrunk="1"] .panel.tele .pbody.nogrow .vsec{min-height:120px}
+
+  :root[data-shrunk="1"] .dock .modeslot{gap:3px}
+  :root[data-shrunk="1"] .dock .modeslot [data-shout] > i{display:none}
+  :root[data-shrunk="1"] .dock .modeslot [data-shout]{padding:10px 5px;letter-spacing:.03em}
+  :root[data-shrunk="1"] .dock .modeslot [data-shout] .ic{margin-right:3px}
+
+  .rightcol > .panel[data-fold="1"]{width:100%}
+
+  :root[data-fit="phone"]{--pad:8px;--u:1;
+    --row:calc(34px * var(--u));--row-s:calc(26px * var(--u));--in:calc(10px * var(--u));--gap:calc(6px * var(--u));
+    --t-lab:calc(11px * var(--u));--t-kick:calc(9px * var(--u));--t-fig:calc(13px * var(--u));--t-go:calc(13px * var(--u));
+    --colw:calc(264px * var(--u));--rightw:calc(236px * var(--u));--pillw:calc(116px * var(--u));
+    --topw:calc(var(--gT, 6px) + var(--row) + var(--gap))}
+
+  :root[data-fit="phone"] .topfloat{left:var(--gTL, 8px);top:var(--gT, 6px);transform:scale(calc(0.739 * var(--u)));transform-origin:0 0}
+  :root[data-fit="phone"] .infofloat{right:var(--gTR, 8px);top:var(--gT, 6px);gap:var(--gap)}
+  :root[data-fit="phone"] .chip.info{width:var(--row);height:var(--row);border-radius:50%;font-size:calc(14px * var(--u))}
+  :root[data-fit="phone"] .chip.info svg{width:calc(15px * var(--u));height:calc(15px * var(--u))}
+
+  :root[data-fit="phone"] .chip.info.full{position:fixed;left:calc(var(--gTL, 8px) + 118px * 0.739 * var(--u) + var(--gap));top:var(--gT, 6px)}
+
+  :root[data-fit="phone"] .playstrip{top:var(--gT, 6px);gap:calc(4px * var(--u));left:var(--stripX, 50%);height:var(--row)}
+  :root[data-fit="phone"] .playstrip .purse{position:static;align-self:stretch;height:var(--row);padding:0 var(--in);margin-left:0;gap:calc(6px * var(--u));
+    font-size:var(--t-fig)}
+  :root[data-fit="phone"] .playstrip .purse svg{width:calc(15px * var(--u));height:calc(15px * var(--u))}
+
+  :root[data-fit="phone"] .modepick{gap:calc(3px * var(--u))}
+  :root[data-fit="phone"] .modepick button{height:var(--row);padding:0 var(--in);gap:calc(3px * var(--u));justify-content:center}
+  :root[data-fit="phone"] .modepick button b{font-size:var(--t-lab);letter-spacing:.08em}
+  :root[data-fit="phone"] .modepick button span{font-size:var(--t-kick);letter-spacing:.02em}
+
+  :root[data-fit="phone"] .leftcol{left:var(--gL, 8px);top:var(--topw);bottom:var(--gBL, 8px);width:var(--colw)}
+  :root[data-fit="phone"] .rightcol{right:var(--gR, 8px);top:var(--topw);width:var(--rightw);gap:var(--gap);
+    bottom:max(var(--dockH, 56px), var(--gBR, 8px))}
+  :root[data-fit="phone"][data-mode="fight"] .leftcol{gap:var(--gap)}
+
+  :root[data-fit="phone"][data-mode="fight"] .leftcol,:root[data-fit="phone"][data-mode="fight"] .rightcol{top:var(--hudB, 88px)}
+  :root[data-fit="phone"][data-mode="fight"] .leftcol{width:calc(214px * var(--u));bottom:max(var(--dockH, 96px), var(--gBL, 8px))}
+
+  :root[data-fit="phone"] .panel.right{display:flex}
+  :root[data-fit="phone"]:not([data-mode="fight"]) .panel.tele{display:none}
+  :root[data-fit="phone"][data-mode="fight"] .panel.career{display:none}
+  :root[data-fit="phone"] .rightcol > .panel{flex:0 1 auto;min-height:0}
+
+  :root[data-fit="phone"] .panel.tele .pbody.nogrow{display:block;overflow-y:auto;overscroll-behavior:contain}
+  :root[data-fit="phone"] .panel.tele[data-fold="1"] .pbody.nogrow{display:none}
+  :root[data-fit="phone"] .panel.tele .vsec,:root[data-fit="phone"] .panel.tele .vsec canvas{flex:none}
+  :root[data-fit="phone"][data-mode="fight"] #vizBrain{height:214px}
+  :root[data-fit="phone"][data-mode="fight"] #vizBody{height:222px}
+
+  :root[data-fit="phone"] .ph{height:var(--row);box-sizing:content-box;padding:0 calc(8px * var(--u)) 0 var(--in);gap:var(--gap)}
+  :root[data-fit="phone"] .ph h2{font-size:var(--t-lab);letter-spacing:.13em}
+  :root[data-fit="phone"] .ph .sub{font-size:var(--t-kick)}
+  :root[data-fit="phone"] .fold{width:var(--row-s);height:var(--row-s);font-size:calc(13px * var(--u))}
+  :root[data-fit="phone"] .ph button.q.inline{width:calc(20px * var(--u));height:calc(20px * var(--u))}
+
+  :root[data-fit="phone"] .storesign.tabs{height:calc(var(--row) - 6px * var(--u));align-self:center;gap:calc(4px * var(--u))}
+  :root[data-fit="phone"] .shoptab{padding:0 calc(8px * var(--u));gap:calc(6px * var(--u))}
+  :root[data-fit="phone"] .shoptab .firm{width:calc(15px * var(--u));height:calc(15px * var(--u))}
+  :root[data-fit="phone"] .shoptab.t-hardware .wordmark{font-size:calc(12px * var(--u))}
+  :root[data-fit="phone"] .shoptab.t-software .wordmark{font-size:calc(13px * var(--u))}
+  :root[data-fit="phone"] .shoptab em{font-size:calc(8px * var(--u))}
+
+  :root[data-fit="phone"] .rightcol{align-items:flex-end}
+  :root[data-fit="phone"] .rightcol > .panel[data-fold="1"]{width:var(--pillR, auto);min-width:var(--pillw);flex:none}
+  :root[data-fit="phone"] .rightcol > .panel[data-fold="1"] .ph .sub,:root[data-fit="phone"] .rightcol > .panel[data-fold="1"] .ph .gymfile{display:none}
+  :root[data-fit="phone"] .rightcol > .panel[data-fold="1"] .ph h2{flex:1;white-space:nowrap}
+  :root[data-fit="phone"] .rightcol > .panel[data-fold="1"] .pbody{display:none}
+
+  :root[data-fit="phone"][data-mode="fight"] .leftcol{align-items:flex-start}
+  :root[data-fit="phone"][data-mode="fight"] .leftcol > .panel[data-fold="1"]{width:var(--pillL, auto);min-width:var(--pillw);max-width:100%}
+
+  :root[data-fit="phone"] .pbody{-webkit-overflow-scrolling:touch}
+
+  :root[data-fit="phone"][data-mode="fight"] #buildPanel[data-fold="1"] #frontWrap,
+  :root[data-fit="phone"][data-mode="fight"] #foePanel[data-fold="1"] .vsec.fv{display:none}
+  :root[data-fit="phone"][data-mode="fight"] .vsec.fv canvas,:root[data-fit="phone"] .frontview{height:150px}
+
+  :root[data-fit="phone"][data-mode="fight"] #buildPanel[data-fold="0"]{overflow-y:auto;overscroll-behavior:contain}
+  :root[data-fit="phone"][data-mode="fight"] #buildPanel .ph{position:sticky;top:0;z-index:2;order:-2;background:color-mix(in srgb, var(--panel) 92%, transparent)}
+  :root[data-fit="phone"][data-mode="fight"] #buildPanel #frontWrap{order:-1}
+  :root[data-fit="phone"][data-mode="fight"] #buildPanel .spec{flex:none}
+
+  :root[data-fit="phone"] .nav{right:var(--gR, 8px);top:var(--rightB, 120px);width:var(--pillR, var(--pillw));z-index:3;
+    display:grid;grid-template-columns:1fr 1fr;gap:calc(4px * var(--u))}
+  :root[data-fit="phone"][data-right-open="1"] .nav{display:none}
+  :root[data-fit="phone"] #cube{display:none}
+  :root[data-fit="phone"] .nav button{height:var(--row-s);padding:0 calc(2px * var(--u));font-size:var(--t-kick);letter-spacing:.06em;white-space:nowrap}
+
+  :root[data-fit="phone"] .dock{bottom:var(--gB, 8px);gap:var(--gap);width:max-content;max-width:calc(100% - var(--oL, 8px) - var(--oR, 8px))}
+  :root[data-fit="phone"]:not([data-mode="fight"]) .dock{left:var(--axis, 50%);max-width:var(--freeW, calc(100% - 16px))}
+  :root[data-fit="phone"] .dock button,:root[data-fit="phone"] .playstrip button{padding:0 var(--in);font-size:calc(10px * var(--u))}
+  :root[data-fit="phone"] .dock > button,:root[data-fit="phone"] .dock .matchrow > button{height:var(--row)}
+  :root[data-fit="phone"] .dock button.go{height:var(--row);padding:0 calc(18px * var(--u));font-size:var(--t-go);letter-spacing:.14em}
+
+  :root[data-fit="phone"] .dock .stake{height:var(--row);justify-content:center;gap:calc(4px * var(--u));padding:0 calc(2px * var(--u));font-size:var(--t-kick)}
+  :root[data-fit="phone"] .dock .matchrow{gap:var(--gap);align-items:center}
+  :root[data-fit="phone"] .dial{height:var(--row);padding:0 var(--in);gap:calc(6px * var(--u));box-sizing:border-box;font-size:var(--t-kick)}
+  :root[data-fit="phone"] .dial input{width:calc(72px * var(--u))}
+  :root[data-fit="phone"] .dial b{font-size:var(--t-lab)}
+  :root[data-fit="phone"] .dock button.leave{margin-left:calc(6px * var(--u))}
+
+  :root[data-fit="phone"] .dock .modeslot{padding:calc(3px * var(--u));gap:calc(3px * var(--u));flex-wrap:nowrap;max-width:100%}
+  :root[data-fit="phone"] .dock .modeslot [data-shout]{display:grid;grid-template-columns:auto auto 1fr;grid-template-rows:auto auto;align-items:center;
+    column-gap:calc(3px * var(--u));row-gap:calc(3px * var(--u));padding:calc(5px * var(--u)) calc(5px * var(--u)) calc(4px * var(--u));
+    width:calc(64px * var(--u));min-height:calc(44px * var(--u));height:auto;flex:none;white-space:normal;text-align:left;
+    font-size:var(--t-kick);letter-spacing:.02em;line-height:1.12}
+  :root[data-fit="phone"] .dock .modeslot [data-shout] i{grid-row:1;grid-column:1;margin:0}
+  :root[data-fit="phone"] .dock .modeslot [data-shout] .ic{grid-row:1;grid-column:2;margin:0}
+  :root[data-fit="phone"] .dock .modeslot [data-shout] .clk{grid-row:1;grid-column:3;justify-self:end;margin:0}
+  :root[data-fit="phone"] .dock .modeslot [data-shout] .nm{grid-row:2;grid-column:1 / -1}
+  :root[data-fit="phone"] .modeslot button.neg{margin-left:var(--gap);padding:calc(5px * var(--u)) calc(6px * var(--u));white-space:normal;width:calc(60px * var(--u));
+    min-height:calc(44px * var(--u));height:auto;line-height:1.12;flex:none;font-size:var(--t-kick);letter-spacing:.04em}
+  :root[data-fit="phone"] .modeslot .lbl{padding:calc(6px * var(--u)) calc(8px * var(--u));white-space:normal}
+
+  :root[data-fit="phone"] .hud{top:var(--gT, 6px);gap:calc(8px * var(--u));width:var(--hudW, min(430px, calc(100% - 2 * 198px)))}
+  :root[data-fit="phone"] .fr{padding:calc(5px * var(--u)) calc(7px * var(--u))}
+  :root[data-fit="phone"] .fr h3{font-size:calc(12px * var(--u));margin:0 0 calc(4px * var(--u))}
+  :root[data-fit="phone"] .fr p{margin-top:calc(3px * var(--u))}
+  :root[data-fit="phone"] .fr .doing{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  :root[data-fit="phone"] .clock{font-size:calc(20px * var(--u));min-width:calc(48px * var(--u))}
+  :root[data-fit="phone"] .clock .score{margin-top:calc(3px * var(--u));font-size:calc(14px * var(--u))}
+  :root[data-fit="phone"] .feed{top:var(--hudB, 88px);max-width:calc(100% - 2 * 226px * var(--u))}
+  :root[data-fit="phone"] .feed div{font-size:var(--t-kick);overflow:hidden;text-overflow:ellipsis}
+
+  :root[data-fit="phone"] .feed div:not(:last-child){display:none}
+  :root[data-fit="phone"] .markflash{top:calc(var(--hudB, 88px) + 34px);font-size:calc(22px * var(--u));padding:calc(4px * var(--u)) calc(12px * var(--u))}
+  :root[data-fit="phone"] .count b{margin-top:60px;font-size:calc(16px * var(--u));padding:calc(6px * var(--u)) calc(11px * var(--u))}
+
+  :root[data-fit="phone"] .cornerpane{bottom:var(--dockH, 56px);width:calc(100% - 2 * max(var(--oL, 8px), var(--oR, 8px)));
+    max-height:calc(100% - var(--dockH, 56px) - var(--gT, 6px) - 52px);overflow-y:auto;overscroll-behavior:contain;padding:9px 11px 10px}
+  :root[data-fit="phone"] .cornerpane.result{width:min(560px, calc(100% - 2 * max(var(--oL, 8px), var(--oR, 8px))));padding:8px 11px 9px}
+  :root[data-fit="phone"] .cornerpane.tucked{width:auto}
+  :root[data-fit="phone"] .cornerpane .cph{margin-bottom:5px;flex-wrap:wrap;row-gap:3px}
+  :root[data-fit="phone"] .cpsoft.one{padding:5px 9px;margin-bottom:6px}
+  :root[data-fit="phone"] .roundstrip{height:32px;margin-bottom:15px}
+  :root[data-fit="phone"] .cpmo.c2{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:5px}
+  :root[data-fit="phone"] .cpmo .mo{padding:5px 8px}
+  :root[data-fit="phone"] .cpmo .mo b{font-size:11px}
+  :root[data-fit="phone"] .mo.c2 .chips{margin-top:5px}
+  :root[data-fit="phone"] .mo.c2 .chips button{padding:5px 7px}
+
+  :root[data-fit="phone"] main:has(#cornerPane:not([hidden])) #modeSlot{display:none}
+  :root[data-fit="phone"] main:has(#cornerPane:not([hidden])) .hud .fr p{display:none}
+  :root[data-fit="phone"] main:has(#cornerPane:not([hidden])) .cornerpane:not(.tucked){max-height:calc(100% - var(--dockH, 56px) - var(--hudB, 88px) + 2px)}
+
+  :root[data-fit="phone"] .cpfoot{flex-wrap:wrap;gap:6px 12px;margin-top:8px;padding:8px 0 10px;position:sticky;bottom:-10px;z-index:1;
+    background:color-mix(in srgb, var(--panel) 94%, transparent)}
+  :root[data-fit="phone"] .cornerpane.result .cpfoot{bottom:-9px;padding-bottom:9px}
+  :root[data-fit="phone"] .cpfoot .go{padding:9px 16px}
+  :root[data-fit="phone"] .cpfoot button.quiet{padding:8px 10px}
+
+  :root[data-fit="phone"] .cpwin .verdict b{font-size:32px}
+  :root[data-fit="phone"] .cornerpane.result .why{margin-top:4px}
+  :root[data-fit="phone"] .cornerpane.result .kd{margin-top:6px}
+  :root[data-fit="phone"] .cornerpane.result .kd.hero b{font-size:20px}
+  :root[data-fit="phone"] .cornerpane.result .kd div{padding:4px 7px}
+  :root[data-fit="phone"] .purseline{margin-top:6px;padding:6px 9px}
+  :root[data-fit="phone"] .purseline b{font-size:17px}
+  :root[data-fit="phone"] .cpmore{margin-top:4px}
+  :root[data-fit="phone"] .cpmore summary{padding:5px 0}
+
+  :root[data-fit="phone"] .pop{right:var(--oR, 8px);top:var(--topw);width:min(440px, calc(100% - var(--oL, 8px) - var(--oR, 8px)));
+    max-height:calc(100% - var(--topw) - var(--gB, 8px));display:flex;flex-direction:column}
+  :root[data-fit="phone"] .pop .popbody{overflow-y:auto;overscroll-behavior:contain;min-height:0}
+  :root[data-fit="phone"] .pop.guide{max-height:calc(100% - var(--topw) - var(--gB, 8px))}
+  .helppop{overflow-y:auto;overscroll-behavior:contain}
+  :root[data-fit="phone"] .over h2{font-size:32px}
 </style>
 <style>
   .ld-screen{position:fixed;inset:0;z-index:100;container-type:size;overflow:hidden;display:grid;place-items:center;color:var(--ink);font-family:var(--mono);background:var(--bg);animation:ld-in .35s ease-out both}
@@ -1313,6 +1570,9 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
         <canvas class="mark" id="mark" aria-label="UMD"></canvas><small class="marksub" id="lockupSub" hidden></small></a>
     </div>
     <div class="infofloat">
+      <button class="chip info full" id="fullBtn" aria-pressed="false" title="full screen" aria-label="full screen" hidden><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 5V1h4M9 1h4v4M13 9v4H9M5 13H1V9"/></svg></button>
+      <button class="chip info mute" id="muteBtn" aria-pressed="false" title="the sound is on: click to mute" aria-label="the sound is on: click to mute"><svg viewBox="0 0 14 14" aria-hidden="true"><path class="solid" d="M1.8 5.3h2.4l3.2-2.7v8.8L4.2 8.7H1.8z"/><path class="waves" d="M9.5 5.2a2.6 2.6 0 0 1 0 3.6M11.3 3.5a5 5 0 0 1 0 7"/><path class="off" d="M9.6 5.4l2.9 3.2M12.5 5.4l-2.9 3.2"/></svg></button>
+      <button class="chip info hear" id="soundBtn" aria-pressed="false" title="the sound: its volume, and how it is heard" aria-label="the sound: its volume, and how it is heard"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 9V7a4.5 4.5 0 0 1 9 0v2"/><rect x="1.5" y="8.5" width="2.6" height="4" rx="1"/><rect x="9.9" y="8.5" width="2.6" height="4" rx="1"/></svg></button>
       <button class="chip info" id="guideBtn" aria-pressed="false" title="how to play">?</button>
       <button class="chip info" id="lookBtn" aria-pressed="false" title="what is this?">i</button>
     </div>
@@ -1402,7 +1662,8 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
 
     <section class="panel left foe" id="foePanel" hidden>
       <div class="ph"><h2>The challenger</h2><span class="sub" id="foeSub">rolled in your weight class</span>
-        <button class="q inline" data-help="foe" title="what am I looking at?">?</button></div>
+        <button class="q inline" data-help="foe" title="what am I looking at?">?</button>
+        <button class="fold" id="foldFoe" title="open or shut this panel">+</button></div>
       <div class="vsec fv"><canvas id="foeView" class="frontview"></canvas></div>
       <div class="tape" id="tapeFoe">
         <div><span>height</span><b data-f="height">&ndash;</b></div>
@@ -1458,7 +1719,8 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
     </section>
 
     <section class="panel finish" id="finishPanel">
-      <div class="ph"><h2>Finish</h2><span class="sub">how it looks</span></div>
+      <div class="ph"><h2>Finish</h2><span class="sub">how it looks</span>
+        <button class="fold" id="foldFinish" title="open or shut this panel">&minus;</button></div>
       <div class="pbody">
         <p class="mhd2" style="margin-top:0;padding-top:0;border:0">Body wrap</p>
         <div class="wrapPick" id="wrapPick" role="group" aria-label="body wrap"></div>
@@ -1511,6 +1773,12 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
       <div class="modeslot" id="modeSlot" hidden></div>
     </div>
 
+    <div class="pop sound" id="soundPop" hidden>
+      <div class="ph"><h2>Sound</h2><span class="sub">how it is heard</span>
+        <button class="fold" id="closeSound" title="close">&times;</button></div>
+      <div class="popbody" id="soundBody"></div>
+    </div>
+
     <div class="pop guide" id="guidePop" hidden>
       <div class="ph"><h2>How to play</h2><span class="sub">the modes, the rules, the money</span>
         <button class="fold" id="closeGuide" title="close">&times;</button></div>
@@ -1530,8 +1798,10 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
           <p>A fight runs until a machine is destroyed, bleeds out, is finished by the referee&rsquo;s deductions for not
           fighting, bleeds out in its corner before the next bell, or you throw the towel. There are no judges, no count
           and no last round.</p>
-          <p class="keys"><b>1</b>&ndash;<b id="lookKeys">7</b> shout &middot; <b>Enter</b> seconds out &middot;
+          <p class="keys" data-for="mouse"><b>1</b>&ndash;<b id="lookKeys">7</b> shout &middot; <b>Enter</b> seconds out &middot;
           drag to orbit &middot; wheel to zoom &middot; <b>Esc</b> closes anything open</p>
+          <p class="keys" data-for="touch">Tap a shout &middot; <b>Seconds out</b> starts the next round &middot; drag the cage to turn it
+          &middot; pinch to zoom &middot; hold a button to read what it does &middot; <b>&times;</b> closes anything open</p>
           <p class="keys">Every <b>?</b> in the app explains the instrument beside it; the <b>?</b> at the top right is
           how to play.</p>
         </div>
@@ -1546,9 +1816,196 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
 
   </main>
 </div>
+<div class="turnhint" id="turnHint" role="status" hidden>
+  <svg viewBox="0 0 48 48" aria-hidden="true"><g class="th-phone"><rect x="15" y="6" width="18" height="34" rx="3"/><path d="M21 35h6"/></g>
+    <path d="M38 13a17 17 0 0 1 3 9" /><path d="M41 22l-3-1.5M41 22l1.4-3"/></svg>
+  <b>Turn your phone sideways</b>
+  <span>the game is drawn the long way across - turn the top of the phone to the left</span>
+</div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit 44f0b9b; edit the modules, not this ----
-// packed files: ["app/markword.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/testmode.js","app/theme.js","app/paint.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
+// ---- packed by runner/tools/pack.mjs from commit d90c1ff; edit the modules, not this ----
+// packed files: ["app/fit.js","app/markword.js","app/quality.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/soundpatches.js","app/soundpop.js","app/testmode.js","app/theme.js","app/paint.js","app/tips.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/sound.js","app/soundgame.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
+const __m_app_fit = (() => {
+const root = typeof document !== 'undefined' ? document.documentElement : null;
+const S = { touch: false, turn: false, phone: false, w: 0, h: 0 };
+const simulated = () => { try { return !!(window.frameElement && window.frameElement.dataset.phone === '1'); } catch (e) { return false; } };
+const coarse = () => simulated() || (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches);
+const TURN = (touch, W, H) => touch && H > W;
+const PHONE_H = 500;
+
+const typing = () => { const a = document.activeElement; return !!a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable) && a.type !== 'range'; };
+
+const DESK_W = 1440;
+const VIEW_PLAIN = 'width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover';
+const PHONE_LAYOUT = typeof location !== 'undefined' && null;
+function screenCss() {
+  try { const f = window.frameElement; if (f && f.dataset.screen) { const [a, b] = f.dataset.screen.split('x').map(Number); if (a > 0 && b > 0) return { w: a, h: b }; } } catch (e) {   }
+  const sw = screen.width || innerWidth, sh = screen.height || innerHeight;
+  return innerWidth > innerHeight ? { w: Math.max(sw, sh), h: Math.min(sw, sh) } : { w: Math.min(sw, sh), h: Math.max(sw, sh) };
+}
+let viewMeta = null;
+const WIDTH_IN = /(?:^|,)\s*width\s*=\s*(\d+)/;
+function setView(content) {
+  viewMeta = viewMeta || document.querySelector('meta[name="viewport"]');
+  if (!viewMeta) return;
+  const was = viewMeta.getAttribute('content') || '';
+  if (was === content) return;
+  const a = WIDTH_IN.exec(was), b = WIDTH_IN.exec(content);
+  if (a && b && Math.abs(+a[1] - +b[1]) <= 3 && was.replace(a[0], '') === content.replace(b[0], '')) return;
+  viewMeta.setAttribute('content', content);
+}
+const shrunk = () => !!S.shrunk;
+const PW = [1620, 1300, 1180, 1160, 1100, 940], PH = [940, 800];
+
+function fitNow() {
+  if (!root || typeof innerWidth !== 'number') return S;
+  if (S.w && S.touch && typing()) return S;
+  const touch = coarse(), sc = screenCss();
+  const shrink = touch && Math.min(sc.w, sc.h) <= PHONE_H && !PHONE_LAYOUT;
+  setView(shrink ? `width=${innerWidth > innerHeight ? DESK_W : Math.round(DESK_W * innerWidth / innerHeight)}, viewport-fit=cover` : VIEW_PLAIN);
+  const W = innerWidth, H = innerHeight;
+  const turn = TURN(touch, W, H), w = turn ? H : W, h = turn ? W : H, phone = !shrink && h <= PHONE_H;
+  const shape = JSON.stringify(screenShape(W, H));
+  const moved = touch !== S.touch || turn !== S.turn || phone !== S.phone || w !== S.w || h !== S.h || shape !== S.shapeKey || shrink !== S.shrunk;
+  Object.assign(S, { touch, turn, phone, w, h, shapeKey: shape, shrunk: shrink });
+  const k = shrink ? (W > H ? Math.max(sc.w, sc.h) : Math.min(sc.w, sc.h)) / W : 1;
+  root.dataset.dprCap = shrink ? String(Math.round((window.devicePixelRatio || 1) * k * 100) / 100) : '';
+  if (!moved) return S;
+  root.dataset.touch = touch ? '1' : '0';
+  root.dataset.turn = turn ? '1' : '0';
+  root.dataset.shrunk = shrink ? '1' : '0';
+  root.dataset.fit = phone ? 'phone' : 'desk';
+  root.dataset.pw = PW.filter(x => w <= x).join(' ');
+  root.dataset.ph = PH.filter(x => h <= x).join(' ');
+  root.style.setProperty('--fit-w', w + 'px');
+  root.style.setProperty('--fit-h', h + 'px');
+  gutters(JSON.parse(shape), turn, w, h, phone);
+  document.dispatchEvent(new CustomEvent('umd:fit', { detail: { ...S } }));
+  return S;
+}
+
+function screenShape(W, H) {
+  try { const f = window.frameElement; if (f && f.dataset.shape) return JSON.parse(f.dataset.shape); } catch (e) {   }
+  if (window.__umdScreen) return window.__umdScreen;
+  const ins = safeInsets(), landscape = W > H;
+  const ios = /iP(hone|od|ad)/.test(navigator.userAgent || '');
+  const short = Math.min(screen.width || W, screen.height || H), long = Math.max(screen.width || W, screen.height || H);
+  let cut = null;
+  if (landscape && Math.max(ins.left, ins.right) > 0) {
+    let side;
+    if (Math.abs(ins.left - ins.right) > 2) side = ins.left > ins.right ? 'left' : 'right';
+    else { const a = typeof window.orientation === 'number' ? window.orientation : screen.orientation ? (screen.orientation.angle > 180 ? screen.orientation.angle - 360 : screen.orientation.angle) : 90;
+      side = a === -90 ? 'right' : 'left'; }
+    const bar = Math.max(0, short - H), mid = short / 2 - bar, half = ios ? 105 : 40;
+    cut = { side, depth: Math.max(ins.left, ins.right), from: Math.max(0, mid - half), to: Math.min(H, mid + half) };
+  } else if (!landscape && ins.top > 0) {
+    cut = { side: 'top', depth: ins.top, from: Math.max(0, W / 2 - 105), to: Math.min(W, W / 2 + 105) };
+  }
+  const any = ins.left + ins.right + ins.top + ins.bottom > 0, r = ios ? (any ? 48 : 0) : (any ? 24 : 12);
+  const top = landscape ? short - H < 4 : ins.top > 0, bottom = ins.bottom > 0;
+  return { cut, r, corners: { tl: top, tr: top, bl: bottom, br: bottom }, home: ins.bottom > 0 ? { side: 'bottom', depth: Math.max(8, ins.bottom - 5) } : null };
+}
+function safeInsets() {
+  let p = document.getElementById('umdSafeProbe');
+  if (!p) {
+    p = document.createElement('div'); p.id = 'umdSafeProbe';
+    p.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;' +
+      'padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)';
+    root.appendChild(p);
+  }
+  const c = getComputedStyle(p), n = v => parseFloat(v) || 0;
+  return { top: n(c.paddingTop), right: n(c.paddingRight), bottom: n(c.paddingBottom), left: n(c.paddingLeft) };
+}
+const SHAPE = { pad: 8, top: 6, row: 34 };
+let PAGE = null;
+const pageShape = () => PAGE;
+function gutters(sh, turn, w, h, phone) {
+  const SIDE = turn ? { top: 'left', right: 'top', bottom: 'right', left: 'bottom' } : { top: 'top', right: 'right', bottom: 'bottom', left: 'left' };
+  const c = sh.corners || {}, corners = turn ? { tl: !!c.tr, tr: !!c.br, br: !!c.bl, bl: !!c.tl } : { tl: !!c.tl, tr: !!c.tr, br: !!c.br, bl: !!c.bl };
+  let cut = null;
+  if (sh.cut && sh.cut.depth > 0) {
+    const flip = turn && (sh.cut.side === 'top' || sh.cut.side === 'bottom');
+    cut = { side: SIDE[sh.cut.side], depth: sh.cut.depth, from: flip ? h - sh.cut.to : sh.cut.from, to: flip ? h - sh.cut.from : sh.cut.to };
+  }
+  const home = sh.home && sh.home.depth > 0 ? { side: SIDE[sh.home.side || 'bottom'], depth: sh.home.depth } : null;
+  const R = sh.r || 0, P = SHAPE.pad;
+  const inR = d => (R > 0 && d < R) ? R - Math.sqrt(R * R - (R - d) * (R - d)) : 0;
+  const T = SHAPE.top + (cut && cut.side === 'top' ? cut.depth : 0);
+  const gL = Math.max(P, cut && cut.side === 'left' ? cut.depth + 4 : 0), gR = Math.max(P, cut && cut.side === 'right' ? cut.depth + 4 : 0, home && home.side === 'right' ? home.depth : 0);
+  const g = {
+    gL, gR, oL: gL, oR: gR,
+    gT: T, gTL: Math.max(gL, corners.tl ? inR(T) : 0), gTR: Math.max(gR, corners.tr ? inR(T) : 0),
+    gBL: Math.max(P, corners.bl ? inR(gL) : 0), gBR: Math.max(P, corners.br ? inR(gR) : 0),
+    gB: Math.max(P, home && home.side === 'bottom' ? home.depth : 0),
+  };
+  PAGE = { w, h, cut, r: R, corners, home, gutters: g };
+  for (const [k, v] of Object.entries(g)) root.style.setProperty('--' + k, phone ? Math.round(v) + 'px' : '');
+  root.style.setProperty('--u', phone ? String(uOf(w, h)) : '');
+}
+const uOf = (w, h) => w < 720 ? 1 : Math.round(Math.min(1.2, Math.max(1, h / 340)) * 100) / 100;
+const turned = () => S.turn;
+const phone = () => S.phone;
+const touch = () => S.touch;
+
+function pointAt(e) { return S.turn ? { x: e.clientY, y: S.h - e.clientX } : { x: e.clientX, y: e.clientY }; }
+function rectOf(el) {
+  const r = el.getBoundingClientRect();
+  if (!S.turn) return { left: r.left, top: r.top, right: r.right, bottom: r.bottom, width: r.width, height: r.height };
+  return { left: r.top, top: S.h - r.right, right: r.bottom, bottom: S.h - r.left, width: r.height, height: r.width };
+}
+function localAt(el, e) { const p = pointAt(e), r = rectOf(el); return [p.x - r.left, p.y - r.top]; }
+function view() { return S.turn ? { w: S.w, h: S.h } : { w: innerWidth, h: innerHeight }; }
+
+let finger = false;
+const fingerScale = () => finger ? 1.8 : 1;
+
+const simFull = () => { try { const f = window.frameElement; return f && f.dataset.phone === '1' && f.umdFull ? f.umdFull : null; } catch (e) { return null; } };
+function mountFullScreen(btn) {
+  if (!btn || !root) return;
+  const sim = simFull();
+  const can = () => S.touch && (sim ? sim.can() : document.fullscreenEnabled && typeof root.requestFullscreen === 'function');
+  const isOn = () => sim ? sim.on() : !!document.fullscreenElement;
+  const paint = () => { const on = isOn(); btn.hidden = !can() || btn.dataset.refused === '1';
+    btn.setAttribute('aria-pressed', String(on)); btn.title = on ? 'leave full screen' : 'full screen'; btn.setAttribute('aria-label', btn.title); };
+  btn.addEventListener('click', async () => {
+    try {
+      if (isOn()) { if (sim) sim.exit(); else await document.exitFullscreen(); paint(); return; }
+      if (sim) sim.enter(); else await root.requestFullscreen({ navigationUI: 'hide' });
+      try { if (sim) sim.lock('landscape'); else if (screen.orientation && screen.orientation.lock) await screen.orientation.lock('landscape'); } catch (e) {   }
+    } catch (e) { btn.dataset.refused = '1'; }
+    paint();
+  });
+  document.addEventListener('fullscreenchange', paint);
+  document.addEventListener('umd:fit', paint);
+  paint();
+}
+function mountTurnHint(el) {
+  if (!el || !root) return;
+  let timer = 0;
+  const hide = () => { el.classList.add('off'); clearTimeout(timer); timer = setTimeout(() => { el.hidden = true; }, 400); };
+  const show = () => { clearTimeout(timer); el.hidden = false; el.classList.remove('off'); timer = setTimeout(hide, 6000); };
+  let was = false;
+  const sync = () => { if (S.turn && !was) show(); else if (!S.turn && was) hide(); was = S.turn; };
+  window.addEventListener('pointerdown', () => { if (!el.hidden) hide(); }, { capture: true, passive: true });
+  document.addEventListener('umd:fit', sync);
+  sync();
+}
+
+if (root && typeof window !== 'undefined') {
+  window.addEventListener('pointerdown', e => { finger = e.pointerType === 'touch' || e.pointerType === 'pen'; }, { capture: true, passive: true });
+  const again = () => { fitNow(); setTimeout(fitNow, 120); setTimeout(fitNow, 400); };
+  window.addEventListener('resize', again);
+  window.addEventListener('orientationchange', again);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', again);
+  document.addEventListener('focusout', () => setTimeout(fitNow, 50));
+  setInterval(() => { if (innerWidth !== (S.turn ? S.h : S.w) || innerHeight !== (S.turn ? S.w : S.h) || simulated()) fitNow(); }, 500);
+  for (const ev of ['gesturestart', 'gesturechange']) document.addEventListener(ev, e => e.preventDefault(), { passive: false });
+  fitNow();
+}
+
+return { shrunk, fitNow, SHAPE, pageShape, turned, phone, touch, pointAt, rectOf, localAt, view, fingerScale, mountFullScreen, mountTurnHint };
+})();
+
 const __m_app_markword = (() => {
 
 const GRID = {
@@ -1660,6 +2117,44 @@ function chromeRamp(cv) {
 }
 
 return { GRID, WORD, PLATE, wordGeom, skewShift, wordUnits, drawWord, chromeRamp };
+})();
+
+const __m_app_quality = (() => {
+const { phone } = __m_app_fit;
+
+const QUALITY = {
+  steps: [2, 1.5, 1.25, 1],
+  windowMs: 3000,
+  slowMs: 25,
+  gain: 0.75,
+};
+function decide(S, gap, Q = QUALITY) {
+  if (S.settled || !(gap > 0)) return S;
+  if (S.trying) return gap < Q.gain * S.trying.gap ? { step: S.step, trying: null, settled: false } : { step: S.trying.from, trying: null, settled: true };
+  if (gap > Q.slowMs && S.step < Q.steps.length - 1) return { step: S.step + 1, trying: { from: S.step, gap }, settled: false };
+  return S;
+}
+
+let S = { step: 0, trying: null, settled: false }, last = 0, since = 0, gaps = [], canvas = null;
+const stageSharpness = () => QUALITY.steps[S.step];
+function watchStage(cv) { canvas = cv; }
+function frameDone(now) {
+  if (!canvas || !phone()) { last = now; since = 0; return; }
+  if (last && now - last < 1000) gaps.push(now - last);
+  last = now;
+  if (!since) since = now;
+  if (now - since < QUALITY.windowMs || gaps.length < 20) return;
+  const s = [...gaps].sort((a, b) => a - b), gap = s[s.length >> 1];
+  gaps = []; since = now;
+  const next = decide(S, gap);
+  if (next.step !== S.step) {
+    canvas.dataset.dprCap = String(QUALITY.steps[next.step]);
+    console.info(`UMD: the cage is drawn at ${QUALITY.steps[next.step]} device pixels to the page's (frames ${Math.round(1000 / gap)} a second${next.trying ? ', trying it' : ''})`);
+  }
+  S = next;
+}
+
+return { QUALITY, decide, stageSharpness, watchStage, frameDone };
 })();
 
 const __m_app_sim_brainfile = (() => {
@@ -2333,6 +2828,322 @@ const WEIGHTS = new Float64Array([
 return { STAGE, KIND, ASSIST, REWARD, SCORES, CURVE, WEIGHTS };
 })();
 
+const __m_app_soundpatches = (() => {
+const PATCHES_VERSION = 8;
+const LAYER_KINDS = {
+  thud:   { says: 'a sine falling in pitch, clipped: a short fast fall is a punch, a long slow one is the weight of what landed; a few ms of `attack` takes the slap off', params: { f0: 160, f1: 45, fall: 0.03, attack: 0, decay: 0.12, level: 0.8, drive: 3 } },
+  crack:  { says: 'material giving way: a cluster of tiny clipped bursts in the first instants, each in its own band between f0 and f1 - the grit that makes a hit hard and dangerous rather than a drum', params: { n: 4, spread: 0.012, f0: 700, f1: 4000, q: 1.3, burst: 0.012, level: 0.6, drive: 5 } },
+  noise:  { says: 'noise through a filter that sweeps from f0 to f1 as the sound dies, then the clipper: the body of an impact, a hiss, a scrape', params: { filter: 'lowpass', f0: 1500, f1: 160, q: 0.9, attack: 0, decay: 0.06, level: 0.7, drive: 4, wobble: 0 } },
+  knock:  { says: 'a hollow shell: a short noise burst through a band-pass that rings at f (a high q rings like a drum; keep it low for a body)', params: { f: 230, q: 3.5, burst: 0.012, decay: 0.1, level: 0.35, drive: 3 } },
+  tone:   { says: 'a damped tone: a wave, clipped, through a low-pass, bent by a second sine whose bend fades - steel under stress; clean and long it sounds like an instrument', params: { wave: 'sine', f: 85, decay: 0.15, level: 0.2, drive: 4, lowpass: 600, bend: 1.42, bendDepth: 1.4, detune: 0.07, attack: 0 } },
+  rattle: { says: 'parts knocking: short clipped noise bursts and low clunks scattered over a stretch, fading', params: { n: 5, over: 0.4, level: 0.3, f: 180, lowpass: 700 } },
+  buzz:   { says: 'a stalled motor, a frame groaning, an arc: two sawtooths a hair apart through a low-pass and the clipper; `rise` is where the pitch ends, `chop` a stutter in Hz', params: { f: 48, rise: 0.8, attack: 0.005, decay: 0.3, level: 0.3, drive: 5, lowpass: 420, chop: 0 } },
+  beep:   { says: 'a held synth tone, for the buzzer: two oscillators a hair apart and one an octave down (`sub`), through a low-pass and the clipper; on for `hold` seconds, no decay - digital, not struck', params: { wave: 'square', f: 740, hold: 0.1, attack: 0.003, release: 0.02, level: 0.3, lowpass: 3800, drive: 2, detune: 0.004, sub: 0.5 } },
+  dent:    { says: 'metal giving way: the struck shell\'s own tones (`tones` of them over f, spaced like a plate\'s, `stretch` apart) ringing at `q` and sliding DOWN by `drop` over `buckle` seconds as it caves in, the crease\'s `snaps` striking them again as it bends - a crunch, not a note; a negative drop pops it back out', params: { f: 160, tones: 6, stretch: 1, q: 16, drop: 0.3, buckle: 0.07, snaps: 8, attack: 0, decay: 0.25, level: 0.5, drive: 3 } },
+  scratch: { says: 'a hard edge skidding: friction noise (`bed`) and `chatter` stick-and-slip grains over `over` seconds, through two resonances sliding from f0 to f1 - a high `q` is metal on metal, a low one a sole on the mat', params: { f0: 2200, f1: 900, q: 4, chatter: 10, over: 0.12, bed: 0.5, attack: 0.005, decay: 0.14, level: 0.3, drive: 3 } },
+  floor:   { says: 'the floor ringing under a weight: a burst through the platform\'s few low tones (`tones` over f, `stretch` apart, ringing at `q`) and a `wash` of low noise dying with them - the floor\'s own reverb - all under `damp` Hz; felt more than heard', params: { f: 55, tones: 3, stretch: 1, q: 14, burst: 0.04, wash: 0.4, damp: 350, attack: 0.01, decay: 0.5, level: 0.5, drive: 1.5 } },
+  grind:   { says: 'gears grinding: the mesh tone (a sawtooth sliding from f0 to f1 as the motor slows) and a band of `grit` round it, caught and let go by the teeth `rate` times a second, slowing to `slow` of that, never quite even; `rough` is how hard each catch chops - a ratchet, not a tremolo', params: { f0: 160, f1: 70, rate: 24, slow: 0.5, rough: 0.8, grit: 0.5, q: 3, lowpass: 1000, attack: 0.02, decay: 0.5, level: 0.25, drive: 3 } },
+  leak:    { says: 'hydraulic oil getting out: the seal BLASTING (`blast`), a turbulent spray sliding from f0 to f1 (`depth` its tearing, `pulse` the pump\'s last strokes), thick GLUGS (`glugs` of them, about `glug` Hz) and wet SPLATS (`splats`); `mud` thickens it all - lower, wider, slower: oil, not water', params: { f0: 1800, f1: 700, q: 0.9, pulse: 6, depth: 0.7, blast: 0.6, mud: 0.7, glugs: 8, glug: 300, splats: 10, attack: 0.005, decay: 0.9, level: 0.3, drive: 2 } },
+};
+const PARAM_RANGE = {
+  f0: [15, 8000, 1], f1: [15, 8000, 1], f: [20, 4000, 1], fall: [0.005, 1, 0.005], decay: [0.01, 3, 0.01], attack: [0, 0.3, 0.001], level: [0, 1.5, 0.01], drive: [0, 6, 0.1],
+  q: [0.3, 60, 0.1], wobble: [0, 1, 0.05], lowpass: [60, 8000, 10], bend: [0.5, 4, 0.01], bendDepth: [0, 4, 0.05], detune: [0, 0.1, 0.001], n: [1, 24, 1], over: [0.05, 2.5, 0.05], rise: [0.3, 2.5, 0.05], chop: [0, 40, 1], at: [0, 1.5, 0.01], burst: [0.002, 0.1, 0.001],
+  spread: [0.001, 1.5, 0.001], hold: [0.01, 2, 0.01], release: [0.002, 0.5, 0.002], sub: [0, 1, 0.01],
+  tones: [1, 8, 1], stretch: [0.3, 2, 0.01], drop: [-0.5, 0.9, 0.01], buckle: [0.005, 1.5, 0.005], snaps: [0, 40, 1], chatter: [0, 40, 1], bed: [0, 1, 0.01], wash: [0, 1.5, 0.01], damp: [60, 4000, 10],
+  rate: [1, 80, 0.5], slow: [0.1, 1.5, 0.01], rough: [0, 1, 0.01], grit: [0, 1, 0.01], pulse: [0, 30, 0.5], depth: [0, 1, 0.01], blast: [0, 1.5, 0.01], mud: [0, 1, 0.01], glugs: [0, 30, 1], glug: [60, 1500, 10], splats: [0, 40, 1],
+  filter: ['lowpass', 'bandpass', 'highpass'], wave: ['sine', 'triangle', 'square', 'sawtooth'],
+};
+
+const ROOM = {
+  low: { f: 120, gain: 9 }, high: { f: 4500, gain: -6 },
+  drive: 1.3, level: 0.08, out: 2,
+  dynamics: 0.6,
+  comp: { threshold: -12, ratio: 2.5, attack: 0.015, release: 0.15 },
+  reverb: { seconds: 0.55, level: 0.17, damp: 2000 },
+};
+const ROOM_RANGE = { dynamics: [0.2, 1.2, 0.01], 'low.f': [40, 400, 1], 'low.gain': [-12, 12, 0.5], 'high.f': [1000, 12000, 50], 'high.gain': [-24, 6, 0.5], drive: [0, 4, 0.1], level: [0, 1.5, 0.005], out: [0.25, 4, 0.01],
+  'comp.threshold': [-40, 0, 1], 'comp.ratio': [1, 20, 0.5], 'comp.attack': [0, 0.05, 0.001], 'comp.release': [0.02, 0.5, 0.01],
+  'reverb.seconds': [0.1, 3, 0.05], 'reverb.level': [0, 1, 0.01], 'reverb.damp': [400, 12000, 50] };
+
+const GROUPS = {
+  motors: { n: 1, name: 'The motors', says: 'A joint\'s motor while the limb moves fast. Silent at rest: the machine runs on a battery, there is no engine.', col: '#F2CD5E' },
+  floor:  { n: 2, name: 'The feet and the floor', says: 'Feet on the padded mat, and whole machines or pieces hitting it.', col: '#C0C4A9' },
+  parts:  { n: 3, name: 'Parts hitting each other', says: 'Shell on shell: a blow, a touch, a clamp, a strain, a tear.', col: '#F2705F' },
+  damage: { n: 4, name: 'Damage', says: 'What a hurt piece does: its shell crumpling; oil spurting and dripping out of a hydraulic joint, an arc and sparks off an electric one; gears grinding to a stop; a collapse.', col: '#E8B92E' },
+  arena:  { n: 5, name: 'The arena', says: 'Not the machines: the buzzer and the referee. Two more are not physical and stay off unless you switch them on.', col: '#B7AACB' },
+};
+
+const MOTORS = {
+  light: { name: 'Electric motors', hear: 'A geared motor\'s whine, low and thick, rising with the limb\'s speed and swelling with the work; a low buzz when the motor stalls under load.',
+    gate: { from: 0.35, to: 0.8 },
+    whine: { wave: 'triangle', f0: 70, fSpeed: 520, harmonic: 2.0, harmonicLevel: 0.3, lowpass: 1600, level: 0.26, workLevel: 0.6, drive: 2 },
+    stall: { f0: 42, fWork: 20, lowpass: 380, level: 0.16, from: 0.55, to: 0.95, drive: 4, chop: 0 },
+    loud: { real: -38, cal: 5.5 } },
+  strong: { name: 'Hydraulic motors', hear: 'A valve\'s hiss while the limb moves, the pump\'s low whirr under it as the motor works; a strained whine and a relief hiss when it stalls.',
+    gate: { from: 0.35, to: 0.8 },
+    hiss: { f0: 450, fSpeed: 900, q: 1.0, level: 0.2, workLevel: 0.6, drive: 1 },
+    pump: { wave: 'sawtooth', f0: 48, fWork: 30, lowpass: 320, level: 0.25, drive: 2.5 },
+    stall: { f0: 55, fWork: 22, lowpass: 380, level: 0.15, from: 0.55, to: 0.95, drive: 4, chop: 0, hiss: 0.08 },
+    loud: { real: -25, cal: 0.9 } },
+};
+
+const PIECE_TONE = { torso: { f: 1, decay: 1 }, leg: { f: 1.5, decay: 0.7 }, arm: { f: 2.1, decay: 0.6 }, head: { f: 3.0, decay: 0.45 } };
+
+const PATCHES = {
+  hot: { group: 'motors', name: 'A motor overheats and cuts out', hear: 'Hydraulic: the pump labouring and dying, a seal bursting, hot oil and steam spurting out with its last strokes, glugging and splattering, the joint grinding as the pressure goes, the hot housing ticking, a clunk as it goes slack. Electric: the windings whining up and dying in a stutter, the gearbox grinding as it seizes, arcs crackling, a sizzle and smoke, the housing ticking.', reads: 'the motor\'s kind', len: 1.4, on: true, loud: { by: 'fixed', joules: 40, radiates: 0, ref: { motor: 'strong' }, cal: 12 },
+    layers: [
+      { kind: 'buzz', only: { motor: 'strong' }, f: 56, rise: 0.6, attack: 0.02, decay: 0.55, level: 0.15, drive: 4, lowpass: 360, chop: 0 },
+      { kind: 'thud', only: { motor: 'strong' }, at: 0.06, f0: 150, f1: 50, fall: 0.02, decay: 0.06, level: 0.35, drive: 3 },
+      { kind: 'crack', only: { motor: 'strong' }, at: 0.06, n: 2, spread: 0.006, f0: 900, f1: 2600, q: 1.3, burst: 0.008, level: 0.25, drive: 5 },
+      { kind: 'leak', only: { motor: 'strong' }, at: 0.07, f0: 2000, f1: 800, q: 0.8, pulse: 8, depth: 0.7, blast: 0.5, mud: 0.6, glugs: 6, glug: 320, splats: 8, attack: 0.008, decay: 0.95, level: 0.26, drive: 2 },
+      { kind: 'grind', only: { motor: 'strong' }, at: 0.1, f0: 140, f1: 60, rate: 22, slow: 0.4, rough: 0.8, grit: 0.5, q: 3, lowpass: 900, attack: 0.03, decay: 0.6, level: 0.22, drive: 3 },
+      { kind: 'thud', only: { motor: 'strong' }, at: 0.75, f0: 90, f1: 40, fall: 0.03, decay: 0.12, level: 0.35, drive: 2.5 },
+      { kind: 'buzz', only: { motor: 'light' }, f: 140, rise: 0.4, attack: 0.01, decay: 0.6, level: 0.16, drive: 4, lowpass: 1400, chop: 0 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.05, f: 65, rise: 0.5, attack: 0.01, decay: 0.4, level: 0.16, drive: 5, lowpass: 1600, chop: 18 },
+      { kind: 'grind', only: { motor: 'light' }, at: 0.08, f0: 260, f1: 90, rate: 38, slow: 0.3, rough: 0.9, grit: 0.4, q: 4, lowpass: 1600, attack: 0.02, decay: 0.55, level: 0.24, drive: 3.5 },
+      { kind: 'crack', only: { motor: 'light' }, at: 0.06, n: 9, spread: 0.5, f0: 1200, f1: 3200, q: 1.5, burst: 0.005, level: 0.16, drive: 5 },
+      { kind: 'noise', only: { motor: 'light' }, at: 0.1, filter: 'bandpass', f0: 2600, f1: 1800, q: 1.5, attack: 0.02, decay: 0.6, level: 0.1, drive: 3, wobble: 0.9 },
+      { kind: 'noise', only: { motor: 'light' }, at: 0.3, filter: 'lowpass', f0: 1200, f1: 400, q: 0.7, attack: 0.1, decay: 0.8, level: 0.08, drive: 0, wobble: 0.5 },
+      { kind: 'dent', at: 0.05, f: 300, tones: 4, stretch: 1, q: 22, drop: 0.12, buckle: 0.35, snaps: 8, attack: 0.02, decay: 0.5, level: 0.2, drive: 3 } ],
+    inputs: {} },
+  step: { group: 'floor', name: 'A foot lands', hear: 'A heavy metal foot set down hard on the padded mat: a firm low punch and the frame of the foot clanking dull, the floor booming under it, the sole scuffing as the weight comes on; deeper for a heavy machine, harder for a foot lifted high.', reads: 'the machine\'s weight, how high the foot was lifted (its landing speed)', len: 0.6, on: true, loud: { by: 'step', share: 0.25, radiates: 0, ref: { weight: 0.15, v: 1.1 }, cal: 9.7 },
+    layers: [
+      { kind: 'thud', f0: 140, f1: 40, fall: 0.018, attack: 0.0015, decay: 0.16, level: 0.7, drive: 1 },
+      { kind: 'thud', f0: 54, f1: 26, fall: 0.1, attack: 0.004, decay: 0.3, level: 0.6, drive: 1.8 },
+      { kind: 'dent', f: 150, tones: 3, stretch: 1, q: 6, drop: 0, buckle: 0.02, snaps: 0, attack: 0, decay: 0.12, level: 0.6, drive: 1.5 },
+      { kind: 'noise', filter: 'lowpass', f0: 420, f1: 90, q: 0.8, attack: 0.001, decay: 0.05, level: 0.3, drive: 2, wobble: 0 },
+      { kind: 'floor', f: 55, tones: 3, stretch: 1, q: 12, burst: 0.03, wash: 0.35, damp: 320, attack: 0.008, decay: 0.45, level: 0.45, drive: 1.5 },
+      { kind: 'scratch', at: 0.012, f0: 500, f1: 220, q: 1.6, chatter: 5, over: 0.07, bed: 0.6, attack: 0.008, decay: 0.08, level: 0.16, drive: 2 } ],
+    inputs: { weightDeep: 0.3, landBright: 0.5 } },
+  scrape: { group: 'floor', name: 'A foot drags', hear: 'A sole dragged hard across the mat while touching it: a gritty low grind that stutters as it sticks and slips, a rumble under it and the floor taking the weight (where the sparks fly).', reads: 'how fast the foot slid', len: 0.45, on: true, loud: { by: 'drag', share: 0.25, mu: 0.6, top: 8, seconds: 0.15, radiates: -8, ref: { weight: 0.15, speed: 3 }, cal: 11.8 },
+    layers: [
+      { kind: 'scratch', f0: 320, f1: 180, q: 1.4, chatter: 14, over: 0.25, bed: 0.7, attack: 0.02, decay: 0.28, level: 0.35, drive: 2.5 },
+      { kind: 'noise', filter: 'lowpass', f0: 160, f1: 60, q: 0.7, attack: 0.025, decay: 0.25, level: 0.5, drive: 2, wobble: 0 },
+      { kind: 'floor', f: 58, tones: 2, stretch: 1, q: 9, burst: 0.12, wash: 0.5, damp: 260, attack: 0.03, decay: 0.3, level: 0.28, drive: 1.4 } ],
+    inputs: { speedBright: 0.3 } },
+  slam: { group: 'floor', name: 'A machine hits the mat', hear: 'A takedown, a throw landing, a fall: a hard punch and a deep thud you feel, the shell crumpling as it lands, the floor booming under the whole machine, the body skidding on the mat, the frame groaning, loose parts knocking.', reads: 'the machine\'s weight', len: 1.3, on: true, loud: { by: 'fall', share: 1, height: 0.6, radiates: 0, ref: { weight: 0.15 }, cal: 1.5 },
+    layers: [
+      { kind: 'crack', n: 4, spread: 0.02, f0: 400, f1: 2400, q: 1.3, burst: 0.015, level: 0.4, drive: 5 },
+      { kind: 'thud', f0: 170, f1: 40, fall: 0.035, decay: 0.18, level: 1.0, drive: 3.5 },
+      { kind: 'thud', f0: 75, f1: 20, fall: 0.2, decay: 0.6, level: 1.0, drive: 3 },
+      { kind: 'noise', filter: 'lowpass', f0: 900, f1: 80, q: 0.9, attack: 0, decay: 0.2, level: 0.8, drive: 4, wobble: 0 },
+      { kind: 'dent', at: 0.005, f: 110, tones: 6, stretch: 0.9, q: 14, drop: 0.4, buckle: 0.12, snaps: 12, attack: 0.002, decay: 0.4, level: 0.6, drive: 4 },
+      { kind: 'floor', f: 48, tones: 3, stretch: 1, q: 12, burst: 0.06, wash: 0.5, damp: 300, attack: 0.012, decay: 0.8, level: 0.7, drive: 2 },
+      { kind: 'scratch', at: 0.03, f0: 600, f1: 220, q: 1.6, chatter: 14, over: 0.3, bed: 0.65, attack: 0.02, decay: 0.32, level: 0.32, drive: 2.5 },
+      { kind: 'buzz', at: 0.02, f: 40, rise: 0.7, attack: 0.005, decay: 0.3, level: 0.22, drive: 5, lowpass: 380, chop: 0 },
+      { kind: 'rattle', at: 0.05, n: 7, over: 0.55, level: 0.34, f: 160, lowpass: 600 } ],
+    inputs: {} },
+  off: { group: 'floor', name: 'A piece hits the floor', hear: 'A broken-off piece slamming down and bouncing twice, its shell crumpling on the first landing, the floor ringing, then sliding to a stop; then hydraulic: its oil draining out thick, glugging and splattering; electric: its arc buzzing and sizzling.', reads: 'the piece\'s motor, the machine\'s weight', len: 1.5, on: true, loud: { by: 'piece', share: 0.08, height: 1, radiates: 0, ref: { weight: 0.15, motor: 'strong' }, cal: 8.5 },
+    bounces: [[0, 1], [0.13, 0.5], [0.23, 0.25]],
+    layers: [
+      { kind: 'crack', bounce: true, n: 2, spread: 0.008, f0: 600, f1: 3000, q: 1.3, burst: 0.01, level: 0.38, drive: 5 },
+      { kind: 'thud', bounce: true, f0: 150, f1: 42, fall: 0.03, decay: 0.1, level: 0.8, drive: 3 },
+      { kind: 'noise', bounce: true, filter: 'lowpass', f0: 1500, f1: 200, q: 0.9, attack: 0, decay: 0.04, level: 0.5, drive: 4, wobble: 0 },
+      { kind: 'knock', bounce: true, f: 220, q: 3.5, burst: 0.012, decay: 0.12, level: 0.3, drive: 3 },
+      { kind: 'dent', f: 260, tones: 5, stretch: 1, q: 18, drop: 0.2, buckle: 0.05, snaps: 5, attack: 0, decay: 0.2, level: 0.35, drive: 3 },
+      { kind: 'floor', f: 60, tones: 3, stretch: 1, q: 12, burst: 0.03, wash: 0.35, damp: 320, attack: 0.006, decay: 0.45, level: 0.42, drive: 1.5 },
+      { kind: 'scratch', at: 0.26, f0: 900, f1: 350, q: 2.5, chatter: 8, over: 0.2, bed: 0.5, attack: 0.01, decay: 0.22, level: 0.2, drive: 2.5 },
+      { kind: 'rattle', at: 0.05, n: 5, over: 0.5, level: 0.28, f: 180, lowpass: 700 },
+      { kind: 'leak', only: { motor: 'strong' }, at: 0.3, f0: 1400, f1: 500, q: 0.8, pulse: 0, depth: 0.4, blast: 0.2, mud: 0.8, glugs: 9, glug: 240, splats: 10, attack: 0.02, decay: 0.8, level: 0.22, drive: 1.5 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.3, f: 50, rise: 0.9, attack: 0.02, decay: 0.5, level: 0.16, drive: 5, lowpass: 2000, chop: 0 },
+      { kind: 'noise', only: { motor: 'light' }, at: 0.3, filter: 'bandpass', f0: 2400, f1: 2000, q: 1.5, attack: 0.01, decay: 0.3, level: 0.12, drive: 3, wobble: 0.8 } ],
+    inputs: {} },
+  blow: { group: 'parts', name: 'A blow lands', hear: 'A hit that does damage, in three layers: the HIT (a deep hard punch with a bass thud and a boom under it), the DENT (the struck shell caving in - its metal crunching and sliding down in pitch, a torso deepest and thickest, a head highest) and the SCRATCH (the fist or foot skidding off the shell, metal on metal). A heavy one buckles the frame, splinters, groans and shakes loose parts.', reads: 'how hard (the fight\'s own blow number), the piece it struck, what struck it (a foot: deeper and duller), a guard in the way', len: 1.3, on: true, loud: { by: 'blow', radiates: 0, ref: { piece: 'torso', k: 1, limb: 'hand' }, cal: 0 },
+    layers: [
+      { kind: 'crack', n: 3, spread: 0.008, f0: 450, f1: 2200, q: 1.3, burst: 0.01, level: 0.28, drive: 5 },
+      { kind: 'thud', f0: 165, f1: 42, fall: 0.034, attack: 0, decay: 0.17, level: 1.2, drive: 4 },
+      { kind: 'noise', filter: 'lowpass', f0: 700, f1: 110, q: 0.9, attack: 0, decay: 0.085, level: 0.9, drive: 4, wobble: 0 },
+      { kind: 'thud', f0: 140, f1: 95, fall: 0.06, attack: 0.001, decay: 0.14, level: 0.7, drive: 2.5 },
+      { kind: 'thud', f0: 60, f1: 26, fall: 0.12, attack: 0.002, decay: 0.45, level: 1.1, drive: 2.5 },
+      { kind: 'thud', f0: 40, f1: 22, fall: 0.25, attack: 0.004, decay: 0.65, level: 0.8, drive: 2 },
+      { kind: 'dent', piece: true, f: 150, tones: 6, stretch: 1, q: 20, drop: 0.32, buckle: 0.09, snaps: 12, attack: 0, decay: 0.55, level: 1.25, drive: 3.5 },
+      { kind: 'dent', piece: true, f: 105, tones: 3, stretch: 1, q: 9, drop: 0.06, buckle: 0.05, snaps: 0, attack: 0, decay: 0.3, level: 0.6, drive: 3 },
+      { kind: 'scratch', at: 0.026, f0: 2000, f1: 800, q: 4.5, chatter: 11, over: 0.13, bed: 0.45, attack: 0.012, decay: 0.17, level: 0.32, drive: 3 },
+      { kind: 'dent', only: { heavy: true }, piece: true, at: 0.01, f: 95, tones: 5, stretch: 0.9, q: 14, drop: 0.45, buckle: 0.16, snaps: 14, attack: 0.004, decay: 0.7, level: 0.9, drive: 4 },
+      { kind: 'crack', only: { heavy: true }, at: 0.006, n: 6, spread: 0.06, f0: 400, f1: 2200, q: 1.5, burst: 0.016, level: 0.35, drive: 5 },
+      { kind: 'thud', only: { heavy: true }, f0: 52, f1: 20, fall: 0.2, attack: 0, decay: 0.6, level: 0.9, drive: 3 },
+      { kind: 'buzz', only: { heavy: true }, at: 0.015, f: 44, rise: 0.75, attack: 0.004, decay: 0.26, level: 0.26, drive: 5, lowpass: 380, chop: 0 },
+      { kind: 'rattle', only: { heavy: true }, at: 0.05, n: 5, over: 0.42, level: 0.28, f: 160, lowpass: 600 } ],
+    inputs: { kBright: 0.5, kDecay: 0.35, kDent: 0.6, footThud: 1.4, footBright: 0.55, footTone: 0.7, blockedLevel: 0.6, blockedDecay: 0.4 } },
+  touch: { group: 'parts', name: 'A touch', hear: 'A dull low thunk and the shells rubbing: the two machines met hard without a blow scoring. A brush makes no sound.', reads: 'how hard they met', len: 0.3, on: true, loud: { by: 'touch', radiates: -6, ref: { hard: 0.7 }, cal: 16.6 },
+    layers: [
+      { kind: 'thud', f0: 90, f1: 40, fall: 0.04, attack: 0.002, decay: 0.1, level: 0.7, drive: 2.2 },
+      { kind: 'noise', filter: 'lowpass', f0: 420, f1: 90, q: 0.9, attack: 0.002, decay: 0.045, level: 0.35, drive: 2, wobble: 0 },
+      { kind: 'knock', f: 150, q: 2.2, burst: 0.012, decay: 0.08, level: 0.2, drive: 2 },
+      { kind: 'scratch', at: 0.015, f0: 1000, f1: 500, q: 4, chatter: 5, over: 0.08, bed: 0.5, attack: 0.006, decay: 0.09, level: 0.1, drive: 2.5 } ],
+    inputs: { hardFrom: 0.25 } },
+  grip: { group: 'parts', name: 'A grip takes hold', hear: 'Steel fingers biting into the shell: a clamp, the fingers grinding in, the shell creaking as it gives under them, then the arm\'s motors straining under the load - electric, a low buzz; hydraulic, the pump whining under pressure with a hiss.', reads: 'when a hold sticks; the holder\'s arm motors', len: 0.8, on: true, loud: { by: 'fixed', joules: 15, radiates: -3, ref: { motor: 'strong' }, cal: 10.4 },
+    layers: [
+      { kind: 'crack', n: 2, spread: 0.008, f0: 600, f1: 2600, q: 1.3, burst: 0.01, level: 0.35, drive: 5 },
+      { kind: 'thud', f0: 130, f1: 45, fall: 0.025, decay: 0.08, level: 0.55, drive: 3 },
+      { kind: 'noise', filter: 'lowpass', f0: 1000, f1: 200, q: 0.9, attack: 0, decay: 0.03, level: 0.35, drive: 4, wobble: 0 },
+      { kind: 'scratch', at: 0.02, f0: 1800, f1: 900, q: 5, chatter: 7, over: 0.1, bed: 0.4, attack: 0.006, decay: 0.12, level: 0.2, drive: 3 },
+      { kind: 'dent', at: 0.02, f: 210, tones: 5, stretch: 1, q: 20, drop: 0.18, buckle: 0.3, snaps: 10, attack: 0.02, decay: 0.4, level: 0.38, drive: 4 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.02, f: 42, rise: 1.3, attack: 0.04, decay: 0.4, level: 0.32, drive: 5, lowpass: 420, chop: 0 },
+      { kind: 'buzz', only: { motor: 'strong' }, at: 0.02, f: 54, rise: 1.3, attack: 0.04, decay: 0.4, level: 0.28, drive: 3.5, lowpass: 360, chop: 0 },
+      { kind: 'noise', only: { motor: 'strong' }, at: 0.02, filter: 'bandpass', f0: 900, f1: 600, q: 1.5, attack: 0.05, decay: 0.35, level: 0.18, drive: 1, wobble: 0.3 } ],
+    inputs: {} },
+  lock: { group: 'parts', name: 'A lock is on', hear: 'A joint being pulled apart: the clamp, the motors stalling under load twice, each straining higher, and the joint creaking and cracking as it gives - electric, a low buzz; hydraulic, the pump whining and a relief hiss.', reads: 'when a lock takes; the holder\'s arm motors', len: 1.4, on: true, loud: { by: 'fixed', joules: 25, radiates: -3, ref: { motor: 'strong' }, cal: 6.8 },
+    layers: [
+      { kind: 'crack', n: 3, spread: 0.01, f0: 600, f1: 3000, q: 1.3, burst: 0.01, level: 0.3, drive: 5 },
+      { kind: 'thud', f0: 120, f1: 45, fall: 0.025, decay: 0.08, level: 0.45, drive: 3 },
+      { kind: 'dent', at: 0.1, f: 130, tones: 5, stretch: 0.9, q: 18, drop: 0.25, buckle: 0.8, snaps: 16, attack: 0.05, decay: 1.0, level: 0.36, drive: 4 },
+      { kind: 'crack', at: 0.15, n: 6, spread: 1.0, f0: 300, f1: 1500, q: 1.5, burst: 0.02, level: 0.24, drive: 5 },
+      { kind: 'buzz', only: { motor: 'light' }, f: 40, rise: 1.5, attack: 0.05, decay: 0.5, level: 0.36, drive: 5, lowpass: 400, chop: 0 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.55, f: 44, rise: 1.7, attack: 0.05, decay: 0.55, level: 0.42, drive: 5, lowpass: 400, chop: 0 },
+      { kind: 'buzz', only: { motor: 'strong' }, f: 58, rise: 1.3, attack: 0.05, decay: 0.5, level: 0.32, drive: 3.5, lowpass: 340, chop: 0 },
+      { kind: 'buzz', only: { motor: 'strong' }, at: 0.55, f: 64, rise: 1.4, attack: 0.05, decay: 0.55, level: 0.35, drive: 3.5, lowpass: 340, chop: 0 },
+      { kind: 'noise', only: { motor: 'strong' }, at: 0.1, filter: 'bandpass', f0: 2000, f1: 1200, q: 1.2, attack: 0.1, decay: 0.9, level: 0.15, drive: 0, wobble: 0.3 } ],
+    inputs: {} },
+  free: { group: 'parts', name: 'Breaks free', hear: 'The hold torn off: a loud crack, a punch as it comes away, the fingers scraping off the shell, and the dent they left popping back out.', reads: 'when a machine struggles out', len: 0.5, on: true, loud: { by: 'fixed', joules: 40, radiates: 0, ref: {}, cal: 17.9 },
+    layers: [
+      { kind: 'crack', n: 4, spread: 0.015, f0: 700, f1: 3500, q: 1.3, burst: 0.012, level: 0.6, drive: 5 },
+      { kind: 'thud', f0: 160, f1: 45, fall: 0.025, decay: 0.09, level: 0.6, drive: 3 },
+      { kind: 'scratch', at: 0.015, f0: 1600, f1: 500, q: 4, chatter: 12, over: 0.16, bed: 0.55, attack: 0.004, decay: 0.18, level: 0.42, drive: 3.5 },
+      { kind: 'dent', at: 0.03, f: 240, tones: 4, stretch: 1, q: 18, drop: -0.15, buckle: 0.04, snaps: 3, attack: 0, decay: 0.16, level: 0.3, drive: 3 } ],
+    inputs: {} },
+  letgo: { group: 'parts', name: 'A hand lets go', hear: 'A short clunk and the fingers sliding off.', reads: 'a grip released (the lift rule, a hand knocked away)', len: 0.25, on: true, loud: { by: 'fixed', joules: 4, radiates: -3, ref: {}, cal: 28.3 },
+    layers: [
+      { kind: 'thud', f0: 110, f1: 45, fall: 0.02, decay: 0.06, level: 0.35, drive: 2.5 },
+      { kind: 'noise', filter: 'lowpass', f0: 900, f1: 250, q: 0.9, attack: 0, decay: 0.025, level: 0.2, drive: 3, wobble: 0 },
+      { kind: 'scratch', at: 0.012, f0: 1200, f1: 600, q: 3, chatter: 4, over: 0.06, bed: 0.5, attack: 0.005, decay: 0.07, level: 0.12, drive: 2.5 } ],
+    inputs: {} },
+  hurt: { group: 'damage', name: 'A piece is damaged', hear: 'The piece\'s shell crumpling, then hydraulic: a seal bursting, oil spraying out thick in time with the pump, glugging and splattering, the joint grinding without its pressure; electric: an arc buzzing, sparks crackling, the damaged gearbox grinding, the motor\'s whine stuttering.', reads: 'the piece\'s motor', len: 1.1, on: true, loud: { by: 'fixed', joules: 60, radiates: 0, ref: { motor: 'strong' }, cal: 13.6 },
+    layers: [
+      { kind: 'dent', f: 240, tones: 5, stretch: 1, q: 16, drop: 0.25, buckle: 0.08, snaps: 8, attack: 0, decay: 0.25, level: 0.38, drive: 4 },
+      { kind: 'thud', only: { motor: 'strong' }, f0: 120, f1: 50, fall: 0.02, decay: 0.05, level: 0.3, drive: 3 },
+      { kind: 'leak', only: { motor: 'strong' }, at: 0.02, f0: 1800, f1: 700, q: 0.8, pulse: 7, depth: 0.75, blast: 0.6, mud: 0.7, glugs: 8, glug: 300, splats: 10, attack: 0.004, decay: 0.85, level: 0.32, drive: 2 },
+      { kind: 'grind', only: { motor: 'strong' }, at: 0.06, f0: 120, f1: 70, rate: 18, slow: 0.6, rough: 0.7, grit: 0.6, q: 3, lowpass: 800, attack: 0.03, decay: 0.45, level: 0.22, drive: 3 },
+      { kind: 'buzz', only: { motor: 'light' }, f: 52, rise: 1, attack: 0.005, decay: 0.3, level: 0.18, drive: 5, lowpass: 1500, chop: 0 },
+      { kind: 'crack', only: { motor: 'light' }, n: 8, spread: 0.3, f0: 1500, f1: 3800, q: 1.5, burst: 0.006, level: 0.18, drive: 5 },
+      { kind: 'grind', only: { motor: 'light' }, at: 0.05, f0: 300, f1: 160, rate: 34, slow: 0.7, rough: 0.85, grit: 0.4, q: 4, lowpass: 1500, attack: 0.02, decay: 0.45, level: 0.22, drive: 3.5 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.12, f: 110, rise: 0.8, attack: 0.02, decay: 0.4, level: 0.1, drive: 3, lowpass: 900, chop: 11 } ],
+    inputs: {} },
+  broken: { group: 'damage', name: 'A piece breaks', hear: 'Something giving way for good: a splintering crack and a hard punch, the shell caving in deep, metal tearing, a deep thud, the frame groaning, bits knocking; then hydraulic: the seal bursting, oil blasting out thick and muddy, glugging and splattering, the joint grinding to a stop; electric: the arc tearing and crackling, the gearbox grinding to a stop.', reads: 'the piece\'s motor', len: 1.4, on: true, loud: { by: 'fixed', joules: 160, radiates: 0, ref: { motor: 'strong' }, cal: 3.4 },
+    layers: [
+      { kind: 'crack', n: 8, spread: 0.05, f0: 500, f1: 4000, q: 1.3, burst: 0.02, level: 0.75, drive: 6 },
+      { kind: 'thud', f0: 200, f1: 40, fall: 0.03, decay: 0.16, level: 1.0, drive: 4 },
+      { kind: 'noise', filter: 'lowpass', f0: 2000, f1: 150, q: 0.9, attack: 0, decay: 0.08, level: 0.8, drive: 5, wobble: 0 },
+      { kind: 'thud', f0: 70, f1: 22, fall: 0.2, decay: 0.5, level: 0.8, drive: 3 },
+      { kind: 'dent', f: 120, tones: 6, stretch: 0.9, q: 14, drop: 0.5, buckle: 0.14, snaps: 16, attack: 0, decay: 0.45, level: 0.65, drive: 4.5 },
+      { kind: 'scratch', at: 0.02, f0: 2000, f1: 600, q: 6, chatter: 16, over: 0.28, bed: 0.5, attack: 0.005, decay: 0.3, level: 0.32, drive: 4 },
+      { kind: 'knock', f: 190, q: 3, burst: 0.02, decay: 0.2, level: 0.3, drive: 3 },
+      { kind: 'buzz', at: 0.01, f: 50, rise: 0.6, attack: 0.004, decay: 0.4, level: 0.3, drive: 5, lowpass: 450, chop: 0 },
+      { kind: 'rattle', at: 0.02, n: 7, over: 0.4, level: 0.4, f: 200, lowpass: 900 },
+      { kind: 'leak', only: { motor: 'strong' }, at: 0.015, f0: 1600, f1: 500, q: 0.7, pulse: 6, depth: 0.8, blast: 1.0, mud: 0.85, glugs: 12, glug: 260, splats: 16, attack: 0.003, decay: 1.2, level: 0.42, drive: 2.5 },
+      { kind: 'grind', only: { motor: 'strong' }, at: 0.05, f0: 110, f1: 45, rate: 16, slow: 0.35, rough: 0.8, grit: 0.6, q: 3, lowpass: 800, attack: 0.02, decay: 0.7, level: 0.24, drive: 3.5 },
+      { kind: 'buzz', only: { motor: 'light' }, at: 0.03, f: 48, rise: 0.9, attack: 0.02, decay: 0.8, level: 0.3, drive: 6, lowpass: 2200, chop: 0 },
+      { kind: 'crack', only: { motor: 'light' }, at: 0.05, n: 10, spread: 0.8, f0: 1200, f1: 3500, q: 1.5, burst: 0.006, level: 0.22, drive: 5 },
+      { kind: 'grind', only: { motor: 'light' }, at: 0.04, f0: 280, f1: 70, rate: 36, slow: 0.25, rough: 0.9, grit: 0.4, q: 4, lowpass: 1500, attack: 0.02, decay: 0.7, level: 0.24, drive: 3.5 } ],
+    inputs: {} },
+  death: { group: 'damage', name: 'A machine is destroyed', hear: 'The structure going: a splintering crack and a hit you feel, the whole shell collapsing in a long deep crunch, a second hit, the wreck hitting the floor and the floor booming, the metal grinding to rest, the power dying in a falling groan, parts raining down for two seconds, a hiss after.', reads: 'the end of a machine', len: 3.2, on: true, loud: { by: 'fixed', joules: 800, radiates: 0, ref: {}, cal: -7.5 },
+    layers: [
+      { kind: 'crack', n: 12, spread: 0.12, f0: 400, f1: 3800, q: 1.3, burst: 0.025, level: 0.85, drive: 6 },
+      { kind: 'thud', f0: 160, f1: 30, fall: 0.05, decay: 0.3, level: 1.2, drive: 4 },
+      { kind: 'thud', f0: 55, f1: 16, fall: 0.5, decay: 1.8, level: 1.3, drive: 3 },
+      { kind: 'noise', filter: 'lowpass', f0: 2000, f1: 80, q: 0.9, attack: 0, decay: 1.3, level: 0.9, drive: 4, wobble: 0 },
+      { kind: 'dent', at: 0.01, f: 85, tones: 7, stretch: 0.85, q: 12, drop: 0.55, buckle: 0.3, snaps: 22, attack: 0.004, decay: 0.8, level: 0.7, drive: 5 },
+      { kind: 'thud', at: 0.25, f0: 120, f1: 30, fall: 0.04, decay: 0.25, level: 0.9, drive: 4 },
+      { kind: 'crack', at: 0.25, n: 8, spread: 0.08, f0: 400, f1: 3000, q: 1.3, burst: 0.02, level: 0.6, drive: 6 },
+      { kind: 'floor', at: 0.25, f: 45, tones: 3, stretch: 1, q: 12, burst: 0.08, wash: 0.6, damp: 300, attack: 0.015, decay: 1.2, level: 0.75, drive: 2 },
+      { kind: 'scratch', at: 0.3, f0: 900, f1: 250, q: 3, chatter: 20, over: 0.6, bed: 0.6, attack: 0.03, decay: 0.7, level: 0.28, drive: 3 },
+      { kind: 'knock', at: 0.02, f: 150, q: 3, burst: 0.03, decay: 0.4, level: 0.4, drive: 3 },
+      { kind: 'buzz', at: 0.05, f: 70, rise: 0.35, attack: 0.05, decay: 1.4, level: 0.45, drive: 5, lowpass: 380, chop: 0 },
+      { kind: 'rattle', at: 0.2, n: 16, over: 1.8, level: 0.45, f: 180, lowpass: 900 },
+      { kind: 'noise', at: 0.3, filter: 'bandpass', f0: 2200, f1: 1200, q: 1, attack: 0.05, decay: 1.5, level: 0.18, drive: 0, wobble: 0.4 } ],
+    inputs: {} },
+  bell: { group: 'arena', name: 'The buzzer', hear: 'A digital buzzer, not a bell: two short beeps and a long high one when a fight or a round starts; a long harsh horn when a round or the fight ends.', reads: 'a fight\'s or a round\'s start, a round\'s or the fight\'s end', len: 1.6, on: true, loud: { by: 'fixed', joules: 120, radiates: 0, ref: { which: 'start' }, cal: 1.9 },
+    layers: [
+      { kind: 'beep', only: { which: 'start' }, wave: 'square', f: 740, hold: 0.09, attack: 0.003, release: 0.02, level: 0.32, lowpass: 3800, drive: 2, detune: 0.004, sub: 0.5 },
+      { kind: 'beep', only: { which: 'start' }, at: 0.36, wave: 'square', f: 740, hold: 0.09, attack: 0.003, release: 0.02, level: 0.32, lowpass: 3800, drive: 2, detune: 0.004, sub: 0.5 },
+      { kind: 'beep', only: { which: 'start' }, at: 0.72, wave: 'square', f: 1480, hold: 0.5, attack: 0.003, release: 0.08, level: 0.34, lowpass: 4500, drive: 2, detune: 0.004, sub: 0.45 },
+      { kind: 'beep', only: { which: 'end' }, wave: 'sawtooth', f: 196, hold: 0.85, attack: 0.005, release: 0.06, level: 0.4, lowpass: 2400, drive: 3.5, detune: 0.012, sub: 0.6 },
+      { kind: 'beep', only: { which: 'end' }, wave: 'square', f: 294, hold: 0.85, attack: 0.005, release: 0.06, level: 0.25, lowpass: 2400, drive: 3, detune: 0.01, sub: 0 } ],
+    inputs: {} },
+  call: { group: 'arena', name: 'The referee calls', hear: '"Action!": a hard whistle. "Stop running": two blasts. A point off: a harsh buzzer.', reads: 'the call on the wall', len: 1.0, on: true, loud: { by: 'fixed', joules: 60, radiates: 0, ref: { which: 'action' }, cal: 21 },
+    layers: [
+      { kind: 'tone', only: { which: 'action' }, wave: 'sine', f: 2500, decay: 0.22, level: 0.25, drive: 2, lowpass: 6000, bend: 0.012, bendDepth: 0.025, detune: 0, attack: 0.01 },
+      { kind: 'noise', only: { which: 'action' }, filter: 'bandpass', f0: 2500, f1: 2500, q: 8, attack: 0.01, decay: 0.22, level: 0.12, drive: 0, wobble: 0 },
+      { kind: 'tone', only: { which: 'run' }, wave: 'sine', f: 2500, decay: 0.2, level: 0.25, drive: 2, lowpass: 6000, bend: 0.012, bendDepth: 0.025, detune: 0, attack: 0.01 },
+      { kind: 'tone', only: { which: 'run' }, at: 0.3, wave: 'sine', f: 2500, decay: 0.2, level: 0.25, drive: 2, lowpass: 6000, bend: 0.012, bendDepth: 0.025, detune: 0, attack: 0.01 },
+      { kind: 'noise', only: { which: 'run' }, filter: 'bandpass', f0: 2500, f1: 2500, q: 8, attack: 0.01, decay: 0.2, level: 0.12, drive: 0, wobble: 0 },
+      { kind: 'noise', only: { which: 'run' }, at: 0.3, filter: 'bandpass', f0: 2500, f1: 2500, q: 8, attack: 0.01, decay: 0.2, level: 0.12, drive: 0, wobble: 0 },
+      { kind: 'beep', only: { which: 'point' }, wave: 'sawtooth', f: 110, hold: 0.35, attack: 0.005, release: 0.05, level: 0.3, lowpass: 1500, drive: 4, detune: 0.015, sub: 0.4 } ],
+    inputs: {} },
+  lowbattery: { group: 'arena', name: 'The battery is low (off)', hear: 'A machine\'s low warning tone, twice. Not a physical sound: off unless you switch it on.', reads: 'the charge dropping under 30 %', len: 0.5, on: false, loud: { by: 'fixed', joules: 10, radiates: 0, ref: {}, cal: 12 },
+    layers: [
+      { kind: 'beep', wave: 'square', f: 440, hold: 0.08, attack: 0.004, release: 0.02, level: 0.18, lowpass: 1500, drive: 2, detune: 0.003, sub: 0.3 },
+      { kind: 'beep', at: 0.16, wave: 'square', f: 440, hold: 0.08, attack: 0.004, release: 0.02, level: 0.18, lowpass: 1500, drive: 2, detune: 0.003, sub: 0.3 } ],
+    inputs: {} },
+  shout: { group: 'arena', name: 'The corner shouts (off)', hear: 'A click as your shout goes to the machine. Not a physical sound: off unless you switch it on.', reads: 'a shout button', len: 0.25, on: false, loud: { by: 'fixed', joules: 5, radiates: 0, ref: {}, cal: 27.8 },
+    layers: [
+      { kind: 'noise', filter: 'lowpass', f0: 3000, f1: 800, q: 0.9, attack: 0, decay: 0.006, level: 0.2, drive: 2, wobble: 0 },
+      { kind: 'beep', wave: 'square', f: 900, hold: 0.025, attack: 0.002, release: 0.01, level: 0.1, lowpass: 2000, drive: 1, detune: 0, sub: 0 } ],
+    inputs: {} },
+};
+
+const MARKERS = [
+  { group: 'motors', at: [96, 150], label: 'a joint\'s motor', keys: ['motors', 'hot'] },
+  { group: 'motors', at: [120, 300], label: 'a joint\'s motor', keys: ['motors', 'hot'] },
+  { group: 'floor', at: [118, 400], label: 'a foot on the mat', keys: ['step', 'scrape'] },
+  { group: 'floor', at: [230, 400], label: 'the mat', keys: ['slam', 'off'] },
+  { group: 'parts', at: [162, 190], label: 'shell on shell', keys: ['blow', 'touch'] },
+  { group: 'parts', at: [206, 160], label: 'a hand on him', keys: ['grip', 'lock', 'free', 'letgo'] },
+  { group: 'damage', at: [60, 190], label: 'a hurt piece', keys: ['hurt', 'broken', 'death'] },
+  { group: 'arena', at: [268, 40], label: 'the buzzer, the referee', keys: ['bell', 'call', 'lowbattery', 'shout'] },
+];
+
+return { PATCHES_VERSION, LAYER_KINDS, PARAM_RANGE, ROOM, ROOM_RANGE, GROUPS, MOTORS, PIECE_TONE, PATCHES, MARKERS };
+})();
+
+const __m_app_soundpop = (() => {
+const WAYS = {
+  hrtf: { name: '3-D', says: 'For headphones: each sound from where it happened in the cage - left or right, in front or behind; nearer, louder.' },
+  stereo: { name: 'stereo', says: 'For speakers: each sound left or right of the middle; nearer, louder.' },
+  mono: { name: 'mono', says: 'Every sound the same in both ears, as loud wherever it happened.' },
+};
+const pct = v => Math.round(v * 100) + ' %';
+function mountSoundPop(api) {
+  if (typeof document === 'undefined') return;
+  const $ = id => document.getElementById(id), btn = $('soundBtn'), pop = $('soundPop'), body = $('soundBody');
+  if (!btn || !pop || !body || btn.dataset.mounted) return; btn.dataset.mounted = '1';
+  const ways = Object.keys(api.spaces || {}).filter(k => WAYS[k]);
+  body.innerHTML = `
+    <label class="sl" for="soundVol">volume</label>
+    <div class="row"><input type="range" id="soundVol" min="0" max="1.5" step="0.01" aria-label="volume"><span class="vv" id="soundVolV"></span></div>
+    <label class="sl">heard as</label>
+    <div class="ways" role="group" aria-label="how the sound is heard">${ways.map(k => `<button data-way="${k}" aria-pressed="false" title="${api.spaces[k]}">${WAYS[k].name}</button>`).join('')}</div>
+    <p class="says" id="soundSays"></p>
+    <div class="hearrow"><button class="hear" id="soundHear" title="a blow on your left, then on your right">hear it</button><span id="soundHearSays">a blow on your left, then on your right</span></div>
+    <p class="note">The <b>speaker</b> at the top right turns the sound off and on. Over 100 % the loudest hits are rounded off.</p>`;
+  const vol = $('soundVol');
+  const paint = () => {
+    const v = api.volume(), w = api.space();
+    if (document.activeElement !== vol) vol.value = String(v);
+    $('soundVolV').textContent = pct(v);
+    for (const b of body.querySelectorAll('[data-way]')) b.setAttribute('aria-pressed', String(b.dataset.way === w));
+    $('soundSays').textContent = (WAYS[w] || WAYS.hrtf).says;
+    $('soundHearSays').textContent = api.muted() ? 'the sound is muted: the speaker turns it on' : 'a blow on your left, then on your right';
+  };
+  vol.addEventListener('input', () => { api.setVolume(+vol.value); $('soundVolV').textContent = pct(+vol.value); });
+  for (const b of body.querySelectorAll('[data-way]')) b.addEventListener('click', () => { api.setSpace(b.dataset.way); paint(); });
+  $('soundHear').addEventListener('click', () => { api.sample(); paint(); });
+  const others = [['guidePop', 'guideBtn'], ['lookPop', 'lookBtn']];
+  const toggle = on => {
+    pop.hidden = !on; btn.setAttribute('aria-pressed', String(on));
+    if (on) { paint(); for (const [p, b] of others) { if ($(p)) $(p).hidden = true; if ($(b)) $(b).setAttribute('aria-pressed', 'false'); } }
+  };
+  btn.addEventListener('click', () => toggle(pop.hidden));
+  if ($('closeSound')) $('closeSound').addEventListener('click', () => toggle(false));
+  for (const [, b] of others) if ($(b)) $(b).addEventListener('click', () => toggle(false));
+  addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+  if (api.onChange) api.onChange(() => { if (!pop.hidden) paint(); });
+  paint();
+}
+
+return { mountSoundPop };
+})();
+
 const __m_app_testmode = (() => {
 const TEST = null;
 
@@ -2340,6 +3151,7 @@ return { TEST };
 })();
 
 const __m_app_theme = (() => {
+const { rectOf, localAt } = __m_app_fit;
 const KEY = 'umd-theme';
 const OLD_KEY = 'cage-theme';
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
@@ -2427,10 +3239,10 @@ function drawWheel(ctx, w, h, at = theme) {
 }
 
 function pickFromWheel(cv, e) {
-  const r = cv.getBoundingClientRect();
+  const r = rectOf(cv), [lx, ly] = localAt(cv, e);
   const size = Math.min(r.width, r.height), R = size / 2;
-  const dx = (e.clientX - r.left) - (r.width - size) / 2 - R;
-  const dy = (e.clientY - r.top) - (r.height - size) / 2 - R;
+  const dx = lx - (r.width - size) / 2 - R;
+  const dy = ly - (r.height - size) / 2 - R;
   const d = Math.hypot(dx, dy) / R;
   return { h: ((Math.atan2(dy, dx) * 180 / Math.PI) + 360) % 360, s: clamp(d, 0.12, 1) };
 }
@@ -2482,6 +3294,56 @@ function paintName() {
 }
 
 return { PAINT, paintHex, loadPaint, setPaintHue, setPaintLight, resetPaint, paintName };
+})();
+
+const __m_app_tips = (() => {
+const { pointAt, rectOf, view } = __m_app_fit;
+
+const HOLD_MS = 480, WANDER = 9;
+function mountTips() {
+  if (typeof document === 'undefined') return;
+  let box = null, timer = 0, at = null, shown = false, eat = false;
+  const put = () => { if (box) box.hidden = true; shown = false; };
+  const make = () => {
+    box = document.createElement('div'); box.className = 'tipbox'; box.setAttribute('role', 'tooltip'); box.hidden = true;
+    document.body.appendChild(box);
+    const css = document.createElement('style');
+    css.textContent = `.tipbox{position:fixed;z-index:140;max-width:min(300px,calc(100% - 20px));padding:8px 10px;pointer-events:none;
+      font:10px/1.5 var(--mono);color:var(--ink);border:1px solid var(--a);background:color-mix(in srgb, var(--panel) 94%, transparent);
+      backdrop-filter:var(--glass-over-f);-webkit-backdrop-filter:var(--glass-over-f);box-shadow:var(--glass-lip), 0 12px 32px rgba(0,0,0,.55)}`;
+    document.head.appendChild(css);
+  };
+  const show = el => {
+    const text = el.getAttribute('title') || el.getAttribute('aria-label'); if (!text) return;
+    if (!box) make();
+    box.textContent = text; box.hidden = false; shown = true;
+    const r = rectOf(el), V = view(), b = rectOf(box);
+    let x = Math.max(10, Math.min(V.w - b.width - 10, r.left + r.width / 2 - b.width / 2));
+    let y = r.top - b.height - 10; if (y < 8) y = Math.min(V.h - b.height - 8, r.bottom + 10);
+    box.style.left = x + 'px'; box.style.top = y + 'px';
+  };
+  window.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'touch') return;
+    clearTimeout(timer); put(); eat = false;
+    if (e.target.id === 'stage') return;
+    const el = e.target.closest && e.target.closest('[title]');
+    if (!el) return;
+    at = pointAt(e);
+    timer = setTimeout(() => { show(el); eat = shown; }, HOLD_MS);
+  }, { capture: true, passive: true });
+  window.addEventListener('pointermove', e => {
+    if (!at || e.pointerType !== 'touch') return;
+    const p = pointAt(e); if (Math.hypot(p.x - at.x, p.y - at.y) > WANDER) { clearTimeout(timer); at = null; put(); eat = false; }
+  }, { capture: true, passive: true });
+  const end = () => { clearTimeout(timer); at = null; if (shown) setTimeout(put, 1400); };
+  window.addEventListener('pointerup', end, { capture: true, passive: true });
+  window.addEventListener('pointercancel', () => { clearTimeout(timer); at = null; put(); eat = false; }, { capture: true, passive: true });
+  window.addEventListener('click', e => { if (eat) { eat = false; e.preventDefault(); e.stopPropagation(); } }, { capture: true });
+  window.addEventListener('contextmenu', e => { if (e.pointerType === 'touch' || at || shown) e.preventDefault(); }, { capture: true });
+  window.addEventListener('scroll', () => { clearTimeout(timer); at = null; put(); }, { capture: true, passive: true });
+}
+
+return { mountTips };
 })();
 
 const __m_engine_boxparts = (() => {
@@ -4156,7 +5018,7 @@ function theme() {
 }
 function invalidateTheme() { cache = null; cacheKey = ''; }
 function fit(canvas) {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, +canvas.dataset.dprCap || 2, +document.documentElement.dataset.dprCap || 9);
   const w = canvas.clientWidth, h = canvas.clientHeight;
   if (!w || !h) return null;
   if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
@@ -4805,7 +5667,7 @@ function drawDims(sc, T, cam, tape, o = {}) {
     label(sc, dx + R[0] * 0.05, mid, dz + R[2] * 0.05,
           tape.height.toFixed(2) + ' m', figCol, { plate: PL, font, align: 'left', dy: dy(-2) });
     label(sc, dx + R[0] * 0.05, mid, dz + R[2] * 0.05,
-          o.grab ? 'height \u00b7 drag the top' : 'height', lineCol, { plate: PL, font: small, align: 'left', dy: dy(10) });
+          o.grab && !o.short ? 'height \u00b7 drag the top' : 'height', lineCol, { plate: PL, font: small, align: 'left', dy: dy(10) });
     if (o.grab) {
       const top = [dx, y1, dz];
       knob(sc, top, markCol, a, o.hot === 'spine');
@@ -4877,7 +5739,7 @@ function drawDims(sc, T, cam, tape, o = {}) {
     label(sc, lx - R[0] * 0.03, h[1], lz - R[2] * 0.03,
           tape.reach.toFixed(2) + ' m', figCol, { plate: PL, font, align: 'right', dy: o.compact ? 8 : dy(-3) });
     label(sc, lx - R[0] * 0.03, h[1], lz - R[2] * 0.03,
-          o.grab ? 'reach \u00b7 drag the hand' : o.compact ? 'reach' : 'reach, chest to hand', lineCol, { plate: PL, font: small, align: 'right', dy: o.compact ? 16 : dy(8) });
+          o.grab && !o.short ? 'reach \u00b7 drag the hand' : o.compact || o.short ? 'reach' : 'reach, chest to hand', lineCol, { plate: PL, font: small, align: 'right', dy: o.compact ? 16 : dy(8) });
     if (o.grab) {
       const d = [h[0] - c[0], h[1] - c[1], h[2] - c[2]];
       const dl = Math.hypot(d[0], d[1], d[2]) || 1;
@@ -4903,7 +5765,7 @@ function drawDims(sc, T, cam, tape, o = {}) {
     label(sc, lx - R[0] * 0.03, C[1], lz - R[2] * 0.03,
           tape.mass.toFixed(1) + ' kg', figCol, { plate: PL, font, align: 'right', dy: dy(-8) });
     label(sc, lx - R[0] * 0.03, C[1], lz - R[2] * 0.03,
-          (o.compact ? '' : 'its weight sits here, ') + tape.com.toFixed(2) + ' m up', lineCol, { plate: PL, font: small, align: 'right', dy: dy(4) });
+          (o.compact ? '' : o.short ? 'sits ' : 'its weight sits here, ') + tape.com.toFixed(2) + ' m up', lineCol, { plate: PL, font: small, align: 'right', dy: dy(4) });
     if (!o.compact) label(sc, lx - R[0] * 0.03, C[1], lz - R[2] * 0.03,
           'topples at ' + tape.tippy.toFixed(1), lineCol, { plate: PL, font: small, align: 'right', dy: dy(15) });
   }
@@ -4919,9 +5781,11 @@ function drawDims(sc, T, cam, tape, o = {}) {
     const top = [back, y1 + step * 0.55, ch[2]];
     knob(sc, top, markCol, a, o.hot === 'packs');
     o.grab.push({ id: 'packs', bones: [], step, world: top, axis: [0, 1, 0], span: 1 });
-    const say = n === 0 ? 'no blocks \u00b7 drag up to load'
+    const say = n === 0 ? (o.short ? 'no blocks' : 'no blocks \u00b7 drag up to load')
               : `${n} block${n === 1 ? '' : 's'} \u00b7 ${tape.packMass.toFixed(1)} kg`;
-    label(sc, back, y1 + step * 0.55, ch[2], say, n ? figCol : lineCol, { plate: PL, font: small, align: 'right', dy: dy(-8) });
+    const two = o.short && n === 0;
+    label(sc, back, y1 + step * 0.55, ch[2], say, n ? figCol : lineCol, { plate: PL, font: small, align: 'right', dy: dy(two ? -19 : -8) });
+    if (two) label(sc, back, y1 + step * 0.55, ch[2], 'drag up to load', lineCol, { plate: PL, font: small, align: 'right', dy: dy(-8) });
   }
 }
 
@@ -7131,6 +7995,7 @@ return { MARK, renderMachine, planMark, drawMark, mountMark };
 
 const __m_app_loading = (() => {
 const { MARK } = __m_app_mark;
+const { rectOf, view } = __m_app_fit;
 
 const STEPS = [
   { say: 'Loading the game', note: '' },
@@ -7215,8 +8080,8 @@ function cut(L) {
     L.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: 'forwards' }).finished.then(clear, clear);
     return;
   }
-  const W = innerWidth, H = innerHeight, a = MARK.slantDeg * Math.PI / 180, T = Math.tan(a);
-  const eye = L.querySelector('.ld-eye'), b = eye ? eye.getBoundingClientRect() : null;
+  const { w: W, h: H } = view(), a = MARK.slantDeg * Math.PI / 180, T = Math.tan(a);
+  const eye = L.querySelector('.ld-eye'), b = eye ? rectOf(eye) : null;
   const px = b ? b.left + b.width / 2 : W / 2, py = b ? b.top + b.height / 2 : H / 2;
   const xAt = y => px + (py - y) * T;
   const line = document.createElement('div');
@@ -14106,6 +14971,7 @@ return { MARKS, MAKER, lineOf, firmMark, firmLockup, creditHTML };
 const __m_app_help = (() => {
 const { COMPANIES } = __m_app_shop;
 const { SHOUTS, PLANS } = __m_app_match;
+const { rectOf, view } = __m_app_fit;
 
 const $ = id => document.getElementById(id);
 
@@ -14172,20 +15038,21 @@ function mountHelp() {
     openOn = btn; btn.setAttribute('aria-expanded', 'true');
     pop.innerHTML = '<h4>' + entry[0] + '</h4>' + entry[1].map(t => '<p>' + t + '</p>').join('');
     pop.hidden = false;
-    pop.style.maxHeight = (innerHeight - 16) + 'px';
+    const V = view();
+    pop.style.maxHeight = (V.h - 16) + 'px';
     pop.style.left = '0px'; pop.style.top = '0px';
-    const b = btn.getBoundingClientRect();
+    const b = rectOf(btn);
     const host = btn.closest('.panel, .cornerpane');
-    const hb = host ? host.getBoundingClientRect() : b;
-    let p = pop.getBoundingClientRect();
+    const hb = host ? rectOf(host) : b;
+    let p = rectOf(pop);
     let x = hb.left - p.width - 10;
     if (x < 8) x = hb.right + 10;
     let y = b.top - 4;
     pop.style.left = x + 'px'; pop.style.top = y + 'px';
-    p = pop.getBoundingClientRect();
-    if (p.right > innerWidth - 8) x -= (p.right - (innerWidth - 8));
+    p = rectOf(pop);
+    if (p.right > V.w - 8) x -= (p.right - (V.w - 8));
     if (x < 8) x = 8;
-    if (p.bottom > innerHeight - 8) y -= (p.bottom - (innerHeight - 8));
+    if (p.bottom > V.h - 8) y -= (p.bottom - (V.h - 8));
     if (y < 8) y = 8;
     pop.style.left = x + 'px'; pop.style.top = y + 'px';
   });
@@ -14616,6 +15483,661 @@ function mountAtomic(el, acts) {
 }
 
 return { paintAtomic, sayAtomic, mountAtomic };
+})();
+
+const __m_app_sound = (() => {
+const { callOf } = __m_app_refboard;
+const { pieceOfBall } = __m_app_sim_damage;
+const { PATCHES, MOTORS, ROOM: ROOM0, PIECE_TONE, LAYER_KINDS, PATCHES_VERSION } = __m_app_soundpatches;
+
+const MASTER = 0.7;
+const BLOW_FULL = 0.16;
+const HEAVY = 0.45;
+const KG_FULL = 120;
+const SPEED_FULL = 8;
+const PIECES = Object.keys(PIECE_TONE);
+const SAVE_KEY = 'umd-sound-patches';
+const ASIDE_KEY = 'umd-sound-patches-aside';
+
+const clone = o => JSON.parse(JSON.stringify(o));
+const PATCH = clone(PATCHES);
+const MOTOR = clone(MOTORS);
+const ROOM = clone(ROOM0);
+function applySaved(saved) {
+  if (!saved || typeof saved !== 'object') return;
+  if (saved.patches) for (const k in saved.patches) if (PATCH[k]) { const s = saved.patches[k]; if (typeof s.on === 'boolean') PATCH[k].on = s.on; if (typeof s.gain === 'number') PATCH[k].gain = s.gain; if (Array.isArray(s.layers)) PATCH[k].layers = clone(s.layers); if (s.inputs) PATCH[k].inputs = { ...PATCH[k].inputs, ...s.inputs }; }
+  if (saved.motors) for (const k in saved.motors) if (MOTOR[k]) for (const part in saved.motors[k]) if (MOTOR[k][part] && typeof saved.motors[k][part] === 'object') MOTOR[k][part] = { ...MOTOR[k][part], ...saved.motors[k][part] };
+  if (saved.room) for (const k in saved.room) { if (typeof ROOM[k] === 'object' && typeof saved.room[k] === 'object') ROOM[k] = { ...ROOM[k], ...saved.room[k] }; else if (typeof saved.room[k] === 'number') ROOM[k] = saved.room[k]; }
+}
+const versionOf = saved => (saved && typeof saved.version === 'number') ? saved.version : 4;
+try {
+  if (typeof localStorage !== 'undefined') {
+    const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+    if (saved && versionOf(saved) !== PATCHES_VERSION) { localStorage.setItem(ASIDE_KEY, JSON.stringify({ ...saved, version: versionOf(saved), putAside: new Date().toISOString() })); localStorage.removeItem(SAVE_KEY); }
+    else applySaved(saved);
+  }
+} catch (e) {   }
+function asideOf() { try { return JSON.parse(localStorage.getItem(ASIDE_KEY) || 'null'); } catch (e) { return null; } }
+function loadAside() { const a = asideOf(); if (!a) return false; applySaved(a); setPatches(patchesSaved()); try { localStorage.removeItem(ASIDE_KEY); } catch (e) {   } return true; }
+function setPatches(saved, save = true) { const keep = saved ? clone(saved) : null; for (const k in PATCH) PATCH[k] = clone(PATCHES[k]); for (const k in MOTOR) MOTOR[k] = clone(MOTORS[k]); for (const k in ROOM) ROOM[k] = clone(ROOM0[k]); applySaved(keep);
+  if (save) { try { const d = patchesSaved(); if (Object.keys(d.patches).length || Object.keys(d.motors).length || d.room) localStorage.setItem(SAVE_KEY, JSON.stringify(d)); else localStorage.removeItem(SAVE_KEY); } catch (e) {   } } }
+function resetPatches() { setPatches(null); }
+function patchesSaved() {
+  const d = { version: PATCHES_VERSION, patches: {}, motors: {} };
+  for (const k in PATCH) if (JSON.stringify(PATCH[k]) !== JSON.stringify(PATCHES[k])) d.patches[k] = { on: PATCH[k].on, gain: PATCH[k].gain ?? 1, layers: PATCH[k].layers, inputs: PATCH[k].inputs };
+  for (const k in MOTOR) if (JSON.stringify(MOTOR[k]) !== JSON.stringify(MOTORS[k])) d.motors[k] = MOTOR[k];
+  if (JSON.stringify(ROOM) !== JSON.stringify(ROOM0)) d.room = ROOM;
+  return d;
+}
+function savedCount() { const d = patchesSaved(); return Object.keys(d.patches).length + Object.keys(d.motors).length + (d.room ? 1 : 0); }
+
+function seeded(seed) { let s = (seed >>> 0) || 1; return () => { s = (s * 48271) % 2147483647; return s / 2147483647; }; }
+const smooth = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+const NOISE = new WeakMap(), CURVES = new Map();
+function noiseOf(ctx) {
+  let b = NOISE.get(ctx);
+  if (!b) { b = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate); const d = b.getChannelData(0), r = seeded(99); for (let i = 0; i < d.length; i++) d[i] = r() * 2 - 1; NOISE.set(ctx, b); }
+  return b;
+}
+function curveOf(k) { k = Math.round(k * 10) / 10; let c = CURVES.get(k); if (!c) { const N = 2049; c = new Float32Array(N); const top = Math.tanh(k); for (let i = 0; i < N; i++) { const x = i / (N - 1) * 2 - 1; c[i] = Math.tanh(k * x) / top; } CURVES.set(k, c); } return c; }
+const STATS = { nodes: 0 };
+function graph(ctx, out, rnd) {
+  const g = {
+    ctx, out, rnd,
+    env(v, at, decay, dest = out, attack = 0) {
+      const n = ctx.createGain(); STATS.nodes++; const p = n.gain, v0 = Math.max(1e-4, v);
+      if (attack > 0) { p.setValueAtTime(1e-4, at); p.exponentialRampToValueAtTime(v0, at + attack); } else p.setValueAtTime(v0, at);
+      p.exponentialRampToValueAtTime(1e-4, at + attack + decay); n.connect(dest); return n;
+    },
+    gain(v, dest = out) { const n = ctx.createGain(); STATS.nodes++; n.gain.value = v; n.connect(dest); return n; },
+    noise(at, dur, dest) { const s = ctx.createBufferSource(); STATS.nodes++; s.buffer = noiseOf(ctx); s.loop = true; s.loopEnd = 2; s.start(at, rnd() * 1.5); s.stop(at + dur + 0.02); if (dest) s.connect(dest); return s; },
+    filt(type, f, q, dest) { const b = ctx.createBiquadFilter(); STATS.nodes++; b.type = type; b.frequency.value = Math.max(10, f); b.Q.value = q; if (dest) b.connect(dest); return b; },
+    osc(type, f0, f1, at, dur, dest, sweep = dur) {
+      const o = ctx.createOscillator(); STATS.nodes++; o.type = type; o.frequency.setValueAtTime(Math.max(1, f0), at);
+      if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(Math.max(1, f1), at + sweep);
+      if (dest) o.connect(dest); o.start(at); o.stop(at + dur + 0.02); return o;
+    },
+    shaper(k, dest = out) { if (!(k > 0)) return dest; const w = ctx.createWaveShaper(); STATS.nodes++; w.curve = curveOf(k); w.oversample = '2x'; w.connect(dest); return w; },
+    bursts(list, dest, rise = 0.0005) {
+      if (!list.length) return null; list.sort((p, q) => p.at - q.at);
+      const n = ctx.createGain(); STATS.nodes++; const p = n.gain, t0 = list[0].at, last = list[list.length - 1]; p.setValueAtTime(0, Math.max(0, t0 - 0.005));
+      for (const b of list) { p.setValueAtTime(0, b.at); p.linearRampToValueAtTime(b.a, b.at + rise); p.setTargetAtTime(0, b.at + rise, Math.max(0.0002, b.d / 9)); }
+      n.connect(dest); g.noise(t0, last.at - t0 + last.d + 0.01, n); return n;
+    },
+  };
+  return g;
+}
+
+const ringOf = (f, q, secs, sr) => 0.58 * (2 * Math.PI * f / q) * Math.sqrt(Math.min(secs, q / (Math.PI * f)) / sr);
+const hissOf = (f, q, sr) => 0.58 * Math.sqrt(Math.PI / 2 * f / q / (sr / 2));
+const DENT_TRIM = 1.15, SCRATCH_TRIM = 0.7, FLOOR_TRIM = 13, WASH_TRIM = 4.6, GRIND_TRIM = 0.7, LEAK_TRIM = 0.35, GLUG_TRIM = 0.6, SPLAT_TRIM = 6;
+const SHELL_TONES = [1, 1.59, 2.14, 2.65, 3.16, 3.65, 4.15, 4.62];
+const FLOOR_TONES = [1, 1.47, 2.09, 2.71, 3.3, 3.9];
+
+function playLayer(g, at, L, m = {}) {
+  const K = LAYER_KINDS[L.kind]; if (!K) return;
+  const P = { ...K.params, ...L }, lvl = (P.level || 0) * (m.level ?? 1); if (lvl < 0.0005) return;
+  const t = at + (P.at || 0), att = P.attack || 0, dec = Math.max(0.004, (P.decay || 0.1) * (m.decay ?? 1)), dur = att + dec, rnd = g.rnd, out = g.out;
+  const mf = m.f ?? 1, mf0 = m.f0 ?? 1;
+  if (L.kind === 'thud') { const e = g.env(lvl, t, dec, out, att); g.osc('sine', P.f0 * mf0, P.f1 * mf0, t, dur, g.shaper(P.drive, e), Math.max(0.005, P.fall)); }
+  else if (L.kind === 'noise') {
+    const e = g.env(lvl, t, dec, out, att), f0 = Math.max(20, P.f0 * mf0), f1 = Math.max(20, P.f1 * mf0), f = g.filt(P.filter, f0, P.q, g.shaper(P.drive, e));
+    f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    if (P.wobble > 0) { const lfo = g.osc('sine', 3 + rnd() * 5, 3 + rnd() * 5, t, dur, null); lfo.connect(g.gain(f0 * 0.3 * P.wobble, f.frequency)); }
+    g.noise(t, dur, f);
+  } else if (L.kind === 'knock') {
+    const f = Math.max(20, P.f * mf), e = g.env(lvl, t, dec, out, att), bp = g.filt('bandpass', f, P.q, g.shaper(P.drive, e)), be = g.env(1, t, Math.max(0.002, P.burst), bp); g.noise(t, P.burst + 0.01, be);
+  } else if (L.kind === 'tone') {
+    const f = Math.max(10, P.f * mf * (1 + (rnd() - 0.5) * 2 * (P.detune || 0))), e = g.env(lvl, t, dec, out, att);
+    const lp = P.lowpass > 0 ? g.filt('lowpass', P.lowpass, 0.8, e) : e, car = g.osc(P.wave, f, f, t, dur, g.shaper(P.drive, lp));
+    if (P.bendDepth > 0 && P.bend > 0) { const mod = g.osc('sine', f * P.bend, f * P.bend, t, dur, null), mg = g.ctx.createGain(); STATS.nodes++;
+      mg.gain.setValueAtTime(f * P.bendDepth, t); mg.gain.exponentialRampToValueAtTime(Math.max(0.5, f * P.bendDepth * 0.02), t + dur); mod.connect(mg); mg.connect(car.frequency); }
+  } else if (L.kind === 'rattle') {
+    for (let i = 0; i < P.n; i++) { const tt = t + rnd() * P.over, a = lvl * (1 - (tt - t) / P.over) * (0.4 + rnd());
+      const e = g.env(a, tt, 0.012 + rnd() * 0.03), f = g.filt('lowpass', P.lowpass * (0.6 + rnd() * 0.8), 0.9, g.shaper(3, e)); f.frequency.exponentialRampToValueAtTime(250, tt + 0.04); g.noise(tt, 0.05, f);
+      const d = 0.03 + rnd() * 0.04, e2 = g.env(a * 0.6, tt, d), bp = g.filt('bandpass', P.f * mf * (0.7 + rnd() * 0.8), 1.6, g.shaper(3, e2)); g.noise(tt, d + 0.01, bp); }
+  } else if (L.kind === 'buzz') {
+    const f = Math.max(10, P.f * mf), e = g.env(lvl, t, dec, out, att); let d = g.filt('lowpass', P.lowpass, 1.1, e);
+    if (P.chop > 0) { const gg = g.gain(0.5, d), lfo = g.osc('square', P.chop, P.chop, t, dur, null); lfo.connect(g.gain(0.5, gg.gain)); d = gg; }
+    const sh = g.shaper(P.drive, d); g.osc('sawtooth', f, f * P.rise, t, dur, sh); g.osc('sawtooth', f * 1.013, f * 1.013 * P.rise, t, dur, sh);
+  } else if (L.kind === 'crack') {
+    const n = Math.max(1, Math.round(P.n)), lo = Math.max(30, P.f0 * mf0), hi = Math.max(lo * 1.01, P.f1 * mf0);
+    for (let i = 0; i < n; i++) {
+      const tt = t + (i === 0 ? 0 : rnd() * P.spread), f = lo * Math.pow(hi / lo, rnd()), a = lvl * (i === 0 ? 1 : 0.45 + 0.55 * rnd()), d = Math.max(0.002, P.burst * (0.6 + 0.8 * rnd()));
+      const e = g.env(a, tt, d), bp = g.filt('bandpass', f, P.q, g.shaper(P.drive, e)); g.noise(tt, d + 0.01, bp);
+    }
+  } else if (L.kind === 'beep') {
+    const f = Math.max(20, P.f * mf), on = t + Math.max(0.001, P.attack), off = on + Math.max(0.01, P.hold), end = off + Math.max(0.002, P.release);
+    const env = g.ctx.createGain(); STATS.nodes++; env.gain.setValueAtTime(0, t); env.gain.linearRampToValueAtTime(lvl, on); env.gain.setValueAtTime(lvl, off); env.gain.linearRampToValueAtTime(0, end); env.connect(out);
+    const lp = g.filt('lowpass', P.lowpass, 0.8, env), sh = g.shaper(P.drive, lp), mix = g.gain(0.5, sh);
+    g.osc(P.wave, f * (1 - (P.detune || 0)), f * (1 - (P.detune || 0)), t, end - t, mix); g.osc(P.wave, f * (1 + (P.detune || 0)), f * (1 + (P.detune || 0)), t, end - t, mix);
+    if (P.sub > 0) g.osc(P.wave, f / 2, f / 2, t, end - t, g.gain(P.sub, mix));
+  } else if (L.kind === 'dent') {
+    const n = Math.max(1, Math.min(SHELL_TONES.length, Math.round(P.tones))), f = Math.max(30, P.f * mf), sr = g.ctx.sampleRate, buckle = Math.max(0.005, P.buckle);
+    const drop = Math.max(-0.5, Math.min(0.9, (P.drop || 0) * (m.depth ?? 1))), e = g.env(lvl, t, dec, out, att), sum = g.gain(DENT_TRIM, g.shaper(P.drive, e)), ex = g.ctx.createGain(); STATS.nodes++;
+    const ws = []; let w2 = 0; for (let i = 0; i < n; i++) { const w = 1 / Math.sqrt(1 + (SHELL_TONES[i] - 1) * P.stretch); ws.push(w); w2 += w * w; }
+    const lx = g.filt('lowpass', Math.min(sr * 0.45, f * (1 + (SHELL_TONES[n - 1] - 1) * P.stretch) * 1.6), 0.7, null); ex.connect(lx);
+    for (let i = 0; i < n; i++) {
+      const r = 1 + (SHELL_TONES[i] - 1) * P.stretch, fi = f * r * (1 + (rnd() - 0.5) * 0.06), qi = Math.max(0.5, P.q * (0.8 + 0.4 * rnd()));
+      const bp = g.filt('bandpass', fi, qi, g.gain(ws[i] / Math.sqrt(w2) / ringOf(fi, qi, 0.004, sr) * (0.75 + 0.5 * rnd()), sum));
+      bp.frequency.setValueAtTime(fi, t); bp.frequency.exponentialRampToValueAtTime(Math.max(20, fi * (1 - drop)), t + buckle); lx.connect(bp);
+    }
+    const b0 = g.env(1, t, 0.004, ex); g.noise(t, 0.012, b0);
+    const snaps = []; for (let i = 0, k = Math.round(P.snaps || 0); i < k; i++) snaps.push({ at: t + buckle * 1.2 * Math.pow(rnd(), 1.5), a: 0.25 + 0.6 * rnd(), d: 0.0015 + rnd() * 0.003 });
+    g.bursts(snaps, ex);
+  } else if (L.kind === 'scratch') {
+    const f0 = Math.max(40, P.f0 * mf0), f1 = Math.max(30, P.f1 * mf0), over = Math.max(0.01, P.over), sr = g.ctx.sampleRate, q = Math.max(0.3, P.q);
+    const e = g.env(lvl, t, dec, out, att), lo = g.filt('lowpass', Math.min(sr * 0.45, f0 * 2.2), 0.7, e), sum = g.gain(SCRATCH_TRIM / hissOf(Math.sqrt(f0 * f1), q, sr), g.shaper(P.drive, lo)), ex = g.ctx.createGain(); STATS.nodes++;
+    lo.frequency.setValueAtTime(Math.min(sr * 0.45, f0 * 2.2), t); lo.frequency.exponentialRampToValueAtTime(Math.min(sr * 0.45, Math.max(60, f1 * 2.2)), t + over);
+    for (const [r, a] of [[1, 1], [1.47, 0.6]]) { const fi = f0 * r * (1 + (rnd() - 0.5) * 0.08), bp = g.filt('bandpass', fi, q, g.gain(a, sum));
+      bp.frequency.setValueAtTime(fi, t); bp.frequency.exponentialRampToValueAtTime(Math.max(30, f1 * r), t + over); ex.connect(bp); }
+    if (P.bed > 0) { const be = g.env(P.bed, t, over, ex, Math.min(0.008, over / 4)); g.noise(t, over + 0.02, be); }
+    const grains = []; for (let i = 0, k = Math.round(P.chatter || 0); i < k; i++) { const x = (i + rnd() * 0.8) / k; grains.push({ at: t + over * Math.pow(x, 1.4), a: (1 - 0.6 * x) * (0.5 + 0.5 * rnd()), d: 0.0015 + rnd() * 0.004 }); }
+    g.bursts(grains, ex, 0.0008);
+  } else if (L.kind === 'floor') {
+    const n = Math.max(1, Math.min(FLOOR_TONES.length, Math.round(P.tones))), f = Math.max(20, P.f * mf), sr = g.ctx.sampleRate, burst = Math.max(0.003, P.burst);
+    const e = g.env(lvl, t, dec, out, att), lp = g.filt('lowpass', Math.max(40, P.damp), 0.7, e), sum = g.gain(1, g.shaper(P.drive, lp)), ex = g.ctx.createGain(); STATS.nodes++;
+    for (let i = 0; i < n; i++) { const r = 1 + (FLOOR_TONES[i] - 1) * P.stretch, fi = f * r * (1 + (rnd() - 0.5) * 0.08), qi = Math.max(0.5, P.q * (0.8 + 0.4 * rnd()));
+      ex.connect(g.filt('bandpass', fi, qi, g.gain(FLOOR_TRIM / Math.sqrt(r * n) / ringOf(fi, qi, burst, sr) * (0.75 + 0.5 * rnd()), sum))); }
+    const be = g.env(1, t, burst, ex, 0.002); g.noise(t, burst + 0.01, be);
+    if (P.wash > 0) g.noise(t, dur, g.filt('lowpass', Math.max(40, P.damp), 0.7, g.gain(P.wash * WASH_TRIM, sum)));
+  } else if (L.kind === 'grind') {
+    const f0 = Math.max(20, P.f0 * mf0), f1 = Math.max(15, P.f1 * mf0), sr = g.ctx.sampleRate, rough = Math.max(0, Math.min(1, P.rough)), grit = Math.max(0, Math.min(1, P.grit)), q = Math.max(0.3, P.q);
+    const e = g.env(lvl, t, dec, out, att), lp = g.filt('lowpass', Math.max(60, P.lowpass), 0.8, e), am = g.gain(1 - rough * 0.5, g.shaper(P.drive, lp));
+    g.osc('sawtooth', f0, f1, t, dur, g.gain(1 - grit, am));
+    if (grit > 0) { const bp = g.filt('bandpass', f0 * 2, q, g.gain(grit * GRIND_TRIM / hissOf(Math.sqrt(f0 * f1) * 2, q, sr), am)); bp.frequency.setValueAtTime(f0 * 2, t); bp.frequency.exponentialRampToValueAtTime(Math.max(30, f1 * 2), t + dur); g.noise(t, dur, bp); }
+    if (rough > 0 && P.rate > 0) { const lfo = g.osc('sawtooth', P.rate, Math.max(0.5, P.rate * P.slow), t, dur, g.gain(-rough * 0.5, am.gain));
+      g.osc('sine', 3 + rnd() * 5, 3 + rnd() * 5, t, dur, g.gain(P.rate * 0.2, lfo.frequency)); }
+  } else if (L.kind === 'leak') {
+    const sr = g.ctx.sampleRate, mud = Math.max(0, Math.min(1, P.mud ?? 0)), depth = Math.max(0, Math.min(1, P.depth));
+    const f0 = Math.max(60, P.f0 * mf0 * (1 - 0.45 * mud)), f1 = Math.max(40, P.f1 * mf0 * (1 - 0.45 * mud)), q = Math.max(0.3, P.q * (1 - 0.4 * mud));
+    const e = g.env(lvl, t, dec, out, att), lp = g.filt('lowpass', Math.min(sr * 0.45, f0 * 1.8), 0.7, e), am = g.gain(1 - depth * 0.5, g.shaper(P.drive, lp));
+    const bp = g.filt('bandpass', f0, q, g.gain(LEAK_TRIM / hissOf(Math.sqrt(f0 * f1), q, sr), am));
+    bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + dur); g.noise(t, dur, bp);
+    if (depth > 0) {
+      g.noise(t, dur, g.filt('lowpass', 7 + 12 * (1 - mud), 0.7, g.gain(depth * 28, am.gain)));
+      if (P.pulse > 0) g.osc('sine', P.pulse, P.pulse * 0.5, t, dur, g.gain(depth * 0.25, am.gain));
+    }
+    if (P.blast > 0) {
+      const be = g.env(lvl * P.blast * 1.6, t, 0.16, out, 0.002), blp = g.filt('lowpass', 3200, 0.8, g.shaper(3.5, be));
+      blp.frequency.setValueAtTime(3200 * (1 - 0.3 * mud), t); blp.frequency.exponentialRampToValueAtTime(220, t + 0.12); g.noise(t, 0.18, blp);
+      g.osc('sine', 95, 32, t, 0.22, g.shaper(2.5, g.env(lvl * P.blast * 1.3, t, 0.2, out, 0.003)), 0.07);
+    }
+    for (let i = 0, k = Math.round(P.glugs || 0); i < k; i++) {
+      const tt = t + att + 0.03 + rnd() * dec * 0.75, fd = Math.max(50, (P.glug || 300) * (1 - 0.4 * mud) * (0.6 + 0.8 * rnd())), d = (0.05 + rnd() * 0.07) * (1 + 0.6 * mud), gq = 2 + 4 * (1 - mud);
+      const bp2 = g.filt('bandpass', fd, gq, g.gain(GLUG_TRIM / ringOf(fd, gq, 0.012, sr), g.shaper(2.2, g.env(lvl * (0.4 + 0.5 * rnd()), tt, d, out, 0.004))));
+      bp2.frequency.setValueAtTime(fd, tt); bp2.frequency.exponentialRampToValueAtTime(fd * (1.5 + 0.6 * rnd()), tt + d * 0.8);
+      g.noise(tt, 0.022, g.env(1, tt, 0.014, bp2, 0.001));
+    }
+    const ns = Math.round(P.splats || 0);
+    if (ns > 0) { const sp = []; for (let i = 0; i < ns; i++) sp.push({ at: t + 0.06 + rnd() * dec * 0.85, a: SPLAT_TRIM * (0.3 + 0.7 * rnd()), d: 0.005 + rnd() * 0.01 });
+      g.bursts(sp, g.filt('lowpass', 900 * (1 - 0.3 * mud), 0.7, g.shaper(1.6, g.env(lvl, t, dec + 0.15, out))), 0.0015); }
+  }
+}
+const matches = (only, p) => { if (!only) return true; for (const k in only) { if (k === 'heavy') { if (((p.k ?? 0) > HEAVY) !== !!only.heavy) return false; } else if (p[k] !== only[k]) return false; } return true; };
+const FOOTY = /foot|toe|knee|sole|shin/;
+const BLOW_FULL_J = 7200 * BLOW_FULL * BLOW_FULL;
+const G = 9.81;
+const ENERGY_WORDS = {
+  blow: 'the blow\'s own energy: 7200 x (strength x 0.16)² J - 184 J at full strength, 17 J at 0.3',
+  touch: 'a touch\'s energy, the same measure: 7200 x (hardness x 0.2)² J - 288 J at full, 26 J at 0.3',
+  step: 'the share of the machine\'s mass that comes down with the foot (`share`) x its landing speed squared, halved - the speed of a fall from as high as the foot was lifted',
+  drag: 'the work friction does while it is heard: the share of the machine\'s weight on the foot (`share`) x the mat\'s grip (`mu`) x how fast it slides, up to `top` m/s (a foot read faster is a kick skimming the mat, not a slide) x how long it is heard (`seconds`)',
+  fall: 'the machine\'s mass x g x the height its body falls (`height`, m)',
+  piece: 'a piece (`share` of the machine\'s mass) falling from `height` m',
+  fixed: 'a set energy (`joules`): an event the fight gives no number for',
+};
+function energyOf(key, p = {}, P = PATCH[key]) {
+  const L = (P && P.loud) || {}, M = Math.max(5, (p.weight ?? 0.15) * KG_FULL);
+  switch (L.by) {
+    case 'blow': return 7200 * (Math.max(0.02, p.k ?? 0.5) * BLOW_FULL) ** 2;
+    case 'touch': return 7200 * (Math.max(0.02, Math.min(1, p.hard ?? 0.5)) * 0.2) ** 2;
+    case 'step': return 0.5 * (L.share ?? 0.25) * M * (p.v ?? 1) ** 2;
+    case 'drag': return (L.mu ?? 0.6) * (L.share ?? 0.25) * M * G * Math.min(p.speed ?? 2, L.top ?? 8) * (L.seconds ?? 0.15);
+    case 'fall': return (L.share ?? 1) * M * G * (L.height ?? 0.6);
+    case 'piece': return (L.share ?? 0.08) * M * G * (L.height ?? 1);
+    default: return L.joules ?? BLOW_FULL_J;
+  }
+}
+function loudnessDb(key, p = {}, P = PATCH[key]) { const L = (P && P.loud) || {}; return (L.radiates ?? 0) + (ROOM.dynamics ?? 0.6) * 10 * Math.log10(Math.max(1e-6, energyOf(key, p, P)) / BLOW_FULL_J); }
+let FLAT = false;
+function levelOf(key, P, p) {
+  const I = P.inputs || {};
+  let lv = FLAT ? 1 : (P.gain ?? 1) * Math.pow(10, (loudnessDb(key, p, P) + ((P.loud && P.loud.cal) || 0)) / 20);
+  if (key === 'blow' && p.blocked) lv *= I.blockedLevel ?? 0.6;
+  if (key === 'touch') { const h = Math.min(1, p.hard ?? 0.5), from = I.hardFrom ?? 0; if (from > 0 && h < from) lv = 0; }
+  return lv;
+}
+const INPUT_WORDS = {
+  blow: ['the cracks and the scratch × strength^kBright: a harder hit is a shorter contact and rings higher - a light blow is duller, a heavy one brighter', 'the piece\'s tones, knock and dent: pitch × the piece\'s (torso 1, leg 1.5, arm 2.1, head 3), decay × the piece\'s × (1 − kDecay + kDecay × strength)', 'the dent\'s slide × (1 − kDent + kDent × strength): a harder blow caves the shell in further', 'struck with a foot: the thuds × footThud, the noise\'s, the cracks\' and the scratch\'s f0 and f1 × footBright, the piece\'s pitch × footTone', 'a guard took it: level × blockedLevel (the guard took the rest), the piece\'s decay and the dent\'s slide × blockedDecay', 'heavy (strength over 0.45): the layers marked heavy play'],
+  step: ['the thud\'s f0 and f1 × (1 − weightDeep × weight): a heavier machine lands lower', 'the scuff and the frame\'s ring × (landing speed / 1.5 m/s)^landBright: a foot set down hard rings and scuffs more'],
+  scrape: ['the noise\'s and the scratch\'s f0 and f1 × (1 − speedBright + speedBright × speed)'],
+  slam: [], off: ['the layers marked bounce play again at each bounce, quieter', 'the layers marked with a motor play for that motor'],
+  touch: ['under hardFrom: no sound (a brush)'], grip: ['the layers marked with a motor play for the holder\'s arm motors'], lock: ['the layers marked with a motor play for the holder\'s arm motors'],
+  hurt: ['the layers marked with a motor play for the piece\'s motor'], broken: ['the layers marked with a motor play for the piece\'s motor'], hot: ['the layers marked with a motor play for the motor\'s kind'],
+  bell: ['the layers marked "start" play when a fight or a round starts; those marked "end" when a round or the fight ends'], call: ['the layers marked with a call play for that call'], death: [], free: [], letgo: [], lowbattery: [], shout: [],
+};
+function multipliersFor(key, P, L, p) {
+  const I = P.inputs || {}, m = { level: levelOf(key, P, p), f: 1, decay: 1, f0: 1 };
+  if (key === 'blow') {
+    const kk = Math.min(1, p.k ?? 0.5), foot = FOOTY.test(p.limb || ''), blocked = !!p.blocked, T = PIECE_TONE[p.piece] || PIECE_TONE.torso;
+    if (L.kind === 'crack' || L.kind === 'scratch') m.level *= Math.pow(Math.max(0.05, kk), I.kBright ?? 0.5);
+    if (L.kind === 'thud' && foot) m.level *= I.footThud ?? 1.4;
+    if ((L.kind === 'noise' || L.kind === 'crack' || L.kind === 'scratch') && foot) m.f0 *= I.footBright ?? 0.55;
+    if (L.kind === 'dent') m.depth = (1 - (I.kDent ?? 0.6) + (I.kDent ?? 0.6) * kk) * (blocked ? (I.blockedDecay ?? 0.4) : 1);
+    if ((L.kind === 'tone' || L.kind === 'knock' || L.kind === 'dent') && L.piece) { m.f *= T.f * (foot ? (I.footTone ?? 0.7) : 1); m.decay *= T.decay * (1 - (I.kDecay ?? 0.35) + (I.kDecay ?? 0.35) * kk) * (blocked ? (I.blockedDecay ?? 0.4) : 1); }
+  } else if (key === 'step') { const w = Math.min(1, p.weight ?? 0.5);
+    if (L.kind === 'thud') m.f0 *= 1 - (I.weightDeep ?? 0.3) * w;
+    if (L.kind === 'scratch' || L.kind === 'dent') m.level *= Math.pow(Math.min(1.6, Math.max(0.1, (p.v ?? 1) / 1.5)), I.landBright ?? 0.5);
+  } else if (key === 'scrape') { const s = Math.min(1, (p.speed ?? 2) / 4); if (L.kind === 'noise' || L.kind === 'scratch') m.f0 *= 1 - (I.speedBright ?? 0.3) + (I.speedBright ?? 0.3) * s; }
+  return m;
+}
+function playPatch(g, at, key, p, force = false) {
+  const P = PATCH[key]; if (!P || (!P.on && !force)) return;
+  const times = P.repeat ? Math.max(1, p.times ?? 1) : 1, every = (P.repeat && P.repeat.every) || 0.3;
+  for (let r = 0; r < times; r++) for (const L of P.layers) {
+    if (!matches(L.only, p)) continue;
+    const m = multipliersFor(key, P, L, p), t0 = at + r * every;
+    if (L.bounce && P.bounces) { for (const [dt, mul] of P.bounces) playLayer(g, t0 + dt, L, { ...m, level: m.level * mul }); }
+    else playLayer(g, t0, L, m);
+  }
+}
+
+const SOUNDS = {};
+const VARIANTS = {
+  blow: () => { const v = []; for (const piece of PIECES) for (const k of [0.25, 0.6, 1.0]) for (let i = 0; i < 2; i++) v.push({ piece, k, limb: i ? 'foot' : 'hand', seed: 11 + v.length }); return v; },
+  touch: () => [0.3, 0.7, 1].map((hard, i) => ({ hard, seed: 31 + i })), scrape: () => [1.5, 3, 5].map((speed, i) => ({ speed, seed: 41 + i })),
+  step: () => [0.15, 0.6].flatMap((weight, i) => [0.8, 1.6].map((v, j) => ({ weight, v, seed: 51 + i * 2 + j }))),
+  hurt: () => [{ motor: 'strong', seed: 61 }, { motor: 'light', seed: 62 }], broken: () => [{ motor: 'strong', seed: 71 }, { motor: 'light', seed: 72 }],
+  off: () => [{ motor: 'strong', seed: 81, weight: 0.5 }, { motor: 'light', seed: 82, weight: 0.5 }], grip: () => [{ motor: 'strong', seed: 91 }, { motor: 'light', seed: 92 }],
+  slam: () => [{ weight: 0.3, seed: 101 }, { weight: 0.8, seed: 102 }], lock: () => [{ motor: 'strong', seed: 111 }, { motor: 'light', seed: 112 }], free: () => [{ seed: 121 }, { seed: 122 }],
+  letgo: () => [{ seed: 131 }], death: () => [{ seed: 141 }, { seed: 142 }], bell: () => [{ which: 'start', seed: 151 }, { which: 'end', seed: 152 }],
+  call: () => ['action', 'run', 'point'].map((which, i) => ({ which, seed: 161 + i })), lowbattery: () => [{ seed: 171 }], hot: () => [{ motor: 'strong', seed: 181 }, { motor: 'light', seed: 182 }], shout: () => [{ seed: 191 }],
+};
+const NEAREST = {
+  blow(p, V) { let best = 0, bd = 1e9; const pc = p.piece || 'torso', foot = FOOTY.test(p.limb || '') ? 'foot' : 'hand';
+    for (let i = 0; i < V.length; i++) { const d = (V[i].piece === pc ? 0 : 10) + (V[i].limb === foot ? 0 : 1) + Math.abs(V[i].k - Math.min(1, p.k ?? 0.5)) * 3; if (d < bd) { bd = d; best = i; } } return best; },
+  touch(p, V) { const i = V.findIndex(v => v.hard >= (p.hard ?? 0.5)); return i < 0 ? V.length - 1 : i; }, scrape(p, V) { const i = V.findIndex(v => v.speed >= (p.speed ?? 2)); return i < 0 ? V.length - 1 : i; },
+  step(p, V) { let b = 0, bd = 9; for (let i = 0; i < V.length; i++) { const d = Math.abs(V[i].weight - (p.weight ?? 0.5)) + Math.abs(V[i].v - (p.v ?? 1)) / 2; if (d < bd) { bd = d; b = i; } } return b; },
+  slam: p => (p.weight ?? 0.5) > 0.55 ? 1 : 0, bell: p => p.which === 'end' ? 1 : 0, call: p => ({ action: 0, run: 1, point: 2 })[p.which] ?? 0,
+};
+const byMotor = p => p.motor === 'light' ? 1 : 0;
+for (const key in PATCHES) {
+  SOUNDS[key] = {
+    get name() { return PATCH[key].name; }, get hear() { return PATCH[key].hear; }, get reads() { return PATCH[key].reads; }, get len() { return PATCH[key].len; }, get group() { return PATCH[key].group; }, get on() { return PATCH[key].on; },
+    make(g, at, p, force = false) { playPatch(g, at, key, p, force); },
+    variants: VARIANTS[key] || (() => [{ seed: 1 }]), nearest: NEAREST[key] || (['hurt', 'broken', 'off', 'grip', 'lock', 'hot'].includes(key) ? byMotor : () => 0),
+    loud(p) { return levelOf(key, PATCH[key], p); },
+  };
+}
+function pieceOfPart(part) {
+  if (!part) return 'torso';
+  if (part === 'head') return 'head';
+  if (/hand|fist|elbow|shoulder|wrist|forearm/.test(part)) return 'arm';
+  if (/foot|sole|toe|knee|hip|shin|thigh|ankle/.test(part)) return 'leg';
+  return 'torso';
+}
+
+function motorLoudnessDb(type) { const L = (MOTOR[type] || MOTOR.strong).loud || {}; return (ROOM.dynamics ?? 0.6) * (L.real ?? -25); }
+const motorLevel = M => { const L = M.loud || {}; return FLAT ? 1 : Math.pow(10, ((ROOM.dynamics ?? 0.6) * (L.real ?? -25) + (L.cal || 0)) / 20); };
+function makeMotorVoice(g, dest0, type) {
+  const M = MOTOR[type] || MOTOR.strong, now = g.ctx.currentTime, nodes = [], parts = {}, vout = g.gain(motorLevel(M), dest0), dest = vout;
+  if (type === 'light') {
+    const W = M.whine, out = g.gain(0, dest), lp = g.filt('lowpass', W.lowpass, 0.8, out), sh = g.shaper(W.drive, lp);
+    const o1 = g.osc(W.wave, W.f0, W.f0, now, 1e6, sh), o2 = g.osc('sawtooth', W.f0 * W.harmonic, W.f0 * W.harmonic, now, 1e6, g.gain(W.harmonicLevel, sh)); nodes.push(o1, o2); parts.whine = { out, o1, o2 };
+  } else {
+    const H = M.hiss, out = g.gain(0, dest), bp = g.filt('bandpass', H.f0, H.q, g.shaper(H.drive, out)), nz = g.noise(now, 1e6, bp); nodes.push(nz); parts.hiss = { out, bp };
+    const Pm = M.pump, pout = g.gain(0, dest), plp = g.filt('lowpass', Pm.lowpass, 1, pout), po = g.osc(Pm.wave, Pm.f0, Pm.f0, now, 1e6, g.shaper(Pm.drive, plp)); nodes.push(po); parts.pump = { out: pout, o: po };
+  }
+  const S = M.stall, sout = g.gain(0, dest); let sd = g.filt('lowpass', S.lowpass, 1.1, sout);
+  if (S.chop > 0) { const gg = g.gain(0.5, sd), lfo = g.osc('square', S.chop, S.chop, now, 1e6, null); lfo.connect(g.gain(0.5, gg.gain)); nodes.push(lfo); sd = gg; }
+  const ssh = g.shaper(S.drive, sd), s1 = g.osc('sawtooth', S.f0, S.f0, now, 1e6, ssh), s2 = g.osc('sawtooth', S.f0 * 1.013, S.f0 * 1.013, now, 1e6, ssh); nodes.push(s1, s2); parts.stall = { out: sout, s1, s2 };
+  if (S.hiss > 0) { const hout = g.gain(0, dest), hb = g.filt('bandpass', 2200, 1.2, hout), hn = g.noise(now, 1e6, hb); nodes.push(hn); parts.stallHiss = { out: hout }; }
+  return {
+    type,
+    set(speed, work, at) {
+      const M2 = MOTOR[type] || MOTOR.strong, gate = smooth(M2.gate.from, M2.gate.to, speed), stall = smooth(M2.stall.from, M2.stall.to, work) * (1 - gate), T = 0.05;
+      if (parts.whine) { const W = M2.whine, f = W.f0 + W.fSpeed * speed; parts.whine.o1.frequency.setTargetAtTime(f, at, T); parts.whine.o2.frequency.setTargetAtTime(f * W.harmonic, at, T); parts.whine.out.gain.setTargetAtTime(W.level * gate * (1 - W.workLevel + W.workLevel * work), at, T); }
+      if (parts.hiss) { const H = M2.hiss; parts.hiss.bp.frequency.setTargetAtTime(H.f0 + H.fSpeed * speed, at, T); parts.hiss.out.gain.setTargetAtTime(H.level * gate * (1 - H.workLevel + H.workLevel * work), at, T); }
+      if (parts.pump) { const Pm = M2.pump; parts.pump.o.frequency.setTargetAtTime(Pm.f0 + Pm.fWork * work, at, T); parts.pump.out.gain.setTargetAtTime(Pm.level * Math.max(gate, stall), at, 0.08); }
+      const S2 = M2.stall, fs = S2.f0 + S2.fWork * work; parts.stall.s1.frequency.setTargetAtTime(fs, at, T); parts.stall.s2.frequency.setTargetAtTime(fs * 1.013, at, T); parts.stall.out.gain.setTargetAtTime(S2.level * stall, at, 0.08);
+      if (parts.stallHiss) parts.stallHiss.out.gain.setTargetAtTime((S2.hiss || 0) * stall, at, 0.08);
+      vout.gain.setTargetAtTime(motorLevel(M2), at, T);
+    },
+    stop(at) { for (const k in parts) if (parts[k].out) { parts[k].out.gain.cancelScheduledValues(at); parts[k].out.gain.setTargetAtTime(0, at, 0.015); }
+      for (const n of nodes) { try { n.stop(at + 0.12); } catch (e) {   } } },
+  };
+}
+
+const SMALL = new Set(['step', 'scrape', 'touch', 'letgo', 'shout']);
+const LIMIT_CURVE = (() => { const N = 4097, c = new Float32Array(N); for (let i = 0; i < N; i++) { const x = (i / (N - 1) * 2 - 1) * 2, a = Math.abs(x); c[i] = Math.sign(x) * (a < 0.7 ? a : 0.7 + 0.3 * Math.tanh((a - 0.7) / 0.3)); } return c; })();
+const IRS = new WeakMap();
+function impulseOf(ctx, R) {
+  const key = `${R.seconds}|${R.damp}`; let m = IRS.get(ctx); if (!m) { m = new Map(); IRS.set(ctx, m); } if (m.has(key)) return m.get(key);
+  const sr = ctx.sampleRate, n = Math.max(1, Math.ceil(R.seconds * sr)), b = ctx.createBuffer(2, n, sr), tau = R.seconds / 4.6;
+  for (let c = 0; c < 2; c++) { const d = b.getChannelData(c), r = seeded(17 + c); let y = 0;
+    for (let i = 0; i < n; i++) { const t = i / sr, cut = R.damp * (1 - 0.75 * t / R.seconds), a = Math.exp(-2 * Math.PI * cut / sr); y = a * y + (1 - a) * (r() * 2 - 1); d[i] = y * Math.exp(-t / tau) * (i < 60 ? i / 60 : 1); } }
+  m.set(key, b); return b;
+}
+const SPACE = { ref: 4, rolloff: 1, max: 40 };
+class SoundOut {
+  constructor(ctx, { way = 'live', pan = null, spatial = null } = {}) {
+    this.ctx = ctx; this.way = way; this.panOf = pan; this.spatial = spatial;
+    this.master = ctx.createGain(); this.low = ctx.createBiquadFilter(); this.low.type = 'lowshelf'; this.high = ctx.createBiquadFilter(); this.high.type = 'highshelf';
+    this.drive = ctx.createWaveShaper(); this.drive.oversample = '2x';
+    this.comp = ctx.createDynamicsCompressor(); this.comp.knee.value = 6;
+    this.tap = ctx.createGain();
+    this.sum = ctx.createGain(); this.pre = ctx.createGain(); this.pre.gain.value = 0.5; this.limit = ctx.createWaveShaper(); this.limit.curve = LIMIT_CURVE; this.limit.oversample = '4x';
+    this.wet = ctx.createGain(); this.verb = ctx.createConvolver();
+    this.master.connect(this.low); this.low.connect(this.high); this.high.connect(this.drive); this.drive.connect(this.comp); this.comp.connect(this.sum); this.sum.connect(this.pre); this.pre.connect(this.limit); this.limit.connect(this.tap); this.tap.connect(ctx.destination);
+    this.comp.connect(this.verb); this.verb.connect(this.wet); this.wet.connect(this.sum);
+    this.applyRoom(ROOM, true);
+    this.made = null; this.voices = {}; this.worklet = null; this.rnd = seeded(7); this.lateWorklet = 0;
+  }
+  applyRoom(R = ROOM, now = false) {
+    const at = this.ctx.currentTime, T = 0.03, set = (p, v) => { if (now) { p.cancelScheduledValues(0); p.value = v; } else p.setTargetAtTime(v, at, T); };
+    const C = R.comp || { threshold: -18, ratio: 8, attack: 0.001, release: 0.08 };
+    set(this.master.gain, R.level); set(this.pre.gain, 0.5 * (this.volume ?? 1)); set(this.low.frequency, R.low.f); set(this.low.gain, R.low.gain); set(this.high.frequency, R.high.f); set(this.high.gain, R.high.gain);
+    set(this.comp.threshold, C.threshold); set(this.comp.ratio, C.ratio); set(this.comp.attack, C.attack); set(this.comp.release, C.release); set(this.sum.gain, R.out ?? 1);
+    if (this._drive !== R.drive) { this._drive = R.drive; this.drive.curve = R.drive > 0 ? curveOf(R.drive) : null; }
+    const ir = impulseOf(this.ctx, R.reverb); if (this.verb.buffer !== ir) this.verb.buffer = ir;
+    set(this.wet.gain, R.reverb.level);
+  }
+  async prepare() {
+    const perf = typeof performance !== 'undefined' ? performance : Date, t0 = perf.now(), made = { buffers: {}, bytes: 0, n: 0 };
+    const sr = this.ctx.sampleRate, mixed = this.way === 'mixed';
+    for (const key in SOUNDS) { if (mixed && !SMALL.has(key)) continue; const S = SOUNDS[key], V = S.variants(); made.buffers[key] = [];
+      for (const p of V) { const oc = new OfflineAudioContext(1, Math.ceil(S.len * sr), sr), out = oc.createGain(); out.connect(oc.destination);
+        S.make(graph(oc, out, seeded(p.seed)), 0.01, p); const b = await oc.startRendering(); made.buffers[key].push({ p, b }); made.bytes += b.length * 4; made.n++; } }
+    made.ms = perf.now() - t0; this.made = made; return made;
+  }
+  async useWorklet(url) { await this.ctx.audioWorklet.addModule(url); this.worklet = new AudioWorkletNode(this.ctx, 'modal-bank', { outputChannelCount: [1] }); this.worklet.connect(this.master);
+    this.worklet.port.onmessage = e => { if (e.data && e.data.late !== undefined) this.lateWorklet = e.data.late; }; }
+  dest(e) {
+    if (this.spatial && e && typeof e.x === 'number') return this.panner(e.x, e.y ?? 0.8, e.z ?? 0);
+    if (!this.panOf) return this.master; const p = this.ctx.createStereoPanner(); STATS.nodes++; p.pan.value = Math.max(-1, Math.min(1, this.panOf(e.x || 0, e.z || 0))); p.connect(this.master); return p;
+  }
+  panner(x, y, z) {
+    const p = this.ctx.createPanner(); STATS.nodes++; p.panningModel = this.spatial === 'stereo' ? 'equalpower' : 'HRTF'; p.distanceModel = 'inverse';
+    p.refDistance = SPACE.ref; p.rolloffFactor = SPACE.rolloff; p.maxDistance = SPACE.max;
+    if (p.positionX) { p.positionX.value = x; p.positionY.value = y; p.positionZ.value = z; } else p.setPosition(x, y, z);
+    p.connect(this.master); return p;
+  }
+  listen(c, at = this.ctx.currentTime) {
+    const L = this.ctx.listener; if (!L || !c) return;
+    if (L.positionX) { const T = 0.03, s = (p, v) => p.setTargetAtTime(v, at, T);
+      s(L.positionX, c.ex); s(L.positionY, c.ey); s(L.positionZ, c.ez); s(L.forwardX, c.fx); s(L.forwardY, c.fy); s(L.forwardZ, c.fz); s(L.upX, c.ux); s(L.upY, c.uy); s(L.upZ, c.uz); }
+    else { L.setPosition(c.ex, c.ey, c.ez); L.setOrientation(c.fx, c.fy, c.fz, c.ux, c.uy, c.uz); }
+  }
+  play(e, at, force = false) {
+    const S = SOUNDS[e.kind]; if (!S || (!S.on && !force)) return;
+    if (!(S.loud(e) > 0)) return;
+    const dest = this.dest(e), rnd = seeded(e.seed ?? Math.floor(this.rnd() * 1e9));
+    if (this.way === 'worklet' && this.worklet && e.kind === 'blow') {
+      const k = Math.min(1.5, e.k ?? 0.5), T = PIECE_TONE[e.piece || 'torso'] || PIECE_TONE.torso, base = 190 * T.f * (1 + (rnd() - 0.5) * 0.08);
+      this.worklet.port.postMessage({ frame: Math.round(at * this.ctx.sampleRate), k, foot: FOOTY.test(e.limb || ''), blocked: !!e.blocked, modes: [[base, 0.5 * T.decay, 1], [base * 1.74, 0.42 * T.decay, 0.7], [base * 2.9, 0.3 * T.decay, 0.5]], seed: e.seed ?? 1 });
+      return;
+    }
+    if ((this.way === 'premade' || (this.way === 'mixed' && SMALL.has(e.kind))) && this.made) {
+      const V = this.made.buffers[e.kind]; if (!V || !V.length) return;
+      const i = Math.max(0, Math.min(V.length - 1, S.nearest(e, V.map(v => v.p)))), v = V[i];
+      const src = this.ctx.createBufferSource(); STATS.nodes++; src.buffer = v.b; src.playbackRate.value = 1 + (rnd() - 0.5) * 0.06;
+      const g = this.ctx.createGain(); STATS.nodes++; g.gain.value = Math.min(2, S.loud(e) / Math.max(1e-3, S.loud(v.p))); src.connect(g); g.connect(dest); src.start(at); return;
+    }
+    S.make(graph(this.ctx, dest, rnd), at, e, force);
+  }
+  motors(team, M, at) {
+    for (const grp of ['arms', 'legs']) { const s = M[grp]; if (!s) continue; const key = team + grp; let v = this.voices[key];
+      if (v && v.type !== s.motor) { v.stop(at); v = null; }
+      if (!v) { const d = this.spatial ? this.panner(s.x ?? 0, s.y ?? 0.8, s.z ?? 0) : this.master; v = this.voices[key] = makeMotorVoice(graph(this.ctx, d, this.rnd), d, s.motor); v.panner = this.spatial ? d : null; }
+      if (v.panner && typeof s.x === 'number') { const P = v.panner, T = 0.05;
+        if (P.positionX) { P.positionX.setTargetAtTime(s.x, at, T); P.positionY.setTargetAtTime(s.y ?? 0.8, at, T); P.positionZ.setTargetAtTime(s.z ?? 0, at, T); } else P.setPosition(s.x, s.y ?? 0.8, s.z ?? 0); }
+      v.set(s.speed || 0, s.work || 0, at); }
+  }
+  stopMotors(at = this.ctx.currentTime) { for (const k in this.voices) this.voices[k].stop(at + 0.05); this.voices = {}; }
+  stopHums(at) { this.stopMotors(at); }
+}
+async function renderSound(key, p, sampleRate = 48000, force = true) {
+  const S = SOUNDS[key]; if (!S) return null;
+  const oc = new OfflineAudioContext(1, Math.ceil((S.len + 0.3) * sampleRate), sampleRate), out = new SoundOut(oc, { way: 'live' });
+  out.play({ kind: key, seed: 5, ...p }, 0.01, force); return oc.startRendering();
+}
+async function renderRaw(key, p, sampleRate = 48000, { flat = false, shelves = false } = {}) {
+  const S = SOUNDS[key]; if (!S) return null;
+  const oc = new OfflineAudioContext(1, Math.ceil((S.len + 0.3) * sampleRate), sampleRate), o = oc.createGain();
+  if (shelves) { const lo = oc.createBiquadFilter(), hi = oc.createBiquadFilter(); lo.type = 'lowshelf'; hi.type = 'highshelf'; lo.frequency.value = ROOM.low.f; lo.gain.value = ROOM.low.gain; hi.frequency.value = ROOM.high.f; hi.gain.value = ROOM.high.gain; o.connect(lo); lo.connect(hi); hi.connect(oc.destination); }
+  else o.connect(oc.destination);
+  FLAT = flat; try { S.make(graph(oc, o, seeded(p.seed ?? 5)), 0.01, p, true); } finally { FLAT = false; }
+  return oc.startRendering();
+}
+function loudnessOf(buf) {
+  const x = buf.getChannelData(0), n = x.length, y = new Float32Array(n);
+  const stage = (b0, b1, b2, a1, a2, inp, out) => { let x1 = 0, x2 = 0, y1 = 0, y2 = 0; for (let i = 0; i < n; i++) { const v = b0 * inp[i] + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2; x2 = x1; x1 = inp[i]; y2 = y1; y1 = v; out[i] = v; } };
+  const z = new Float32Array(n); stage(1.53512485958697, -2.69169618940638, 1.19839281085285, -1.69065929318241, 0.73248077421585, x, z); stage(1, -2, 1, -1.99004745483398, 0.99007225036621, z, y);
+  const W = Math.round(0.4 * buf.sampleRate), hop = Math.round(0.05 * buf.sampleRate); let best = 0;
+  for (let s = 0; s + W <= Math.max(W, n); s += hop) { let e = 0; for (let i = s; i < Math.min(n, s + W); i++) e += y[i] * y[i]; best = Math.max(best, e / W); }
+  return -0.691 + 10 * Math.log10(Math.max(1e-12, best));
+}
+async function calibrate(keys = Object.keys(PATCH), { room = false, passes = 3 } = {}) {
+  const refOf = k => ({ seed: 5, ...((PATCH[k].loud && PATCH[k].loud.ref) || {}) });
+  if (!room) { const at = async (k) => loudnessOf(await renderRaw(k, refOf(k), 48000, { flat: true, shelves: true }));
+    const ref = await at('blow'), cal = {};
+    for (const k of keys) cal[k] = +(ref - (k === 'blow' ? ref : await at(k))).toFixed(1);
+    return { ref: +ref.toFixed(1), cal }; }
+  const at = async (k) => loudnessOf(await renderSound(k, refOf(k))), cal = {}, miss = {};
+  for (let i = 0; i < passes; i++) { const ref = await at('blow');
+    for (const k of keys) { if (k === 'blow' || !PATCH[k].loud) continue; const want = loudnessDb(k, refOf(k)), got = (await at(k)) - ref; miss[k] = +(want - got).toFixed(1);
+      PATCH[k].loud.cal = cal[k] = +((PATCH[k].loud.cal || 0) + want - got).toFixed(1); }
+    for (const type in MOTOR) { const L = MOTOR[type].loud; if (!L) continue; const want = motorLoudnessDb(type), got = loudnessOf(await renderMotor(type, 1, 1, 1.2)) - ref, k = 'motors ' + type;
+      miss[k] = +(want - got).toFixed(1); L.cal = cal[k] = +((L.cal || 0) + want - got).toFixed(1); } }
+  return { ref: +(await at('blow')).toFixed(1), cal, miss };
+}
+async function renderMotor(type, speed, work, seconds = 1.2, sampleRate = 48000) {
+  const oc = new OfflineAudioContext(1, Math.ceil(seconds * sampleRate), sampleRate), out = new SoundOut(oc, { way: 'live' });
+  const v = makeMotorVoice(graph(oc, out.master, seeded(3)), out.master, type); v.set(0, 0, 0); v.set(speed, work, 0.05); v.set(speed, work, seconds - 0.3); v.set(0, 0, seconds - 0.25); return oc.startRendering();
+}
+
+const ARM_KINDS = new Set(['shoulder', 'elbow', 'hand', 'chest', 'neck']);
+function makeReader() {
+  const blank = () => ({ speed: 0, work: 0, motor: 'strong' });
+  const S = { world: null, lastHit: null, logN: 0, touches: [], feet: {}, piece: { a: {}, b: {} }, dead: { a: false, b: false }, low: { a: false, b: false }, cut: { a: new Set(), b: new Set() },
+              gu: { a: null, b: null }, at: { scrape: { a: 0, b: 0 }, touch: { a: 0, b: 0 }, hot: { a: 0, b: 0 } }, motors: { a: { arms: blank(), legs: blank() }, b: { arms: blank(), legs: blank() } }, n: 0 };
+  const seedOf = () => (S.n = (S.n + 1) | 0, 1000 + S.n * 7919);
+  const kgOf = b => { if (b.mass > 0) return b.mass; let m = 0; for (const q of b.p) m += q.m || 0; return m + (b.motorKg || 0); };
+  const motorOf = (b, kind) => b.motors && b.motors[kind] === 'light' ? 'light' : 'strong';
+  const centre = b => { const c = b.p[b.idx.chest] || b.p[0]; return c ? [c.x, c.z, c.y] : [0, 0, 0.8]; };
+  const PIECE_JOINT = { 'right arm': 'elbow', 'left arm': 'elbow', 'right leg': 'knee', 'left leg': 'knee', head: 'chest' };
+  return { S, read(W, h) {
+    const out = [], t = W.t;
+    if (S.world !== W) {
+      S.world = W; S.lastHit = W.lastHit || null; S.logN = W.log ? W.log.length : 0; S.touches = []; S.feet = {}; S.piece = { a: {}, b: {} }; S.dead = { a: false, b: false }; S.low = { a: false, b: false }; S.cut = { a: new Set(), b: new Set() }; S.gu = { a: null, b: null };
+      S.motors = { a: { arms: blank(), legs: blank() }, b: { arms: blank(), legs: blank() } };
+      const prev = W.onTouch; W.onTouch = (x, y, z, hard, by) => { if (prev) prev(x, y, z, hard, by); S.touches.push({ x, y, z, hard, by }); };
+    }
+    if (W.lastHit && W.lastHit !== S.lastHit) { const H = W.lastHit; S.lastHit = H; const at = H.at || [0, 0.8, 0];
+      out.push({ t, kind: 'blow', k: (H.blow || 0) / BLOW_FULL, piece: pieceOfPart(H.what && H.what.part), limb: H.what && H.what.limb, blocked: !!H.blocked, by: H.by, x: at[0], y: at[1], z: at[2], seed: seedOf() }); }
+    for (const tc of S.touches) { const by = tc.by === 'b' ? 'b' : 'a'; if (t - S.at.touch[by] < 0.13) continue; S.at.touch[by] = t; out.push({ t, kind: 'touch', hard: tc.hard, by, x: tc.x, y: tc.y, z: tc.z, seed: seedOf() }); }
+    S.touches.length = 0;
+    for (const team of ['a', 'b']) {
+      const b = W[team]; if (!b) continue;
+      const kg = kgOf(b), weight = Math.max(0, Math.min(1, kg / KG_FULL));
+      for (const i of (b.idx && b.idx.feet) || []) {
+        const q = b.p[i]; if (!q) continue;
+        const key = team + i, F = S.feet[key] || (S.feet[key] = { planted: !!q.planted, at: 0, peak: q.y, x: q.x, z: q.z });
+        if (!b.dead && q.y < q.r * 1.05 && t - S.at.scrape[team] >= 0.18) { const sp = Math.hypot(q.x - q.px, q.z - q.pz) * 60; if (sp >= 2) { S.at.scrape[team] = t; out.push({ t, kind: 'scrape', speed: sp, weight, by: team, x: q.x, y: q.y, z: q.z, seed: seedOf() }); } }
+        if (!q.planted) F.peak = Math.max(F.peak, q.y);
+        if (q.planted && !F.planted && t - F.at > 0.12 && !b.dead) { const lift = Math.max(0, F.peak - q.r), stride = Math.hypot(q.x - F.x, q.z - F.z); F.at = t; F.x = q.x; F.z = q.z;
+          out.push({ t, kind: 'step', weight, v: Math.max(0.2, Math.sqrt(2 * 9.81 * lift)), lift, stride, by: team, x: q.x, y: q.y, z: q.z, seed: seedOf() }); }
+        if (!q.planted && F.planted) F.peak = q.y;
+        F.planted = !!q.planted;
+      }
+      if (b.hp) { const off = new Set(b.off || []);
+        for (const piece in PIECE_JOINT) { if (b.hp[piece] === undefined) continue; const hp = b.hp[piece], tough = (b.tough && b.tough[piece]) || 1;
+          const state = off.has(piece) ? 'off' : hp <= 0 ? 'broken' : hp < tough * 0.6 ? 'damaged' : null, was = S.piece[team][piece] || null;
+          if (state !== was) { S.piece[team][piece] = state; const [x, z, y] = centre(b), motor = motorOf(b, PIECE_JOINT[piece]);
+            if (state === 'off') out.push({ t: t + 0.25, kind: 'off', motor, weight, by: team, x, y: 0.1, z, seed: seedOf() });
+            else if (state === 'broken') out.push({ t, kind: 'broken', motor, by: team, x, y, z, seed: seedOf() });
+            else if (state === 'damaged') out.push({ t, kind: 'hurt', motor, by: team, x, y, z, seed: seedOf() }); } } }
+      if (b.braces) for (const c of b.braces) { const was = S.cut[team].has(c); if (c.cut && !was && t - S.at.hot[team] >= 0.5) { S.at.hot[team] = t; const q = b.p[c.b]; out.push({ t, kind: 'hot', motor: c.motorType === 'light' ? 'light' : 'strong', by: team, x: q ? q.x : 0, y: q ? q.y : 0.8, z: q ? q.z : 0, seed: seedOf() }); }
+        if (c.cut) S.cut[team].add(c); else S.cut[team].delete(c); }
+      if (b.dead && !S.dead[team]) { S.dead[team] = true; const [x, z, y] = centre(b); out.push({ t, kind: 'death', by: team, x, y, z, seed: seedOf() }); }
+      if (b.energy && b.energy.level < 0.3 && !S.low[team] && b.energy.cap > 0) { S.low[team] = true; const [x, z, y] = centre(b); out.push({ t, kind: 'lowbattery', by: team, x, y, z, seed: seedOf() }); }
+      const ph = b.gu ? b.gu.phase : null; if (S.gu[team] === 'thrown' && ph === 'lie') { const [x, z] = centre(b); out.push({ t, kind: 'slam', weight, by: team, x, y: 0.3, z, seed: seedOf() }); } S.gu[team] = ph;
+      if (b.braces) { const acc = { arms: { n: 0, u: 0, v: 0, light: 0, x: 0, y: 0, z: 0, c: 0 }, legs: { n: 0, u: 0, v: 0, light: 0, x: 0, y: 0, z: 0, c: 0 } };
+        for (const c of b.braces) { if (c.util === undefined) continue; const A = ARM_KINDS.has(c.kind) ? acc.arms : acc.legs; A.n++; A.u += Math.min(1, c.util || 0); if (c.motorType === 'light') A.light++; }
+        for (const q of b.p) { const pc = pieceOfBall(q.i); const A = /arm/.test(pc || '') ? acc.arms : /leg/.test(pc || '') ? acc.legs : null; if (!A) continue; const v = Math.hypot(q.x - q.px, q.y - q.py, q.z - q.pz) / h; if (v > A.v) A.v = v; A.x += q.x; A.y += q.y; A.z += q.z; A.c++; }
+        const a = Math.min(1, h / 0.08), dead = b.dead ? 0 : 1;
+        for (const grp of ['arms', 'legs']) { const A = acc[grp], M = S.motors[team][grp]; M.work += (Math.min(1, A.n ? A.u / A.n : 0) * dead - M.work) * a; M.speed += (Math.min(1, A.v / SPEED_FULL) * dead - M.speed) * a; M.motor = A.n && A.light > A.n / 2 ? 'light' : 'strong'; if (A.c) { M.x = A.x / A.c; M.y = A.y / A.c; M.z = A.z / A.c; } } }
+    }
+    if (W.log) { for (let i = S.logN; i < W.log.length; i++) { const e = W.log[i]; if (!e) continue; const b = W[e.who === 'b' ? 'b' : 'a'], [x, z, y] = b ? centre(b) : [0, 0, 0.8];
+        const kg = b ? kgOf(b) : 60, weight = Math.max(0, Math.min(1, kg / KG_FULL)), motor = b ? motorOf(b, 'shoulder') : 'strong';
+        if (e.what === 'grip') out.push({ t, kind: 'grip', motor, by: e.who, x, y, z, seed: seedOf() });
+        else if (e.what === 'takedown' || e.what === 'throws him down') out.push({ t, kind: 'slam', weight, by: e.who, x, y: 0.3, z, seed: seedOf() });
+        else if (e.what === 'lock') out.push({ t, kind: 'lock', motor, by: e.who, x, y, z, seed: seedOf() });
+        else if (e.what === 'breaks free') out.push({ t, kind: 'free', by: e.who, x, y, z, seed: seedOf() });
+        else if (e.what === 'lets go') out.push({ t, kind: 'letgo', by: e.who, x, y, z, seed: seedOf() });
+        else if (e.what === 'ref') { const which = callOf(e.note); if (which) out.push({ t, kind: 'call', which, by: 'ref', x: 0, y: 1.6, z: 0, seed: seedOf() }); } }
+      S.logN = W.log.length; }
+    return out;
+  } };
+}
+
+function earOf(v = {}) {
+  const yaw = v.yaw ?? 0.72, pitch = v.pitch ?? 0.26, dist = (v.dist ?? 4.4) * (v.zoom ?? 1), tx = v.tx ?? 0, ty = v.ty ?? 0.66, tz = v.tz ?? 0;
+  const ex = tx + dist * Math.cos(pitch) * Math.cos(yaw), ey = ty + dist * Math.sin(pitch), ez = tz + dist * Math.cos(pitch) * Math.sin(yaw);
+  let fx = tx - ex, fy = ty - ey, fz = tz - ez; const fl = Math.hypot(fx, fy, fz) || 1; fx /= fl; fy /= fl; fz /= fl;
+  let rx = -fz, rz = fx; const rl = Math.hypot(rx, rz) || 1; rx /= rl; rz /= rl;
+  return { ex, ey, ez, fx, fy, fz, rx, ry: 0, rz, ux: -rz * fy, uy: rz * fx - rx * fz, uz: rx * fy };
+}
+async function bench({ way, fight, rate = 1, seconds = null, sampleRate = 48000, workletUrl = null, window = 0.5, spatial = null }) {
+  const secs = seconds || Math.min(60, fight.seconds || 60), perf = typeof performance !== 'undefined' ? performance : Date;
+  const ctx = new OfflineAudioContext(2, Math.ceil(secs * sampleRate), sampleRate);
+  const out = new SoundOut(ctx, { way, pan: (x) => Math.max(-1, Math.min(1, x * 0.3)), spatial });
+  if (spatial) out.listen(earOf(), 0);
+  let made = null; if (way === 'premade' || way === 'mixed') made = await out.prepare();
+  if (way === 'worklet') await out.useWorklet(workletUrl);
+  const evs = []; for (let r = 0; r < rate; r++) for (const e of fight.events) { const t = e.t + r * 0.0137; if (t < secs - 0.1) evs.push({ ...e, seed: (e.seed || 1) + r * 101, t }); }
+  evs.sort((a, b) => a.t - b.t); const mots = (fight.motors || []).filter(s => s.t < secs);
+  STATS.nodes = 0; let n = 0, schedMs = 0, i = 0, j = 0;
+  const feed = upTo => { const t0 = perf.now();
+    while (i < evs.length && evs[i].t < upTo) { out.play(evs[i], evs[i].t); i++; n++; }
+    while (j < mots.length && mots[j].t < upTo) { for (const team of ['a', 'b']) if (mots[j][team]) out.motors(team, mots[j][team], mots[j].t); j++; }
+    schedMs += perf.now() - t0; };
+  feed(window);
+  for (let t = window; t < secs - window / 2; t += window) { const at = t; ctx.suspend(at).then(() => { feed(at + window); ctx.resume(); }); }
+  const t2 = perf.now(); const buf = await ctx.startRendering(); const renderMs = perf.now() - t2 - schedMs, nodes = STATS.nodes;
+  let peak = 0; for (let c = 0; c < buf.numberOfChannels; c++) { const d = buf.getChannelData(c); for (let i = 0; i < d.length; i += 4) { const a = Math.abs(d[i]); if (a > peak) peak = a; } }
+  return { way, rate, seconds: secs, events: n, schedMs: +schedMs.toFixed(2), perEventUs: n ? +(schedMs * 1000 / n).toFixed(1) : 0, nodes, renderMs: +renderMs.toFixed(1),
+           load: +(renderMs / (secs * 1000)).toFixed(4), peak: +peak.toFixed(3), madeMs: made ? +made.ms.toFixed(1) : null, bytes: made ? made.bytes : 0, lateWorklet: out.lateWorklet };
+}
+async function proveEach(sampleRate = 48000) {
+  const res = {};
+  for (const key in SOUNDS) { const S = SOUNDS[key]; res[key] = [];
+    for (const p of S.variants()) { const oc = new OfflineAudioContext(1, Math.ceil((S.len + 0.3) * sampleRate), sampleRate), o = oc.createGain(); o.connect(oc.destination);
+      S.make(graph(oc, o, seeded(p.seed)), 0.01, p, true); const b = await oc.startRendering(), d = b.getChannelData(0); let peak = 0, last = 0;
+      for (let i = 0; i < d.length; i++) { const a = Math.abs(d[i]); if (a > peak) peak = a; if (a > 0.01) last = i; }
+      res[key].push({ p, peak: +peak.toFixed(3), audible: +(last / sampleRate).toFixed(2), on: S.on }); } }
+  for (const type in MOTOR) for (const [speed, work] of [[0, 0], [0.5, 0.5], [0.05, 0.9]]) { const b = await renderMotor(type, speed, work, 1.0, sampleRate), d = b.getChannelData(0); let peak = 0; for (let i = Math.floor(d.length * 0.3); i < d.length * 0.6; i++) peak = Math.max(peak, Math.abs(d[i]));
+    (res['motors ' + type] = res['motors ' + type] || []).push({ p: { speed, work }, peak: +peak.toFixed(3), audible: peak > 0.01 ? 1 : 0, on: true }); }
+  return res;
+}
+
+return { MASTER, BLOW_FULL, HEAVY, KG_FULL, SPEED_FULL, PIECES, SAVE_KEY, ASIDE_KEY, PATCH, MOTOR, ROOM, asideOf, loadAside, setPatches, resetPatches, patchesSaved, savedCount, seeded, STATS, BLOW_FULL_J, ENERGY_WORDS, energyOf, loudnessDb, INPUT_WORDS, playPatch, SOUNDS, pieceOfPart, motorLoudnessDb, makeMotorVoice, SMALL, SPACE, SoundOut, renderSound, renderRaw, loudnessOf, calibrate, renderMotor, makeReader, earOf, bench, proveEach };
+})();
+
+const __m_app_soundgame = (() => {
+const { SoundOut, makeReader, savedCount, MOTOR, earOf } = __m_app_sound;
+const { mountSoundPop } = __m_app_soundpop;
+
+const MUTE_KEY = 'umd-sound-muted';
+const SPACE_KEY = 'umd-sound-space';
+const SPACES = { hrtf: '3-D (headphones)', stereo: 'stereo (speakers)', mono: 'mono (both ears the same)' };
+let space = 'hrtf';
+try { const v0 = localStorage.getItem(SPACE_KEY), v = v0 === 'off' ? 'mono' : v0; if (SPACES[v]) space = v; } catch (e) {   }
+const spatialOf = () => space === 'mono' ? null : space;
+const VOLUME_KEY = 'umd-sound-volume';
+const VOLUME_MAX = 1.5;
+const WAY_NAMES = { mixed: 'mixed (the pick)', live: 'all live', premade: 'all replayed' };
+let startedAt = 0;
+let ctx = null, reader = null, way = 'mixed', muted = false, volume = 1, n = 0, counts = {}, recent = [], lastTick = 0, idled = true, view = null;
+const listeners = new Set(), onChange = () => { for (const f of listeners) f(); };
+const outs = {};
+let out = null;
+try { muted = localStorage.getItem(MUTE_KEY) === '1'; } catch (e) {   }
+try { const v = localStorage.getItem(VOLUME_KEY); if (v !== null && +v >= 0 && +v <= VOLUME_MAX) volume = +v; } catch (e) {   }
+const hasAudio = typeof window !== 'undefined' && !!(window.AudioContext || window.webkitAudioContext);
+function soundView(v) { view = v; }
+const describe = e => e.kind === 'blow' ? `blow ${(e.k || 0).toFixed(2)} on the ${e.piece} by a ${e.limb || 'part'}${e.blocked ? ', blocked' : ''}`
+  : e.kind === 'step' ? `step, ${(e.v || 0).toFixed(1)} m/s, ${Math.round((e.weight || 0) * 120)} kg` : e.kind === 'scrape' ? `scrape ${(e.speed || 0).toFixed(1)} m/s` : e.kind === 'touch' ? `touch ${(e.hard || 0).toFixed(2)}`
+  : e.kind === 'call' ? `call: ${e.which}` : e.kind === 'bell' ? `buzzer: ${e.which}` : `${e.kind}${e.motor ? ' (' + (e.motor === 'light' ? 'electric' : 'hydraulic') + ')' : ''}`;
+function makeOut(w) {
+  const o = new SoundOut(ctx, { way: w, pan: null, spatial: spatialOf() }); o.volume = volume; o.applyRoom(undefined, true);
+  if (w === 'premade' || w === 'mixed') return o.prepare().then(() => { outs[w] = o; onChange(); return o; });
+  outs[w] = o; return o;
+}
+function wayOut(w) { if (!ctx) return null; if (!outs[w] && !outs['_' + w]) { outs['_' + w] = true; makeOut(w); } return outs[w] || null; }
+const current = () => outs[way] || outs.live || null;
+function silence() { const o = out || current(); if (!o || !reader || !ctx) return; for (const team of ['a', 'b']) { const Mo = reader.S.motors[team]; o.motors(team, { arms: { speed: 0, work: 0, motor: Mo.arms.motor }, legs: { speed: 0, work: 0, motor: Mo.legs.motor } }, ctx.currentTime); } }
+function start() {
+  if (!hasAudio) return;
+  if (!ctx || ctx.state !== 'running') startedAt = performance.now();
+  if (!ctx) { ctx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'interactive' }); makeOut('live'); wayOut(way); }
+  if (ctx.state !== 'running') ctx.resume().then(() => onChange()).catch(() => {});
+  onChange();
+}
+const SOUND = {
+  ways: WAY_NAMES,
+  tick(W, h) {
+    if (!reader) reader = makeReader();
+    const evs = reader.read(W, h); lastTick = performance.now(); idled = false;
+    if (!ctx || ctx.state !== 'running' || muted) return;
+    const o = current(); if (!o) return;
+    if (out !== o) { if (out) out.stopMotors(); out = o; }
+    if (out.spatial) out.listen(earOf(view || {}), ctx.currentTime);
+    const at = ctx.currentTime + 0.02;
+    for (const e of evs) { out.play(e, at + Math.max(0, e.t - W.t)); counts[e.kind] = (counts[e.kind] || 0) + 1; recent.unshift({ t: W.t, text: describe(e) }); if (recent.length > 8) recent.length = 8; }
+    if ((n++ % 3) === 0) for (const team of ['a', 'b']) if (W[team]) out.motors(team, reader.S.motors[team], at);
+  },
+  note(what) {
+    if (what === 'start' || what === 'round') { counts = {}; recent = []; if (out) out.stopMotors(); }
+    const o = current(); if (!o || !ctx || ctx.state !== 'running' || muted) return;
+    const which = what === 'start' || what === 'round' ? 'start' : 'end';
+    o.play({ kind: 'bell', which, seed: which === 'end' ? 5 : 6 }, ctx.currentTime + (what === 'over' ? 1.2 : 0.05));
+    recent.unshift({ t: 0, text: describe({ kind: 'bell', which }) }); if (recent.length > 8) recent.length = 8;
+  },
+  muted: () => muted,
+  spaces: SPACES, space: () => space,
+  setSpace(m) { if (!SPACES[m]) return; space = m; try { localStorage.setItem(SPACE_KEY, m); } catch (e) {   } for (const k in outs) if (outs[k] instanceof SoundOut) { outs[k].stopMotors(); outs[k].spatial = spatialOf(); } onChange(); },
+  setMuted(b) { muted = !!b; try { if (muted) localStorage.setItem(MUTE_KEY, '1'); else localStorage.removeItem(MUTE_KEY); } catch (e) {   } if (muted) silence(); SOUND.paintMute(); onChange(); },
+  paintMute() { if (typeof document === 'undefined') return; const b = document.getElementById('muteBtn'); if (!b) return; b.setAttribute('aria-pressed', String(muted)); b.title = muted ? 'the sound is off: click for sound' : 'the sound is on: click to mute'; b.setAttribute('aria-label', b.title); },
+  ctx: () => ctx, resume: start, startedAt: () => startedAt,
+  state: () => !ctx ? 'off' : ctx.state === 'running' ? 'running' : ctx.state === 'suspended' ? 'suspended' : 'off',
+  way: () => way, setWay(w) { if (!WAY_NAMES[w]) return; if (out) out.stopMotors(); out = null; way = w; wayOut(w); onChange(); },
+  volume: () => volume, setVolume(v) { volume = Math.max(0, Math.min(VOLUME_MAX, +v || 0)); try { localStorage.setItem(VOLUME_KEY, String(volume)); } catch (e) {   }
+    for (const k in outs) if (outs[k] instanceof SoundOut) { outs[k].volume = volume; outs[k].applyRoom(); } onChange(); },
+  sample() {
+    start(); const o = current(); if (!o || !ctx || muted) return false;
+    const v = view || {}, E = earOf(v), tx = v.tx ?? 0, tz = v.tz ?? 0, at = ctx.currentTime + 0.08;
+    if (o.spatial) o.listen(E, ctx.currentTime);
+    [[-1, 0, 31], [1, 0.55, 32]].forEach(([side, dt, seed]) => o.play({ kind: 'blow', k: 0.6, piece: 'torso', limb: 'hand', x: tx + E.rx * 1.5 * side, y: 0.9, z: tz + E.rz * 1.5 * side, seed }, at + dt, true));
+    return true;
+  },
+  latency: () => ctx ? Math.round((ctx.baseLatency + (ctx.outputLatency || 0)) * 1000) : 0,
+  counts: () => counts, recent: () => recent, motors: () => reader && reader.S.world ? reader.S.motors : null,
+  fire(kind) { start(); const o = current(); if (o && ctx) o.play({ kind, k: 0.8, piece: 'torso', limb: 'hand', motor: 'strong', weight: 0.6, hard: 0.8, speed: 3, v: 1.5, which: kind === 'bell' ? 'start' : 'action', seed: Math.floor(Math.random() * 1e9) }, ctx.currentTime + 0.03, true); },
+  tap: () => { const o = current(); return o ? o.tap : null; }, lastTick: () => lastTick, labChanged: () => savedCount(), gate: () => MOTOR.light.gate,
+  onChange(fn) { if (fn) listeners.add(fn); return () => listeners.delete(fn); },
+  debug: () => ({ state: SOUND.state(), idled, way, space, using: out ? out.way : null, muted, counts, ready: Object.keys(outs).filter(k => outs[k] instanceof SoundOut), lastTickAgo: Math.round(performance.now() - lastTick) }),
+};
+if (hasAudio && typeof document !== 'undefined') {
+  for (const ev of ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown']) window.addEventListener(ev, start, { capture: true, passive: true });
+  setInterval(() => { if (!idled && performance.now() - lastTick > 150) { idled = true; silence(); } }, 50);
+  const wire = () => { mountSoundPop(SOUND); const b = document.getElementById('muteBtn'); if (!b) return; b.addEventListener('click', () => SOUND.setMuted(!muted)); SOUND.paintMute(); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire); else wire();
+}
+
+return { MUTE_KEY, SPACE_KEY, VOLUME_KEY, soundView, SOUND };
 })();
 
 const __m_app_viz = (() => {
@@ -15310,6 +16832,7 @@ const { ENERGY_LOOK, lensColourFor, lensFor, drawEnergy, setRegen } = __m_app_en
 setRegen(() => ENERGY.regen);
 const { UNIVERSAL_SEES, UNIVERSAL_NIN, ACTIONS, seesWith } = __m_app_sim_decide;
 const { TEST } = __m_app_testmode;
+const { SOUND } = __m_app_soundgame;
 const { confHud, CONF_LOOK } = __m_app_confui;
 
 const $ = id => document.getElementById(id);
@@ -15359,6 +16882,7 @@ function nextRound(o = {}) {
   W.a.assistScale = brainA.assist;
   if (brainA.styled) W.b.assistScale = ASSIST;
   roundStart = W.t; belled = false; ended = false; running = true; markRound();
+  SOUND.note('round');
   resetSince(null);
   fxReset({ keepMarks: true }); shake = 0; flashAt = null;
   tape = { n: TAPE.length + 1, frames: [] }; TAPE.push(tape); tapeSkip = 0;
@@ -15543,6 +17067,7 @@ function startFight(build) {
   litReset();
   markRound();
   W.onTouch = (x, y, z, hard, by) => touchFX(x, y, z, hard, by);
+  SOUND.note('start');
   a.assistScale = brainA.assist;
   if (brainA.styled) b.assistScale = ASSIST;
   pol = fighters();
@@ -15735,6 +17260,7 @@ function stepOnce(h) {
     if (TEST && TEST.saveTick) TEST.saveTick(W);
     step(W, h, pol);
     noteStall();
+    SOUND.tick(W, h);
     if (W.hits > seenHits) {
       seenHits = W.hits;
       const hh = W.lastHit;
@@ -15781,9 +17307,10 @@ function stepOnce(h) {
     sampleUse(W.b, 'b');
     tapeFrame();
     if (tickHook) tickHook(W, h);
-    if (W.over && !ended) { ended = true; if (endHook) endHook(W, 'death'); }
+    if (W.over && !ended) { ended = true; SOUND.note('over'); if (endHook) endHook(W, 'death'); }
     if (!W.over && !belled && roundLen && W.t - roundStart >= roundLen) {
       belled = true; running = false;
+      SOUND.note('bell');
       if (restBetweenRounds(W)) { roundStart = W.t; belled = false; running = true; onModeChange(); }
       else if (endHook) endHook(W, 'bell');
     }
@@ -16082,6 +17609,8 @@ const { FXLOOK } = __m_app_fx;
 const { MOTOR_JOINTS } = __m_engine_motors;
 const MOTOR_KINDS_AT = new Set(MOTOR_JOINTS);
 const { signatureSkeleton, signaturePlaying } = __m_app_signature;
+const { soundView } = __m_app_soundgame;
+const { pointAt, localAt, rectOf, fingerScale, phone } = __m_app_fit;
 
 const accent = () => getComputedStyle(document.documentElement).getPropertyValue('--a').trim();
 
@@ -16095,15 +17624,26 @@ const VIEW = {
   buildDist: 3.2, fightDist: 4.4,
   tx: 0, tz: 0, ty: 0.66,
   follow: true, zoom: 1,
+  shift: 0, shiftWant: 0, shiftY: 0, shiftYWant: 0,
+  userZoom: false,
 };
 const view = VIEW;
+function setStageShift(px, py) { VIEW.shiftWant = px || 0; VIEW.shiftYWant = py || 0; }
+const BUILD_DIST = VIEW.buildDist;
+function setBuildFit(d) {
+  const nd = d > 0 ? clamp(d, 1.9, 13) : BUILD_DIST;
+  if (nd === VIEW.buildDist) return;
+  VIEW.buildDist = nd;
+  if (!isFighting()) VIEW.want = nd;
+}
+soundView(VIEW);
 const FX_BITS = { bloom: 1, dof: 2, fringe: 4, grain: 8, vignette: 16, grade: 32, crush: 64, depthview: 128, aa: 256 };
 const FXQ = null;
 const STUDIO_FX = FXQ == null ? 127 | 256 : FXQ.split(',').reduce((m, k) => m | (FX_BITS[k] || 0), 0);
 const LAMPS_Q = null;
 const LAMPS = LAMPS_Q == null ? undefined : +LAMPS_Q;
 function recentre() {
-  VIEW.yaw = 0.72; VIEW.pitch = 0.26; VIEW.zoom = 1; VIEW.follow = true;
+  VIEW.yaw = 0.72; VIEW.pitch = 0.26; VIEW.zoom = 1; VIEW.follow = true; VIEW.userZoom = false;
   VIEW.want = isFighting() ? VIEW.fightDist : VIEW.buildDist;
 }
 function lookFrom(name) {
@@ -16126,7 +17666,7 @@ function setBoneTuner(t) { tuner = t; }
 let GRABS = [];
 let hotBone = null;
 function grabAt(x, y) {
-  let best = null, bd = 18 * 18;
+  let best = null, bd = (18 * fingerScale()) ** 2;
   for (const g of GRABS) {
     const d = (x - g.sx) * (x - g.sx) + (y - g.sy) * (y - g.sy);
     if (d < bd) { bd = d; best = g; }
@@ -16141,18 +17681,53 @@ const HIT_PX = 14;
 let picker = null, HOUS = [], motorHot = null;
 function setMotorPicker(p) { picker = p; }
 const motorHousings = () => HOUS.map(h => ({ kind: h.kind, x: h.x, y: h.y, rpx: h.rpx }));
+let TAPE = null, MEASURE = null;
+function tapeBox(cam, items, from) {
+  MEASURE = MEASURE || document.createElement('canvas').getContext('2d');
+  const P = { x: 0, y: 0, z: 0, s: 1, ok: true };
+  let l = Infinity, r = -Infinity, t = Infinity, b = -Infinity;
+  for (let i = from; i < items.length; i++) {
+    const it = items[i]; if (it.t !== 'text') continue;
+    project(cam, it.a[0], it.a[1], it.a[2], P); if (!P.ok) continue;
+    MEASURE.font = it.font || '10px monospace';
+    const w = MEASURE.measureText(it.text).width, y = P.y + (it.dy || 0);
+    const x0 = it.align === 'right' ? P.x - w : it.align === 'left' ? P.x : P.x - w / 2;
+    l = Math.min(l, x0 - 3); r = Math.max(r, x0 + w + 3); t = Math.min(t, y - 11); b = Math.max(b, y + 5);
+  }
+  return l < r ? { l, r, t, b } : null;
+}
+const tapeOutline = () => TAPE;
 function motorAt(x, y) {
   let best = null, bd = Infinity;
-  for (const h of HOUS) { const d = Math.hypot(h.x - x, h.y - y); if (d <= Math.max(h.rpx, HIT_PX) && d < bd) { bd = d; best = h; } }
+  const hit = HIT_PX * fingerScale();
+  for (const h of HOUS) { const d = Math.hypot(h.x - x, h.y - y); if (d <= Math.max(h.rpx, hit) && d < bd) { bd = d; best = h; } }
   return best;
 }
 function setStageOverlay(fn) { overlay = fn; }
 const buildView = () => LAST;
 
+const zoomBy = k => {
+  if (isFighting()) VIEW.zoom = clamp(VIEW.zoom * k, 0.55, 2.2);
+  else { VIEW.want = clamp(VIEW.want * k, 1.9, 13); VIEW.userZoom = true; }
+};
+let HELD = 0;
+const stageHeld = () => HELD > 0;
 function mountStage(cv) {
-  let drag = null;
-  const local = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  let drag = null, pinch = null;
+  const fingers = new Map();
+  const local = e => localAt(cv, e);
+  const spread = () => { const [a, b] = [...fingers.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
   cv.addEventListener('pointerdown', e => {
+    fingers.set(e.pointerId, pointAt(e)); HELD = fingers.size;
+    if (fingers.size === 2) {
+      if (drag && drag.tool) tool.up();
+      drag = null; hotBone = null;
+      pinch = { d0: spread(), want0: VIEW.want, zoom0: VIEW.zoom };
+      stopDrift();
+      try { cv.setPointerCapture(e.pointerId); } catch (err) {   }
+      return;
+    }
+    if (fingers.size > 2) return;
     const [lx, ly] = local(e);
     const g = tuner && !isFighting() ? grabAt(lx, ly) : null;
     if (!g && tool && !isFighting() && LAST && tool.down(lx, ly)) {
@@ -16163,12 +17738,22 @@ function mountStage(cv) {
       drag = { knob: g, x: lx, y: ly, len0, span0: g.span, n0: tuner.packs ? tuner.packs() : 0, moved: false };
       hotBone = (g.bones || [])[0] || g.id;
     } else {
-      drag = { x: e.clientX, y: e.clientY, yaw: VIEW.yaw, pitch: VIEW.pitch, lx, ly, turned: false };
+      const p = pointAt(e);
+      drag = { x: p.x, y: p.y, yaw: VIEW.yaw, pitch: VIEW.pitch, lx, ly, turned: false };
     }
     try { cv.setPointerCapture(e.pointerId); } catch (err) {   }
   });
   cv.addEventListener('pointermove', e => {
+    if (fingers.has(e.pointerId)) fingers.set(e.pointerId, pointAt(e));
+    if (pinch) {
+      if (fingers.size < 2) return;
+      const k = pinch.d0 / spread();
+      if (isFighting()) VIEW.zoom = clamp(pinch.zoom0 * k, 0.55, 2.2);
+      else { VIEW.want = clamp(pinch.want0 * k, 1.9, 13); VIEW.userZoom = true; }
+      return;
+    }
     if (!drag) {
+      if (e.pointerType === 'touch') return;
       const [lx, ly] = local(e);
       const over = tuner && !isFighting() && grabAt(lx, ly);
       const mh = !over && picker && !isFighting() && LAST ? motorAt(lx, ly) : null;
@@ -16190,13 +17775,21 @@ function mountStage(cv) {
       if (tuner) for (const b of g.bones || []) tuner.set(b, drag.len0[b] * ratio);
       return;
     }
-    if (!drag.turned && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 5) return;
+    const p = pointAt(e);
+    if (!drag.turned && Math.hypot(p.x - drag.x, p.y - drag.y) < (e.pointerType === 'touch' ? 9 : 5)) return;
     drag.turned = true;
     stopDrift();
-    VIEW.yaw = drag.yaw + (e.clientX - drag.x) * 0.006;
-    VIEW.pitch = clamp(drag.pitch + (e.clientY - drag.y) * 0.004, -0.06, 1.05);
+    VIEW.yaw = drag.yaw + (p.x - drag.x) * 0.006;
+    VIEW.pitch = clamp(drag.pitch + (p.y - drag.y) * 0.004, -0.06, 1.05);
   });
   for (const ev of ['pointerup', 'pointercancel']) cv.addEventListener(ev, e => {
+    fingers.delete(e.pointerId); HELD = fingers.size;
+    if (pinch) {
+      pinch = null;
+      const [left] = [...fingers.values()];
+      drag = left ? { x: left.x, y: left.y, yaw: VIEW.yaw, pitch: VIEW.pitch, lx: 0, ly: 0, turned: true } : null;
+      return;
+    }
     if (drag && drag.tool) { tool.up(); if (!drag.moved && e.type === 'pointerup' && picker && !isFighting() && LAST) { const mh = motorAt(drag.x, drag.y); if (mh) picker.pick(mh.kind, mh); } }
     else if (drag && drag.knob && !drag.moved && e.type === 'pointerup' && !isFighting() && LAST && picker) {
       const mh = motorAt(drag.x, drag.y); if (mh) picker.pick(mh.kind, mh);
@@ -16210,8 +17803,7 @@ function mountStage(cv) {
   });
   cv.addEventListener('wheel', e => {
     e.preventDefault();
-    if (isFighting()) VIEW.zoom = clamp(VIEW.zoom * (1 + e.deltaY * 0.0012), 0.55, 2.2);
-    else VIEW.want = clamp(VIEW.want * (1 + e.deltaY * 0.0012), 1.9, 13);
+    zoomBy(1 + e.deltaY * 0.0012);
   }, { passive: false });
 }
 
@@ -16257,9 +17849,14 @@ function draw(ctx, w, h, t, T) {
   const sh = fighting ? shakeOf() : 0;
   const jx = sh ? (Math.random() - 0.5) * sh : 0, jy = sh ? (Math.random() - 0.5) * sh : 0;
 
+  VIEW.shift += (VIEW.shiftWant - VIEW.shift) * 0.12;
+  if (Math.abs(VIEW.shift - VIEW.shiftWant) < 0.5) VIEW.shift = VIEW.shiftWant;
+  VIEW.shiftY += (VIEW.shiftYWant - VIEW.shiftY) * 0.12;
+  if (Math.abs(VIEW.shiftY - VIEW.shiftYWant) < 0.5) VIEW.shiftY = VIEW.shiftYWant;
   const cam = camera(w, h, {
     yaw: VIEW.yaw, pitch: VIEW.pitch, dist,
     ty: VIEW.ty + jy, tx: VIEW.tx + jx, tz: VIEW.tz + jx * 0.6, fov: 0.66,
+    ...(VIEW.shift ? { shiftX: VIEW.shift } : {}), ...(VIEW.shiftY ? { shiftY: VIEW.shiftY } : {}),
   });
 
   const sc = scene();
@@ -16345,8 +17942,9 @@ function draw(ctx, w, h, t, T) {
         }
       }
       if (tape) {
-        const grab = [];
-        drawDims(sc, T, cam, tape, { accent: skin, grab, hot: hotBone });
+        const grab = [], n0 = sc.items.length, short = phone();
+        drawDims(sc, T, cam, tape, { accent: skin, grab, hot: hotBone, short });
+        TAPE = short ? tapeBox(cam, sc.items, n0) : null;
         const P = { x: 0, y: 0, z: 0, s: 1, ok: true };
         GRABS = grab.filter(g => {
           project(cam, g.world[0], g.world[1], g.world[2], P);
@@ -16363,10 +17961,11 @@ function draw(ctx, w, h, t, T) {
   drawScene(ctx, cam, sc);
   if (!fighting && overlay && LAST) overlay(ctx, LAST, T);
   HOUS = !fighting && LAST ? housings.filter(h => h.x !== undefined) : [];
-  if (picker) picker.frame(HOUS, ctx.canvas.getBoundingClientRect());
+  if (fighting) TAPE = null;
+  if (picker) picker.frame(HOUS, rectOf(ctx.canvas));
 }
 
-return { view, recentre, lookFrom, setShowCage, getShowCage, setBuildSource, setBoneTuner, dimGrabs, setStageTool, setMotorPicker, motorHousings, setStageOverlay, buildView, mountStage, draw };
+return { view, setStageShift, setBuildFit, recentre, lookFrom, setShowCage, getShowCage, setBuildSource, setBoneTuner, dimGrabs, setStageTool, setMotorPicker, motorHousings, tapeOutline, setStageOverlay, buildView, stageHeld, mountStage, draw };
 })();
 
 const __m_app_clevis = (() => {
@@ -16379,6 +17978,7 @@ const { lineOf, MAKER, creditHTML } = __m_app_firms;
 const { still, drop } = __m_app_canvas;
 const { registerHelp } = __m_app_help;
 const { setStageTool, setStageOverlay, buildView } = __m_app_stage;
+const { pointAt, localAt, fingerScale } = __m_app_fit;
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -16545,6 +18145,8 @@ function overlay(ctx, V, T) {
   const D = !dragging && dots();
   if (D) drawDots(ctx, D, T, V);
 }
+let WORDS = { l: 0, r: 0 };
+function setWordsRight(r, l = 0) { WORDS = { l: r > 0 ? l : 0, r: r > 0 ? r : 0 }; }
 function drawDots(ctx, D, T, V) {
   const toward = (hex, t) => { const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)); return '#' + c.map(v => Math.round(v + (255 - v) * t).toString(16).padStart(2, '0')).join(''); };
   const LEN = toward(T.warn || '#E8B92E', 0.45), THK = toward(T.good || '#48BE83', 0.45);
@@ -16573,7 +18175,9 @@ function drawDots(ctx, D, T, V) {
     ctx.font = `600 10px ${T.mono}`; const w1 = ctx.measureText(figure).width;
     ctx.font = `9px ${T.mono}`; const w2 = ctx.measureText(caption).width, w = Math.max(w1, w2);
     let x = p[0] + gap, y = p[1] - 1;
-    if (x + w > V.w - 6) x = p[0] - gap - w;
+    const right = (WORDS.r || V.w) - 6, left = WORDS.l + 6;
+    if (x + w > right) x = p[0] - gap - w;
+    if (WORDS.r && x < left) x = Math.max(left, right - w);
     for (const o of words) if (x < o.x + o.w && x + w > o.x && y - 12 < o.y + 14 && y + 14 > o.y - 12) y = o.y + 28;
     words.push({ x, y, w });
     plate(figure, x, y, `600 10px ${T.mono}`); ctx.globalAlpha = 1; ctx.fillStyle = col; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText(figure, x, y);
@@ -16583,8 +18187,8 @@ function drawDots(ctx, D, T, V) {
   ctx.beginPath(); ctx.moveTo(D.mid[0], D.mid[1]); ctx.lineTo(D.thick[0], D.thick[1]); ctx.stroke(); ctx.setLineDash([]);
   guide(D.len, D.dir, LEN); guide(D.thick, D.n, THK);
   knob(D.len, LEN); knob(D.thick, THK);
-  say(D.len, D.dir, `×${(c.len ?? 1).toFixed(2)} long`, 'length · drag the dot', LEN);
-  say(D.thick, D.n, `×${(c.thick ?? 1).toFixed(2)} thick`, 'thickness · drag the dot', THK);
+  say(D.len, D.dir, `×${(c.len ?? 1).toFixed(2)} long`, WORDS.r ? 'drag the dot' : 'length · drag the dot', LEN);
+  say(D.thick, D.n, `×${(c.thick ?? 1).toFixed(2)} thick`, WORDS.r ? 'drag the dot' : 'thickness · drag the dot', THK);
   ctx.restore();
 }
 const isShown = () => host && host.offsetParent !== null;
@@ -16592,7 +18196,7 @@ const TOOL = {
   down(x, y) {
     if (!isShown()) return false;
     const D = dots(); if (!D) return false;
-    for (const [id, p] of [['len', D.len], ['thick', D.thick]]) if (Math.hypot(x - p[0], y - p[1]) < 14) { dotDrag = { id }; return true; }
+    for (const [id, p] of [['len', D.len], ['thick', D.thick]]) if (Math.hypot(x - p[0], y - p[1]) < 14 * fingerScale()) { dotDrag = { id }; return true; }
     return false;
   },
   move(x, y) {
@@ -16615,14 +18219,15 @@ function ghost(k, e) {
   const g = document.createElement('div'); g.id = 'clGhost'; g.className = 'cl-ghost';
   g.innerHTML = `<b>${esc(PARTS[k].label)}</b><em>drop it on your machine</em>`; document.body.appendChild(g); moveGhost(e);
 }
-function moveGhost(e) { const g = document.getElementById('clGhost'); if (g) { g.style.left = e.clientX + 14 + 'px'; g.style.top = e.clientY + 10 + 'px'; } }
+function moveGhost(e) { const g = document.getElementById('clGhost'); if (!g) return; const p = pointAt(e), f = e.pointerType === 'touch';
+  g.style.left = p.x + (f ? -40 : 14) + 'px'; g.style.top = p.y + (f ? -64 : 10) + 'px'; }
 const stageUnder = e => { const el = document.elementFromPoint(e.clientX, e.clientY); return el && el.id === 'stage' ? el : null; };
 function onDragMove(e) {
   if (!dragging) return;
-  if (!dragging.moved) { if (Math.hypot(e.clientX - dragging.x0, e.clientY - dragging.y0) < 6) return; dragging.moved = true; ghost(dragging.part, e); }
+  if (!dragging.moved) { const p = pointAt(e); if (Math.hypot(p.x - dragging.x0, p.y - dragging.y0) < 6) return; dragging.moved = true; ghost(dragging.part, e); }
   moveGhost(e);
   const st = stageUnder(e);
-  dragging.over = st ? (() => { const r = st.getBoundingClientRect(); return socketAt(e.clientX - r.left, e.clientY - r.top); })() : null;
+  dragging.over = st ? socketAt(...localAt(st, e)) : null;
   const g = document.getElementById('clGhost');
   if (g) g.querySelector('em').textContent = dragging.over
     ? 'drop on the ' + slotLabel(dragging.over) + (whole() ? ' (all the ' + groupOf(dragging.over).label + ')' : '')
@@ -16705,7 +18310,8 @@ function mountClevis(el, ctx) {
   host.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('[data-name]')) { e.preventDefault(); keepDraft(); } });
   host.addEventListener('pointerdown', e => {
     const t = e.target.closest('.cl-part'); if (!t) return;
-    dragging = { part: t.dataset.part, x0: e.clientX, y0: e.clientY, moved: false, over: null };
+    const p = pointAt(e);
+    dragging = { part: t.dataset.part, x0: p.x, y0: p.y, moved: false, over: null };
   });
   document.addEventListener('pointermove', onDragMove);
   document.addEventListener('pointerup', onDragEnd);
@@ -16728,7 +18334,7 @@ function mountClevis(el, ctx) {
 }
 const clevisProbe = { socketAt, dots, shapes: () => { const V = buildView(); return V ? shapesOn(V) : null; } };
 
-return { rigName, paintClevis, mountClevis, clevisProbe };
+return { rigName, paintClevis, setWordsRight, mountClevis, clevisProbe };
 })();
 
 const __m_app_build = (() => {
@@ -17786,7 +19392,7 @@ const coach = {
       <div class="cpfoot">
         <button class="go" id="cpAgain">Rematch</button>
         <button class="quiet" id="cpBuild">Back to build</button>
-        <span class="said">drag the cage to look around · wheel to zoom</span>
+        <span class="said"><span data-for="mouse">drag the cage to look around · wheel to zoom</span><span data-for="touch">drag the cage to look around · pinch to zoom</span></span>
       </div>`;
     wireRewatch(pane);
     $('cpAgain').addEventListener('click', () => startFight(currentBuild()));
@@ -17880,7 +19486,7 @@ const coach = {
       return;
     }
     if (P === 'over') { el.innerHTML = `<span class="lbl">it is over — REMATCH for a new opponent</span>`; return; }
-    el.innerHTML = SHOUTS.map(o => `<button data-shout="${o[0]}" title="${esc(o[3])} (key ${o[2]})"><i>${o[2]}</i><span class="ic">${ICON[o[0]]}</span>${esc(o[1])}<small class="clk"></small></button>`).join('') +
+    el.innerHTML = SHOUTS.map(o => `<button data-shout="${o[0]}" title="${esc(o[3])} (key ${o[2]})"><i>${o[2]}</i><span class="ic">${ICON[o[0]]}</span><span class="nm">${esc(o[1])}</span><small class="clk"></small></button>`).join('') +
       `<button class="neg" id="cwTowel" title="stop the fight and keep the machine">Throw the towel</button>`;
     for (const b of el.querySelectorAll('[data-shout]')) b.addEventListener('click', () => coach.shout(b.dataset.shout));
     let armed = 0;
@@ -17990,7 +19596,7 @@ function ringsideResult(W) {
     <div class="cpfoot">
       <button class="go" id="rsAgain">Rematch</button>
       <button class="quiet" id="rsBuild">Back to build</button>
-      <span class="said">drag the cage to look around &middot; wheel to zoom</span>
+      <span class="said"><span data-for="mouse">drag the cage to look around &middot; wheel to zoom</span><span data-for="touch">drag the cage to look around &middot; pinch to zoom</span></span>
     </div>`;
   $('rsAgain').addEventListener('click', () => { ringsideResult(null); startFight(currentBuild()); });
   $('rsBuild').addEventListener('click', () => { ringsideResult(null); $('goFight').click(); });
@@ -18036,6 +19642,7 @@ const __m_app_nav = (() => {
 const { live } = __m_app_canvas;
 const { view, recentre, lookFrom, setShowCage, getShowCage } = __m_app_stage;
 const { setCaps, getCaps } = __m_app_fight;
+const { pointAt, localAt } = __m_app_fit;
 
 const $ = id => document.getElementById(id);
 
@@ -18109,20 +19716,20 @@ function mountNav() {
   live(cube, drawCube, { bg: 'none' });
   let drag = null, moved = false;
   cube.addEventListener('pointerdown', e => {
-    drag = { x: e.clientX, y: e.clientY, yaw: view.yaw, pitch: view.pitch }; moved = false;
+    const p = pointAt(e);
+    drag = { x: p.x, y: p.y, yaw: view.yaw, pitch: view.pitch }; moved = false;
     cube.setPointerCapture(e.pointerId);
   });
   cube.addEventListener('pointermove', e => {
     if (!drag) return;
-    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    const p = pointAt(e), dx = p.x - drag.x, dy = p.y - drag.y;
     if (Math.hypot(dx, dy) > 3) moved = true;
     view.yaw = drag.yaw + dx * 0.012;
     view.pitch = Math.max(-0.06, Math.min(1.05, drag.pitch + dy * 0.008));
   });
   const up = e => {
     if (drag && !moved) {
-      const r = cube.getBoundingClientRect();
-      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const [x, y] = localAt(cube, e);
       for (let i = lastPolys.length - 1; i >= 0; i--) if (inside(lastPolys[i].poly, x, y)) { lookFrom(lastPolys[i].name); break; }
     }
     drag = null;
@@ -18147,7 +19754,7 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"44f0b9b","date":"2026-10-12","built":"2026-10-12 16:49"};
+const __RUNNER_BUILD = {"commit":"d90c1ff","date":"2026-10-15","built":"2026-10-15 12:22"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
@@ -18176,11 +19783,16 @@ const { mountFight, startFight, stopFight, isFighting, fightTick, fightStep, get
 const { signatureTick, stopSignature } = __m_app_signature;
 const { mountFrontView } = __m_app_frontview;
 const { mountHelp } = __m_app_help;
-const { mountStage, draw: drawStage, setBuildSource, setBoneTuner, dimGrabs, motorHousings, view } = __m_app_stage;
+const { mountStage, draw: drawStage, setBuildSource, setBoneTuner, dimGrabs, motorHousings, view, setStageShift, setBuildFit, stageHeld, tapeOutline } = __m_app_stage;
+const { setWordsRight } = __m_app_clevis;
 const { drawBrain, drawBody, setSubject } = __m_app_viz;
 const { mountModes, setMode, backToPlan, modeLive, repaintPanel, currentModeId } = __m_app_modes;
 const { mountNav } = __m_app_nav;
 const { loadingStep, loadingProgress, loadingSettle, loadingReady, loadingDrop, whenDrawn } = __m_app_loading;
+const { fitNow, phone, rectOf, view: pageView, mountFullScreen, mountTurnHint, pageShape } = __m_app_fit;
+const { mountTips } = __m_app_tips;
+const { watchStage, frameDone } = __m_app_quality;
+const { SOUND } = __m_app_soundgame;
 
 const $ = id => document.getElementById(id);
 const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -18452,9 +20064,16 @@ function mountGuide() {
       is a trained model that chooses from the book its software is, and reads whatever sensors it owns; the
       ${COMPANIES.software.name} tab says what your machine runs and how it graded. With a ${EYES.clock.name} fitted,
       the corner&rsquo;s box shows how sure each machine is of winning.</p>
-    <p class="keys"><b>1</b>&ndash;<b>${CALLS.length}</b> shout &middot; <b>Enter</b> seconds out &middot; drag to
+    <p class="keys" data-for="mouse"><b>1</b>&ndash;<b>${CALLS.length}</b> shout &middot; <b>Enter</b> seconds out &middot; drag to
       orbit &middot; wheel to zoom &middot; <b>Esc</b> closes anything open &middot; every <b>?</b> on a panel
-      explains the instrument beside it</p>`;
+      explains the instrument beside it &middot; the <b>speaker</b> at the top right turns the fight&rsquo;s sound off and on, and the
+      headphones beside it set its volume and how it is heard: 3-D for headphones, stereo for speakers, or mono</p>
+    <p class="keys" data-for="touch">Tap a shout &middot; <b>Seconds out</b> starts the next round &middot; drag the cage to turn it
+      &middot; pinch it to zoom &middot; hold any button to read what it does &middot; <b>&times;</b> closes anything open &middot;
+      every <b>?</b> on a panel explains the instrument beside it &middot; the <b>speaker</b> at the top right turns the sound off and on;
+      the headphones beside it set its volume and how it is heard (3-D is for headphones).
+      On a phone, hold it sideways; for the whole screen, the four corners beside UMD at the top left (Android), or add the game to the home
+      screen (iPhone: Share, then Add to Home Screen).</p>`;
   const toggle = on => {
     $('guidePop').hidden = !on;
     $('guideBtn').setAttribute('aria-pressed', String(on));
@@ -18542,11 +20161,124 @@ function setFold(panel, on) {
   dirtyAll();
 }
 function mountFold(btn, panel) {
+  if (!btn || !panel) return;
   btn.addEventListener('click', () => {
     touched.add(panel.id);
-    setFold(panel, panel.dataset.fold !== '1');
+    const shut = panel.dataset.fold !== '1';
+    setFold(panel, shut);
+    if (!shut && phone()) for (const id of PANELS) if (id !== panel.id && $(id) && $(id).dataset.fold !== '1') setFold($(id), true);
+    shiftNow();
   });
 }
+const PANELS = ['buildPanel', 'foePanel', 'careerPanel', 'finishPanel', 'telePanel'];
+
+function phoneFolds() {
+  if (!phone()) return;
+  if (isFighting()) { setFold($('foePanel'), true); setFold($('telePanel'), true); }
+  else { setFold($('careerPanel'), true); setFold($('finishPanel'), true); }
+}
+function deskFolds() { for (const id of ['careerPanel', 'finishPanel', 'foePanel']) if ($(id)) setFold($(id), false); }
+function dockNow() {
+  const d = $('dock'); if (!d) return;
+  const r = rectOf(d), h = Math.max(0, pageView().h - r.top);
+  document.documentElement.style.setProperty('--dockH', Math.round(h + 6) + 'px');
+}
+function hudNow() {
+  const h = $('hud'); if (!h || h.hidden) return;
+  document.documentElement.style.setProperty('--hudB', Math.round(rectOf(h).bottom + 6) + 'px');
+}
+const MARGIN = { head: 30, feet: 16, side: 18, air: 6 };
+const FEED_ROOM = 16;
+let lastShift = [0, 0], fitKey = '', lastWay = '';
+function shiftNow() {
+  const R = document.documentElement.style;
+  if (!phone()) { lastShift = [0, 0]; fitKey = ''; setStageShift(0, 0); setBuildFit(0); setWordsRight(0); return; }
+  if (stageHeld()) return;
+  const V = pageView(), fight = isFighting();
+  const shown = el => el && !el.hidden && el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden';
+  const box = el => rectOf(el);
+  for (const [sel, key, cap] of [['.leftcol > .panel', '--pillL', '.leftcol'], ['.rightcol > .panel', '--pillR', '.rightcol']]) {
+    const heads = [...document.querySelectorAll(sel)].filter(p => p.dataset.fold === '1' && shown(p));
+    let wid = 0;
+    for (const p of heads) { p.style.width = 'max-content'; wid = Math.max(wid, box(p).width); p.style.width = ''; }
+    const col = document.querySelector(cap), lim = col ? box(col).width : V.w;
+    R.setProperty(key, heads.length ? Math.ceil(Math.min(wid, lim)) + 'px' : '');
+  }
+  const lc = document.querySelector('.leftcol'), rc = document.querySelector('.rightcol');
+  let xl = box(lc).left, xr = V.w - (V.w - box(rc).right), rightB = 0, rightOpen = false;
+  const blocks = [];
+  for (const p of document.querySelectorAll('.leftcol > .panel')) if (shown(p)) {
+    if (p.dataset.fold !== '1') xl = Math.max(xl, box(p).right); else blocks.push(box(p)); }
+  for (const p of document.querySelectorAll('.rightcol > .panel')) if (shown(p)) {
+    if (p.dataset.fold !== '1') { xr = Math.min(xr, box(p).left); rightOpen = true; } else { const r = box(p); blocks.push(r); rightB = Math.max(rightB, r.bottom); } }
+  R.setProperty('--rightB', Math.round((rightB || box(rc).top) + 6) + 'px');
+  document.documentElement.dataset.rightOpen = rightOpen ? '1' : '0';
+  for (const b of $('nav').querySelectorAll('button')) if (shown(b)) blocks.push(box(b));
+  const mark = document.querySelector('.topfloat'), chips = document.querySelector('.infofloat'), full = $('fullBtn');
+  const chipsL = shown(chips) ? box(chips).left : V.w;
+  let topL = shown(mark) ? box(mark).right : 0;
+  if (shown(full) && box(full).right <= chipsL) topL = Math.max(topL, box(full).right);
+  for (const el of [mark, chips, full]) if (shown(el)) blocks.push(box(el));
+  const dockTop = box($('dock')).top - 4;
+  const cv = box($('stage'));
+  R.setProperty('--hudW', Math.round(Math.max(260, Math.min(430, 2 * (Math.min(V.w / 2 - topL, chipsL - V.w / 2) - 8)))) + 'px');
+  if (fight) {
+    const hud = $('hud'), top = (shown(hud) ? box(hud).bottom : 48) + FEED_ROOM;
+    R.setProperty('--axis', Math.round(V.w / 2) + 'px'); R.setProperty('--freeW', Math.round(V.w - 16) + 'px');
+    lastShift = [V.w / 2 - (cv.left + cv.width / 2), (top + dockTop) / 2 - (cv.top + cv.height / 2)];
+    setStageShift(lastShift[0], lastShift[1]); return;
+  }
+  const strip = $('playStrip');
+  const stripOn = shown(strip), sb = stripOn ? box(strip) : null;
+  const sLo = stripOn ? topL + 8 + sb.width / 2 : -Infinity;
+  const sHi = stripOn ? chipsL - 8 - sb.width / 2 : Infinity;
+  const onStrip = x => sLo <= sHi ? Math.min(sHi, Math.max(sLo, x)) : x;
+  const H = motorHousings();
+  if (!H.length) { setStageShift(lastShift[0], lastShift[1]); return; }
+  const xs = H.map(h => cv.left + h.x), ys = H.map(h => cv.top + h.y);
+  const o = { l: Math.min(...xs) - MARGIN.side, r: Math.max(...xs) + MARGIN.side, t: Math.min(...ys) - MARGIN.head, b: Math.max(...ys) + MARGIN.feet };
+  const tp = tapeOutline();
+  if (tp) { o.l = Math.min(o.l, cv.left + tp.l); o.r = Math.max(o.r, cv.left + tp.r); o.t = Math.min(o.t, cv.top + tp.t); o.b = Math.max(o.b, cv.top + tp.b); }
+  const cx = cv.left + cv.width / 2 + view.shift;
+  const half = Math.max(1, cx - o.l, o.r - cx), tall = Math.max(1, o.b - o.t);
+  const top0 = stripOn ? sb.bottom + 4 : 48;
+  const lefts = [xl, ...blocks.map(r => r.right).filter(x => x > xl && x < xr)], rights = [xr, ...blocks.map(r => r.left).filter(x => x > xl && x < xr)];
+  let best = null, kept = null;
+  for (const L of lefts) for (const Rr of rights) {
+    if (Rr - L < 160) continue;
+    let top = top0;
+    for (const r of blocks) if (r.right > L + 1 && r.left < Rr - 1 && r.top < V.h / 2) top = Math.max(top, r.bottom + 4);
+    if (dockTop - top < 100) continue;
+    const fit = line => Math.min(line - L, Rr - line) - MARGIN.air;
+    const mid0 = (L + Rr) / 2, midS = onStrip(mid0), k0 = Math.min(fit(mid0) / half, (dockTop - top) / tall), kS = Math.min(fit(midS) / half, (dockTop - top) / tall);
+    const on = kS >= 0.85 * k0, line = on ? midS : mid0, k = on ? kS : k0;
+    const way = { key: Math.round(L) + ':' + Math.round(Rr), L, Rr, top, line, room: fit(line), k, score: k * (on || midS === mid0 ? 1.12 : 1) };
+    if (!best || way.score > best.score) best = way;
+    if (way.key === lastWay) kept = way;
+  }
+  if (!best) return;
+  const way = kept && kept.score * 1.1 >= best.score ? kept : best;
+  lastWay = way.key;
+  R.setProperty('--axis', Math.round(way.line) + 'px');
+  R.setProperty('--freeW', Math.round(Math.max(160, 2 * way.room)) + 'px');
+  setWordsRight(way.Rr - cv.left, way.L - cv.left);
+  if (stripOn) R.setProperty('--stripX', Math.round(sLo <= sHi ? onStrip(way.line) : (sLo + sHi) / 2) + 'px');
+  let dy = view.shiftY + (way.top + dockTop) / 2 - (o.t + o.b) / 2;
+  if (Math.abs(dy - lastShift[1]) < 2) dy = lastShift[1];
+  lastShift = [way.line - (cv.left + cv.width / 2), dy];
+  setStageShift(lastShift[0], lastShift[1]);
+  const key = [way.key, Math.round(way.top), Math.round(dockTop), H.length].join('|');
+  if (key !== fitKey) { fitKey = key; view.userZoom = false; }
+  if (view.userZoom || Math.abs(view.dist - view.want) > view.want * 0.005) return;
+  if (Math.abs(way.k - 1) > 0.04) setBuildFit(view.dist / way.k);
+}
+let wasPhone = null;
+document.addEventListener('umd:fit', () => {
+  dirtyAll();
+  const p = phone();
+  if (p !== wasPhone) { if (p) phoneFolds(); else if (wasPhone !== null) deskFolds(); wasPhone = p; }
+  dockNow(); hudNow(); shiftNow();
+});
 
 function mountDock() {
   $('goFight').addEventListener('click', async () => {
@@ -18591,10 +20323,13 @@ function syncMode() {
   const foe = $('foePanel');
   if (foe) { foe.hidden = !on; if (on) foeTape(); }
   touched.clear();
-  setFold($('buildPanel'), on);
+  setFold($('buildPanel'), on && phone());
+  setFold($('foePanel'), false);
   const sl = $('specList');
   if (sl) sl.innerHTML = on ? buildSpecHTML() : '';
   setFold($('telePanel'), false);
+  phoneFolds();
+  dockNow(); hudNow(); shiftNow();
 }
 
 mountStage($('stage'));
@@ -18612,6 +20347,9 @@ mountLook();
 mountDock();
 mountFold($('foldBuild'), $('buildPanel'));
 mountFold($('foldTele'), $('telePanel'));
+mountFold($('foldCareer'), $('careerPanel'));
+mountFold($('foldFinish'), $('finishPanel'));
+mountFold($('foldFoe'), $('foePanel'));
 setModeWatcher(syncMode);
 mountNav();
 mountModes();
@@ -18622,6 +20360,12 @@ careerNow();
 setName();
 afterPaint();
 syncMode();
+fitNow(); wasPhone = phone(); if (wasPhone) phoneFolds(); dockNow(); shiftNow();
+if (typeof ResizeObserver === 'function') { const ro = new ResizeObserver(() => { dockNow(); hudNow(); shiftNow(); }); ro.observe($('dock')); ro.observe($('hud')); }
+setInterval(() => { if (phone()) { dockNow(); hudNow(); shiftNow(); } }, 250);
+mountFullScreen($('fullBtn'));
+mountTurnHint($('turnHint'));
+mountTips();
 
 live($('vizBrain'), drawBrain, { bg: 'none' });
 live($('vizBody'), drawBody, { bg: 'none' });
@@ -18640,7 +20384,7 @@ setSubject(() => {
 
 const t0 = performance.now();
 let booting = 0, stillsLeft = -1, sameFor = 0, programsSaid = -1, settling = false;
-if (window.frameElement) loadingDrop();
+if (window.frameElement && !(window.frameElement.dataset && window.frameElement.dataset.phone === '1')) loadingDrop();
 else if (document.getElementById('loading')) prepareInBackground(true);
 function bootWatch() {
   if (booting === 0) {
@@ -18656,11 +20400,13 @@ function bootWatch() {
   if (d === 0 || sameFor >= 6) { booting = 2; loadingReady(); }
 }
 loadingStep(2);
+watchStage($('stage'));
 whenDrawn(() => animate(now => {
   fightTick(now);
   if (isFighting()) stopSignature(); else signatureTick(now);
   frame((now - t0) / 1000);
   if (booting < 2) bootWatch();
+  else frameDone(now);
 }));
 
 {
@@ -18684,8 +20430,12 @@ window.__umd = {
   world: getWorld,
   grabs: dimGrabs,
   housings: motorHousings,
+  tape: tapeOutline,
+  screen: pageShape,
   mode: drive(setMode),
   intro: () => ({ t: introT(), cage: cageRise(), foe: foeFade(), done: introDone() }),
+  cam: () => ({ yaw: view.yaw, pitch: view.pitch, want: view.want, zoom: view.zoom, shift: view.shift }),
+  sound: () => SOUND.state(),
   stalls,
 };
 
