@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit d90c1ff. Opens by double-click. Do not edit by hand. -->
+<!-- UMD - ULTIMATE MACHINE DEATHMATCH, ONE FILE: packed by runner/tools/pack.mjs from commit 5c66837. Opens by double-click. Do not edit by hand. -->
 <!-- THIRD-PARTY NOTICE. The robot part shapes in this page are derived from the link meshes of unitree_ros
      (github.com/unitreerobotics/unitree_ros), used under the BSD 3-Clause licence below. This project is not affiliated with,
      nor endorsed by, Unitree Robotics.
@@ -783,6 +783,10 @@ canvas.pad{width:100%;height:96px;display:block;border:1px solid var(--glass-edg
 .note button.more{font:600 9px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--a);background:none;border:0;padding:0 2px;cursor:pointer}
 
 :root[data-mode="fight"] #telePanel .vsec.brain{flex:1.7 1 0}
+
+#telePanel:has(#modeStrip[data-phase="corner"], #modeStrip[data-phase="over"]) .pbody.nogrow .vsec{flex:none;height:30px;min-height:0}
+#telePanel:has(#modeStrip[data-phase="corner"], #modeStrip[data-phase="over"]) .pbody.nogrow .vsec canvas{flex:1 1 0;height:auto;min-height:0}
+#telePanel:has(#modeStrip[data-phase="corner"], #modeStrip[data-phase="over"]) .pbody.nogrow .modestrip{flex:0 1 auto;overflow-y:auto;overscroll-behavior:contain}
 .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .gal button{padding:0;border:1px solid var(--glass-edge);background:var(--raise);overflow:hidden}
 .gal button canvas{width:100%;height:50px;display:block;pointer-events:none}
@@ -1010,6 +1014,8 @@ canvas.pad{width:100%;height:96px;display:block;border:1px solid var(--glass-edg
   backdrop-filter:var(--glass-bar-f);-webkit-backdrop-filter:var(--glass-bar-f);
   border:1px solid var(--glass-edge);box-shadow:var(--glass-lip), 0 10px 24px rgba(0,0,0,.45)}
 .dock .modeslot{padding:5px 6px;gap:5px}
+
+.dock .modeslot:empty{display:none}
 .dock .modeslot button{background:var(--raise);border:1px solid var(--glass-edge)}
 
 .dock .stake{display:flex;flex-direction:column;gap:3px;align-items:flex-end;padding:0 4px;font:9px/1 var(--mono);color:var(--ink3);white-space:nowrap}
@@ -1823,8 +1829,8 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:7px;
   <span>the game is drawn the long way across - turn the top of the phone to the left</span>
 </div>
 <script id="runner-bundle">
-// ---- packed by runner/tools/pack.mjs from commit d90c1ff; edit the modules, not this ----
-// packed files: ["app/fit.js","app/markword.js","app/quality.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/soundpatches.js","app/soundpop.js","app/testmode.js","app/theme.js","app/paint.js","app/tips.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/sound.js","app/soundgame.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
+// ---- packed by runner/tools/pack.mjs from commit 5c66837; edit the modules, not this ----
+// packed files: ["app/fit.js","app/markword.js","app/quality.js","app/sim/brainfile.js","app/sim/confidence.js","app/sim/damage.js","app/sim/decide-grade-light.js","app/sim/decide-grade.js","app/sim/decide-weights-universal.js","app/sim/policy.js","app/sim/brain.js","app/sim/referee.js","app/sim/weights.js","app/sliders.js","app/soundpatches.js","app/soundpop.js","app/testmode.js","app/theme.js","app/paint.js","app/tips.js","engine/boxparts.js","engine/motors.js","app/sim/energy.js","engine/packs.js","engine/parts.js","engine/studio_gl.js","engine/draw_gl.js","engine/gfx.js","app/canvas.js","app/dims.js","app/energyfx.js","app/fx.js","app/livery.js","engine/forge.js","engine/rigs.js","app/frontview.js","app/mark.js","app/loading.js","app/sim/body.js","app/cagegfx.js","app/cagelights.js","app/refboard.js","app/sim/grapple.js","app/sim/getup.js","app/sim/mjcf.js","app/sim/ranges.js","app/sim/waist.js","app/sim/strikes.js","app/sensorfx.js","app/sim/decide.js","app/confui.js","app/sim/steer.js","app/brains.js","app/sim/walker.js","app/sim/steps.js","app/sim/world.js","app/sim/evolve.js","app/match.js","app/sim/walktest.js","app/software.js","app/shop.js","app/firms.js","app/help.js","app/signature.js","app/atomic.js","app/sound.js","app/soundgame.js","app/viz.js","app/fight.js","app/stage.js","app/clevis.js","app/build.js","app/modes.js","app/nav.js"]
 const __m_app_fit = (() => {
 const root = typeof document !== 'undefined' ? document.documentElement : null;
 const S = { touch: false, turn: false, phone: false, w: 0, h: 0 };
@@ -2828,6 +2834,64 @@ const WEIGHTS = new Float64Array([
 return { STAGE, KIND, ASSIST, REWARD, SCORES, CURVE, WEIGHTS };
 })();
 
+const __m_app_sliders = (() => {
+const { pointAt, rectOf } = __m_app_fit;
+
+const SLIDERS = { finger: true, grow: 9 };
+const KNOB = 13;
+
+function valueAt(el, p) {
+  const r = rectOf(el), cs = getComputedStyle(el), vert = /^vertical/.test(cs.writingMode);
+  const len = vert ? r.height : r.width, at = vert ? p.y - r.top : p.x - r.left;
+  let f = Math.min(1, Math.max(0, (at - KNOB / 2) / Math.max(1, len - KNOB)));
+  if (cs.direction === 'rtl') f = 1 - f;
+  const min = el.min === '' ? 0 : +el.min, max = el.max === '' ? 100 : +el.max, step = el.step === 'any' ? 0 : (+el.step || 1);
+  let v = min + f * (max - min);
+  if (step) v = min + Math.round((v - min) / step) * step;
+  return +v.toFixed(6);
+}
+function near(el, p) {
+  const r = rectOf(el), vert = /^vertical/.test(getComputedStyle(el).writingMode), g = SLIDERS.grow;
+  return vert ? p.y >= r.top && p.y <= r.bottom && p.x >= r.left - g && p.x <= r.right + g
+              : p.x >= r.left && p.x <= r.right && p.y >= r.top - g && p.y <= r.bottom + g;
+}
+
+function fingerSlider(el) {
+  if (typeof document === 'undefined' || !el || el.dataset.finger) return;
+  const zone = el.parentElement; if (!zone) return;
+  el.dataset.finger = '1';
+  let held = null;
+  const find = list => held && [...list].find(t => t.identifier === held.id);
+  const set = t => {
+    const before = el.value; el.value = String(valueAt(el, pointAt(t)));
+    if (el.value !== before) el.dispatchEvent(new Event('input', { bubbles: true }));
+  };
+  zone.addEventListener('touchstart', e => {
+    if (!SLIDERS.finger || held || el.disabled || !el.getClientRects().length) return;
+    if (e.target !== el && e.target !== zone) return;
+    const t = e.changedTouches[0]; if (!t || !near(el, pointAt(t))) return;
+    e.preventDefault();
+    held = { id: t.identifier, was: el.value };
+    try { el.focus({ preventScroll: true }); } catch (err) {   }
+    set(t);
+  }, { capture: true, passive: false });
+  zone.addEventListener('touchmove', e => { const t = find(e.changedTouches); if (!t) return; e.preventDefault(); set(t); }, { capture: true, passive: false });
+  const end = e => {
+    if (!find(e.changedTouches)) return;
+    if (el.value !== held.was) el.dispatchEvent(new Event('change', { bubbles: true }));
+    held = null;
+  };
+  zone.addEventListener('touchend', end);
+  zone.addEventListener('touchcancel', end);
+}
+function mountSliders() {
+  if (typeof document === 'undefined') return;
+  for (const el of document.querySelectorAll('input[type=range]')) fingerSlider(el);
+}
+
+return { SLIDERS, fingerSlider, mountSliders };
+})();
+
 const __m_app_soundpatches = (() => {
 const PATCHES_VERSION = 8;
 const LAYER_KINDS = {
@@ -3097,6 +3161,7 @@ return { PATCHES_VERSION, LAYER_KINDS, PARAM_RANGE, ROOM, ROOM_RANGE, GROUPS, MO
 })();
 
 const __m_app_soundpop = (() => {
+const { fingerSlider } = __m_app_sliders;
 const WAYS = {
   hrtf: { name: '3-D', says: 'For headphones: each sound from where it happened in the cage - left or right, in front or behind; nearer, louder.' },
   stereo: { name: 'stereo', says: 'For speakers: each sound left or right of the middle; nearer, louder.' },
@@ -3117,6 +3182,7 @@ function mountSoundPop(api) {
     <div class="hearrow"><button class="hear" id="soundHear" title="a blow on your left, then on your right">hear it</button><span id="soundHearSays">a blow on your left, then on your right</span></div>
     <p class="note">The <b>speaker</b> at the top right turns the sound off and on. Over 100 % the loudest hits are rounded off.</p>`;
   const vol = $('soundVol');
+  fingerSlider(vol);
   const paint = () => {
     const v = api.volume(), w = api.space();
     if (document.activeElement !== vol) vol.value = String(v);
@@ -16332,7 +16398,7 @@ const PART_ROWS = [['head', 'head'], ['torso', 'torso'], ['right arm', 'R arm'],
 const STRIKE_SHORT = { straight: 'straight', hammer: 'hammer', hook: 'hook', kick: 'kick', low: 'low kick', knee: 'knee', elbow: 'elbow', rising: 'rising', stomp: 'stomp', ram: 'ram', dropkick: 'drop kick' };
 const MOVE_SHORT = ['hold', 'close', 'off', 'covr'];
 const RANGE_MAX = 2.4;
-const VIZ_LAYOUT = { tight: true };
+const VIZ_LAYOUT = { tight: true, bodyMin: 48, fit: true };
 const GAPS = {
   loose: { top: 8, state: 30, recipe: 26, cap: 16, range: 36, strikesEnd: 16, whyCap: 14, fanEnd: 14, line: 16, states: 30, movedCap: 14, moved: 28,
            needRange: 48, needStrikes: 60, needWhy: 150, needLine: 16, needStates: 30, needMoved: 36 },
@@ -16422,9 +16488,15 @@ function drawStyled(ctx, w, h, T, me, he, accent, foeCol, world) {
       show.forEach((i, r) => { const a = Math.abs(pull[i]) / m;
         ctx.globalAlpha = 0.15 + a * 0.85; ctx.strokeStyle = pull[i] >= 0 ? accent : (foeCol || T.ink3); ctx.lineWidth = 0.6 + a * 3.5;
         ctx.beginPath(); ctx.moveTo(left, row(r)); ctx.bezierCurveTo(left + (right - left) * 0.5, row(r), left + (right - left) * 0.5, cy, right - 6, cy); ctx.stroke();
-        ctx.globalAlpha = 1; font(10); ctx.fillStyle = a > 0.3 ? T.ink2 : T.ink3; ctx.textAlign = 'right'; ctx.fillText(READ_SHORT[i] || 'reading ' + (i + 1), left - 5, row(r) + 3); });
+        ctx.globalAlpha = 1; font(10); ctx.fillStyle = a > 0.3 ? T.ink2 : T.ink3; ctx.textAlign = 'right';
+        let name = READ_SHORT[i] || 'reading ' + (i + 1);
+        if (VIZ_LAYOUT.fit) while (name.length > 4 && ctx.measureText(name).width > left - 5 - pad) name = name.slice(0, -2).trimEnd() + '…';
+        ctx.fillText(name, left - 5, row(r) + 3); });
       ctx.beginPath(); ctx.arc(right - 6, cy, 6, 0, 6.2832); ctx.fillStyle = accent; ctx.fill();
-      font(9); ctx.fillStyle = T.ink3; ctx.textAlign = 'right'; ctx.fillText(`the ${show.length} that pulled most · for it · against it, in his colour`, right, y + H + 2);
+      font(9); ctx.fillStyle = T.ink3; ctx.textAlign = 'right';
+      let key = `the ${show.length} that pulled most · for it · against it, in his colour`;
+      if (VIZ_LAYOUT.fit) while (key.length > 8 && ctx.measureText(key).width > right - pad) key = '…' + key.replace(/^…?\S*\s*(?:·\s*)?/, '');
+      ctx.fillText(key, right, y + H + 2);
       y += H + G.fanEnd; drew.push('why');
       if (bv.shape === 'steer' && bv.rule && room(G.needLine + 4)) {
         font(10); ctx.fillStyle = T.ink2; ctx.textAlign = 'left';
@@ -16680,6 +16752,7 @@ function drawBody(ctx, w, h, t, T) {
 
   const R = readBody(S && (S.a || S.skel));
   head(ctx, T, pad, 16, 'balance  ·  weight against feet');
+  if (h < VIZ_LAYOUT.bodyMin) return;
   if (S && S.newFight) {
     ctx.font = `10px ${T.mono}`; ctx.fillStyle = T.ink3; ctx.textAlign = 'left';
     ctx.fillText('the new fight: this instrument and', pad, 40);
@@ -19122,7 +19195,7 @@ const ringside = {
     };
     say();
   },
-  dock(el) { el.innerHTML = `<span class="lbl">no corner, no coaching — one round, to the death</span>`; },
+  dock(el) { el.innerHTML = ''; },
 };
 
 const SHOUTS = CALLS.map(c => [c.id, c.call, c.key, c.plain]);
@@ -19403,6 +19476,7 @@ const coach = {
 
   panel(el) {
     const P = MATCH.phase;
+    el.dataset.phase = P;
     const head = `<p class="mhd">The corner <span>${esc(P === 'plan' ? 'before the fight' : P === 'round' ? `round ${MATCH.n}` : P === 'corner' ? `after round ${MATCH.n}` : 'it is over')}</span>` +
       `<button class="q inline" data-help="${P === 'plan' ? 'plan' : P === 'round' ? 'shout' : 'corner'}" title="what am I looking at?">?</button></p>`;
     if (P === 'plan') { el.innerHTML = head + coach.planHTML(); coach.wirePlans(el); return; }
@@ -19604,7 +19678,7 @@ function ringsideResult(W) {
 
 
 function modeLive() { if (mode.live) mode.live(); }
-function repaintPanel() { const strip = $('modeStrip'); if (strip) { drop(strip); mode.panel(strip); } }
+function repaintPanel() { const strip = $('modeStrip'); if (strip) { drop(strip); delete strip.dataset.phase; mode.panel(strip); } }
 
 function currentModeId() { return mode.id; }
 
@@ -19614,7 +19688,7 @@ function setMode(id) {
   mode = next;
   for (const b of document.querySelectorAll('[data-mode]')) b.setAttribute('aria-pressed', String(b.dataset.mode === mode.id));
   const strip = $('modeStrip'), slot = $('modeSlot');
-  if (strip) { drop(strip); mode.panel(strip); }
+  if (strip) { drop(strip); delete strip.dataset.phase; mode.panel(strip); }
   if (slot) { drop(slot); mode.dock(slot); }
   if (mode.enter) mode.enter();
   applyBrain();
@@ -19754,7 +19828,7 @@ return { mountNav };
 </script>
 <script>
 const __RUNNER_MODULES = { "app/sim/decide-grade-light.js": __m_app_sim_decide_grade_light, "app/sim/decide-weights-universal.js": __m_app_sim_decide_weights_universal };
-const __RUNNER_BUILD = {"commit":"d90c1ff","date":"2026-10-15","built":"2026-10-15 12:22"};
+const __RUNNER_BUILD = {"commit":"5c66837","date":"2026-10-15","built":"2026-10-16 02:56"};
 const __RUNNER_WORKER_URL = URL.createObjectURL(new Blob([document.getElementById('runner-bundle').textContent, "\n"], { type: 'text/javascript' }));
 (async () => {
 
@@ -19791,6 +19865,7 @@ const { mountNav } = __m_app_nav;
 const { loadingStep, loadingProgress, loadingSettle, loadingReady, loadingDrop, whenDrawn } = __m_app_loading;
 const { fitNow, phone, rectOf, view: pageView, mountFullScreen, mountTurnHint, pageShape } = __m_app_fit;
 const { mountTips } = __m_app_tips;
+const { mountSliders, SLIDERS } = __m_app_sliders;
 const { watchStage, frameDone } = __m_app_quality;
 const { SOUND } = __m_app_soundgame;
 
@@ -20366,6 +20441,7 @@ setInterval(() => { if (phone()) { dockNow(); hudNow(); shiftNow(); } }, 250);
 mountFullScreen($('fullBtn'));
 mountTurnHint($('turnHint'));
 mountTips();
+mountSliders();
 
 live($('vizBrain'), drawBrain, { bg: 'none' });
 live($('vizBody'), drawBody, { bg: 'none' });
@@ -20436,6 +20512,7 @@ window.__umd = {
   intro: () => ({ t: introT(), cage: cageRise(), foe: foeFade(), done: introDone() }),
   cam: () => ({ yaw: view.yaw, pitch: view.pitch, want: view.want, zoom: view.zoom, shift: view.shift }),
   sound: () => SOUND.state(),
+  sliders: SLIDERS,
   stalls,
 };
 
